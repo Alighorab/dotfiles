@@ -2,11 +2,6 @@ full_text=
 separator=false
 separator_block_width=5
 
-[Recording]
-full_text=
-command= [ $(pgrep ffmpeg) ] && echo "[ Recording ]"
-interval=1
-
 [separator]
 
 [Music]
