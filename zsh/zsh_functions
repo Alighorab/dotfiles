@@ -1,0 +1,70 @@
+# fuzzy cd
+fzcd () {
+    local f=$(cat <(ls -dp . ..) \
+      <(ls -p | egrep "/$") \
+      <(ls -Ap | egrep "^\..*/$") \
+      <(find . -maxdepth 1 -type f | awk '{print substr ($0,3)}') 2> /dev/null \
+        | fzf --reverse --preview 'if [[ "$(file {+})" = *"directory"* ]]; then 
+                                        tree {+}; 
+                                    elif [[ "$(file {+})" = *"text"* ]]; then 
+                                        bat --color=always --style=numbers --line-range=:500 {}; 
+                                    else 
+                                        file {+}; 
+                                    fi' \
+        --preview-window=right,70%,wrap \
+        --bind right:accept)
+    [[ "$f" ]] && echo $(file "$f")
+}
+# simple fuzzy file explorer
+sfzfe () {
+    local out=$(fzcd)
+    local f=$(echo $out | cut -d ':' -f 1)
+    local ftype=$(echo $out | cut -d ':' -f 2)
+
+    while [[ "$ftype" = *"directory"* && "$f" != "./" ]]; do
+        cd "$f"
+        out=$(fzcd)
+        f=$(echo $out | cut -d ':' -f 1)
+        ftype=$(echo $out | cut -d ':' -f 2)
+    done
+    [[ "$ftype" = *"text"* ]] && vim "$f" && return
+    [[ "$f" ]] && echo -n "$f" | xclip -selection primary
+}
+
+zvm_after_init_commands+=('zle -N sfzfe')
+zvm_after_init_commands+=('bindkey -s "^[[102;6u" "sfzfe^Mcls^Mr"')
+
+# ex - archive extractor
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar xf  $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+dir ()
+{
+    local directory=$(find $HOME/study/computer-science-engineering -type d | fzf)
+    if [[ $directory ]]; then
+        cd $directory
+        clear
+    fi
+}
+zvm_after_init_commands+=('zle -N dir')
+zvm_after_init_commands+=('bindkey -s "^f" "dir^M"')

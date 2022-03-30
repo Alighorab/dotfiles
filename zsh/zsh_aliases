@@ -1,0 +1,57 @@
+# General aliases
+alias exa='exa --group-directories-first --git'
+alias ls='exa'
+alias l='ls'
+alias la='l -a'
+alias ll='l -lg'
+alias lla='ll -alg'
+alias lt='l -T'
+alias li='l --git-ignore'
+alias lai='la --git-ignore'
+alias lli='ll --git-ignore'
+alias llai='lla --git-ignore'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias more=less
+alias less='bat --paging=always -p -n'
+alias du='du -h'						  # human-readable sizess
+alias cls='clear'
+alias .='source'
+alias ..='cd ..'
+alias cat='bat --paging=never -p'
+alias batman='man'
+alias vi='nvim'
+alias vim='nvim'
+alias d='dict'
+alias reload='exec zsh'                   # Reload zsh
+alias copydir='echo -n $(pwd) | xclip -selection clipboard'
+alias time='/usr/bin/time'
+alias mkdir='mkdir -p'
+alias sudo='sudo '
+
+# kitty
+alias icat="kitty +kitten icat"
+
+# pacman
+alias i='sudo pacman -S'
+alias rr='sudo pacman -Rs'
+alias r='sudo pacman -R'
+alias c='sudo pacman -Sc'
+alias u='sudo pacman -Su'
+alias y='sudo pacman -Sy'
+alias s='sudo pacman -Ss'
+alias qa='pacman -Qq | less'
+alias q='pacman -Qi'
+# yay
+alias iy='yay -S'
+alias rry='yay -Rns'
+alias ry='yay -R'
+alias cy='yay -c'
+alias sy='yay -Ss'
+
+# youtube-dl
+alias youtube-dl="youtube-dl --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M'"

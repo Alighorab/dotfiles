@@ -1,0 +1,115 @@
+set $mod   Mod1
+set $super Mod4
+floating_modifier $super
+
+font pango:Inconsolata Nerd Font Mono 0
+new_window pixel 1
+popup_during_fullscreen smart
+
+exec            sxhkd
+exec            picom
+exec            sh -c $HOME/.scripts/xidlehook.sh
+exec            feh --bg-scale /home/logan/pictures/wallpapers/davide-manzini.jpg&
+exec_always     i3-layouts --debug > ~/.cache/i3-layouts-log.txt&
+exec_always     i3-msg gaps inner all set 10
+
+set $ws1        "1"
+set $ws2        "2"
+set $ws3        "3"
+set $ws4        "4"
+set $firefox    ""
+set $discord    ""
+set $telegram   ""
+set $spotify    ""
+set $ranger     ""
+set $youtube    ""
+set $windows    ""
+set $trello     ""
+set $syncplay   ""
+set $arduino    ""
+set $gimp       ""
+set $code       ""
+set $anghami    ""
+
+bindsym $super+1 workspace $ws1
+bindsym $super+2 workspace $ws2
+bindsym $super+3 workspace $ws3
+bindsym $super+4 workspace $ws4
+bindsym $super+5 workspace $ranger
+
+bindsym $super+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
+
+set $i3l vstack 0.6             to workspace $ws1
+set $i3l hstack 0.7 down        to workspace $ws2
+set $i3l companion 0.3 0.3 down to workspace $ws3
+set $i3l tabbed                 to workspace $ws4
+set $i3l tabbed                 to workspace $firefox
+set $i3l tabbed                 to workspace $discord
+set $i3l tabbed                 to workspace $telegram
+set $i3l tabbed                 to workspace $spotify
+set $i3l tabbed                 to workspace $ranger
+set $i3l tabbed                 to workspace $windows
+set $i3l tabbed                 to workspace $trello
+set $i3l tabbed                 to workspace $syncplay
+set $i3l tabbed                 to workspace $arduino
+set $i3l tabbed                 to workspace $gimp
+set $i3l tabbed                 to workspace $code
+set $i3l tabbed                 to workspace $anghami
+
+
+assign [class="firefox"] $firefox
+assign [class="discord"] $discord
+assign [class="TelegramDesktop"] $telegram
+assign [class="Terminator"] $ranger
+assign [class="Trello"] $trello
+assign [class="syncplay"] $syncplay
+assign [class="processing-app-Base"] $arduino
+assign [class="Gimp"] $gimp
+assign [class="Code"] $code
+assign [class="anghami"] $anghami
+for_window [title="spotify"] move to workspace $spotify
+
+for_window [class="Pavucontrol"]    floating enable
+for_window [title="Library"]        floating enable
+for_window [title="nmtui"]          floating enable
+for_window [class="qBittorrent"]    floating enable
+for_window [class="Galculator"]     floating enable
+
+hide_edge_borders both
+
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #232324
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+
+client.focused          #606018 #184848 #FFFFFF #2E9EF4   #285577
+client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.background       #FFFFFF
+
+
+bar {
+    font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 10 
+    height 21
+    position top
+    status_command i3blocks
+    tray_output none
+    colors {
+        background #000000
+        statusline #FFFFFF
+        separator  #666666
+
+        focused_workspace  #606018 #285577 #FFFFFF
+        active_workspace   #333333 #222222 #FFFFFF
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2F343A #900000 #FFFFFF
+        binding_mode       #2F343A #900000 #FFFFFF
+    }
+}

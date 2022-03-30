@@ -1,0 +1,54 @@
+full_text= 
+separator=false
+separator_block_width=5
+
+[Recording]
+full_text=
+command= [ $(pgrep ffmpeg) ] && echo "[ Recording ]"
+interval=1
+
+[separator]
+
+[Music]
+full_text=
+command= $HOME/.scripts/player.sh
+interval=1
+
+[separator]
+
+[Microphone]
+command= $HOME/.scripts/i3mic 
+interval=once
+signal=10
+
+[separator]
+
+[Sound]
+command= $HOME/.scripts/i3volume
+interval=once
+signal=10
+
+[separator]
+
+[Date]
+label= 
+command= date '+%a, %b %d %I:%M:%S %p %Y'
+interval=1
+
+[separator]
+
+[Wifi]
+command= $HOME/.scripts/wifi.sh 
+interval=2
+
+[separator]
+
+[Language]
+command= $HOME/.scripts/language.sh
+interval=1
+
+[Headset]
+full_text=
+command= $HOME/.scripts/headset.sh
+interval=once
+signal=10
