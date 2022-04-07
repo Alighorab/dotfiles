@@ -84,9 +84,6 @@ super + m
 super + a
 	$HOME/.scripts/i3launcher.sh Anghami
 
-super + shift + a
-    wine ~/.wine/drive_c/Program\ Files/LCDAssistant/LCDAssistant.exe
-
 # control
 super + x
     $HOME/.scripts/lock.sh

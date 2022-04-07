@@ -21,9 +21,9 @@ Plug 'nvim-lualine/lualine.nvim'
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Syntax highlighting for individual files
+" Syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kovetskiy/sxhkd-vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'mboughaba/i3config.vim'
 Plug 'fladson/vim-kitty'
 
