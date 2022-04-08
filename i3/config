@@ -94,7 +94,6 @@ client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
 
-
 bar {
     font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 10 
     height 21
