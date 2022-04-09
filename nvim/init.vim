@@ -35,7 +35,6 @@ aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.dotfiles/i3/config set filetype=i3config
 aug end
-au CursorHold * silent call CocActionAsync('highlight')
 
 call plug#begin('~/.vim/plugged')
 
@@ -46,9 +45,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'noib3/nvim-cokeline'
 Plug 'nvim-lualine/lualine.nvim'
 
-" LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'kovetskiy/sxhkd-vim'
@@ -58,19 +54,23 @@ Plug 'fladson/vim-kitty'
 " Undotree
 Plug 'mbbill/undotree'
 
-" Code screenshot
-Plug 'jmckiern/vim-shoot', { 'do': '\"./install.py\" geckodriver' }
-
-" tpope
+" text objects
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-
-Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/ReplaceWithRegister'
 
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" LSP, Completion, Snippts, and Auto-Pair
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -93,100 +93,8 @@ let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
-" COC-NVIM
-let g:python3_host_prog='/usr/bin/python3'
-let g:coc_global_extensions = [
-  \ 'coc-pairs',
-  \ 'coc-clangd', 
-  \ 'coc-html',
-  \ 'coc-sh',
-  \ ]
-
 lua << END
--- Lualine
-require('lualine').setup {
-    options = {
-        icons_enabled = true,
-        theme = 'gruvbox',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
-        disabled_filetypes = {},
-        always_divide_middle = true,
-        globalstatus = false,
-    },
-    sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {
-            {
-                'filename',
-                file_status = true,
-                path = 1,
-
-                shorting_target = 40,
-                -- for other components. (terrible name, any suggestions?)
-                symbols = {
-                    modified = '[+]',      -- Text to show when the file is modified.
-                    readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
-                    unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                }
-            }
-        },
-        lualine_x = {'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-    },
-    tabline = {},
-    extensions = {}
-}
-
--- Treesitter
-require'nvim-treesitter.configs'.setup {
-    highlight = {
-      enable = true,
-    },
-}
-
--- Cokeline
-local get_hex = require('cokeline/utils').get_hex
-require('cokeline').setup({
-    default_hl = {
-        fg = function(buffer)
-                if buffer.is_focused then
-                    return "#000000"
-                else 
-                    return "Normal"
-                end
-            end,
-        bg = function(buffer)
-                if buffer.is_focused then
-                    return "#a89984"
-                else 
-                    return "#3c3836"
-                end
-            end,
-    },
-    components = {
-        { text = '', bg = get_hex('Normal', 'bg'), },
-        { text = ' ', },
-        { 
-          text = function(buffer) return buffer.filename end,
-          style = function(buffer)
-            return buffer.is_focused and 'bold' or nil
-          end,
-        },
-        { text = ' ', delete_buffer_on_left_click = false, },
-    },
-})
-
+require('config')
 END
 
 
@@ -202,34 +110,10 @@ nnoremap <leader>a ggVG
 inoremap <C-a> <esc>ggVG
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>bd :bd!<CR>
+nnoremap <leader>d :bd!<CR>
 " Line text object
 xnoremap il g_o^
 onoremap il :normal vil<cr>
-
-" COC-NVIM remaps
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-nmap <leader>h :CocCommand clangd.switchSourceHeader<cr>
-nmap <leader>ac  <Plug>(coc-codeaction)
-nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
 
 " FZF
 nmap <leader>f :Files<cr>
@@ -237,3 +121,14 @@ nmap <leader>b :Buffers<cr>
 nmap <leader>rg :Rg<cr>
 nmap <leader>m :Marks<cr>
 nmap <leader>t :Tags<cr>
+
+" LSP, CMP, and Snippts
+nmap <silent> <leader>gh <cmd>ClangdSwitchSourceHeader<CR>
+nmap <silent> <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
+nmap <silent> <leader>gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nmap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nmap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+nmap <silent> <leader>gr <cmd>lua vim.lsp.buf.references()<CR>
+nmap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
+imap <C-j> <cmd>lua require'luasnip'.jump(1)<CR>
+imap <C-k> <cmd>lua require'luasnip'.jump(-1)<CR>
