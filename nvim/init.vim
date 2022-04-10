@@ -94,7 +94,10 @@ colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
 lua << END
-require('config')
+require("Lualine")
+require("Treesitter")
+require("Cokeline")
+require("Lsp")
 END
 
 
