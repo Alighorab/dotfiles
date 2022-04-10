@@ -1,7 +1,7 @@
 # Profile file. Runs at login. Enviromental variables are set here.
 
 # Adds ~/.local/bin to PATH
-export PATH="$PATH:$HOME/.local/bin:$HOME/intelFPGA_pro/21.4/questa_fse/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 
 # Default programs
@@ -28,12 +28,6 @@ export RANGER_DEVICONS_SEPARATOR=" "
 # ZSH history 
 export HIST_IGNORE_ALL_DUPS=true
 export HIST_EXPIRE_DUPS_FIRST=true
-
-# SDCC library
-export SDCC_LIB="/home/logan/programs/sdcc/share/sdcc/lib"
-
-# ModelSim License file
-export LM_LICENSE_FILE=/home/logan/intelFPGA_pro/21.4/questa_fse/LR-069627_License.dat
 
 # zsh-vi-mode plugin
 export ZVM_KEYTIMEOUT=2

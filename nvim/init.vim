@@ -42,7 +42,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'noib3/nvim-cokeline'
 Plug 'nvim-lualine/lualine.nvim'
 
 " Syntax highlighting
@@ -96,7 +95,6 @@ hi Normal guibg=NONE ctermbg=NONE
 lua << END
 require("Lualine")
 require("Treesitter")
-require("Cokeline")
 require("Lsp")
 END
 
