@@ -1,0 +1,34 @@
+{
+    "cSpell.enabledLanguageIds": [
+        "plaintext"
+    ],
+    "suggest.minTriggerInputLength": [
+        "2"
+    ],
+    "suggest.completionItemKindLabels": {
+        "keyword": "[Keyword]",
+        "variable": "[Variable]",
+        "value": "[Value]",
+        "operator": "[Operator]",
+        "function": "[Function]",
+        "reference": "[Reference]",
+        "constant": "[Const]",
+        "method": "[Method]",
+        "struct": "[Struct]",
+        "class": "[Class]",
+        "interface": "[Interface]",
+        "enum": "[Enum]",
+        "enumMember": "[Enum Member]",
+        "module": "[Module]",
+        "field": "[Field]",
+        "unit": "[Unit]",
+        "event": "[Event]",
+        "file": "[File]",
+        "folder": "[Directory]",
+        "snippet": "[Snippet]",
+        "default": "",
+    },
+    "suggest.snippetIndicator": [
+        ""
+    ]
+}

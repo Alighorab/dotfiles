@@ -42,9 +42,9 @@ bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
 
-set $i3l vstack 0.6             to workspace $ws1
-set $i3l hstack 0.7 down        to workspace $ws2
-set $i3l companion 0.3 0.3 down to workspace $ws3
+set $i3l vstack 0.5             to workspace $ws1
+set $i3l vstack 0.5             to workspace $ws2
+set $i3l vstack 0.5             to workspace $ws3
 set $i3l tabbed                 to workspace $ws4
 set $i3l tabbed                 to workspace $firefox
 set $i3l tabbed                 to workspace $discord

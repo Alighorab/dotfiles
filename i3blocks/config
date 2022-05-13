@@ -2,8 +2,6 @@ full_text=
 separator=false
 separator_block_width=5
 
-[separator]
-
 [Music]
 full_text=
 command= $HOME/.scripts/player.sh

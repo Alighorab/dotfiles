@@ -33,6 +33,7 @@ alias copydir='echo -n $(pwd) | xclip -selection clipboard'
 alias time='/usr/bin/time'
 alias mkdir='mkdir -p'
 alias sudo='sudo '
+alias sd='spotdl'
 
 # kitty
 alias icat="kitty +kitten icat"

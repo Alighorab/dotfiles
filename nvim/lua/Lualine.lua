@@ -29,7 +29,7 @@ require('lualine').setup {
         },
         lualine_x = {'filetype'},
         lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_z = {'location', "os.date('%I:%M %p')", 'data', "require'lsp-status'.status()"}
     },
     inactive_sections = {
         lualine_a = {},

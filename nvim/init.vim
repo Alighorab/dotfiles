@@ -36,13 +36,23 @@ aug i3config_ft_detection
   au BufNewFile,BufRead ~/.dotfiles/i3/config set filetype=i3config
 aug end
 
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release --locked
+    else
+      !cargo build --release --locked --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
 call plug#begin('~/.vim/plugged')
 
 " Color schemes and icons
-Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'gruvbox-community/gruvbox'
 
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -54,25 +64,38 @@ Plug 'fladson/vim-kitty'
 Plug 'mbbill/undotree'
 
 " text objects
+Plug 'michaeljsmith/vim-indent-object'
+
+" Replace with register content
+Plug 'vim-scripts/ReplaceWithRegister'
+
+" tpope
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'tpope/vim-speeddating'
 
 " FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" LSP, Completion, Snippts, and Auto-Pair
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'jiangmiao/auto-pairs'
+" LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
+
+" Markdown composer
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
+" Toggleterm
+Plug 'akinsho/toggleterm.nvim'
+
+" Tabular
+Plug 'godlygeek/tabular'
 
 call plug#end()
 
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " Restores the cursor position and its autocmd.
 function! ResCur()
   if line("'\"") <= line("$")
@@ -92,44 +115,67 @@ let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
+" Markdown composer
+let g:markdown_composer_browser='firefox --new-instance -P Markdown-Composer --class=markdown'
+
+" Commentary
+autocmd FileType c setlocal commentstring=//\ %s
+
 lua << END
 require("Lualine")
 require("Treesitter")
-require("Lsp")
+require("Toggleterm")
 END
 
-
-" Remaps
 let mapleader = " "
 
-nnoremap <C-j> :bn<cr>
-nnoremap <C-k> :bp<cr>
-nnoremap <silent> <Tab> :bn<cr>
-nnoremap <silent> <S-Tab> :bp<cr>
+" Traverse buffers
+nnoremap <silent> <C-j> :bnext<cr>
+nnoremap <silent> <C-k> :bprevious<cr>
+nnoremap <silent> <Tab> :bnext<cr>
+nnoremap <silent> <S-Tab> :bprevious<cr>
+" Delete buffer
+nnoremap <silent> <leader>bd :bd!<CR>
+" Yank to the end of line
 nnoremap Y y$
-nnoremap <leader>a ggVG
-inoremap <C-a> <esc>ggVG
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>d :bd!<CR>
+" Moving lines
+vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
+nnoremap <silent> <leader>j :m .+1<CR>==
+nnoremap <silent> <leader>k :m .-2<CR>==
 " Line text object
 xnoremap il g_o^
 onoremap il :normal vil<cr>
+" Reselct pasted text
+nnoremap gp `[v`]
 
 " FZF
-nmap <leader>f :Files<cr>
-nmap <leader>b :Buffers<cr>
-nmap <leader>rg :Rg<cr>
-nmap <leader>m :Marks<cr>
-nmap <leader>t :Tags<cr>
+nmap <silent> <leader>ff :Files<cr>
+nmap <silent> <leader>fb :Buffers<cr>
+nmap <silent> <leader>rg :Rg<cr>
+nmap <silent> <leader>fm :Marks<cr>
+nmap <silent> <leader>ft :Tags<cr>
 
-" LSP, CMP, and Snippts
-nmap <silent> <leader>gh <cmd>ClangdSwitchSourceHeader<CR>
-nmap <silent> <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
-nmap <silent> <leader>gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nmap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
-nmap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nmap <silent> <leader>gr <cmd>lua vim.lsp.buf.references()<CR>
-nmap <silent> <leader>cf <cmd>lua vim.lsp.buf.formatting()<CR>
-imap <C-j> <cmd>lua require'luasnip'.jump(1)<CR>
-imap <C-k> <cmd>lua require'luasnip'.jump(-1)<CR>
+" LSP
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+autocmd FileType c nmap <silent> <leader>gh <cmd>CocCommand clangd.switchSourceHeader<CR>
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gD <Plug>(coc-declaration)
+nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>ca <Plug>(coc-codeaction)
+nmap <silent> <leader>qf <Plug>(coc-fix-current)
+nmap <silent> <leader>cl <Plug>(coc-codelens-action)

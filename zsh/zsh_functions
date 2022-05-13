@@ -1,8 +1,8 @@
 # fuzzy cd
 fzcd () {
-    local f=$(cat <(ls -dp . ..) \
-      <(ls -p | egrep "/$") \
-      <(ls -Ap | egrep "^\..*/$") \
+    local f=$(cat <(/bin/ls -dp . ..) \
+      <(/bin/ls -p | egrep "/$") \
+      <(/bin/ls -Ap | egrep "^\..*/$") \
       <(find . -maxdepth 1 -type f | awk '{print substr ($0,3)}') 2> /dev/null \
         | fzf --reverse --preview 'if [[ "$(file {+})" = *"directory"* ]]; then 
                                         tree {+}; 
