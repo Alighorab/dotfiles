@@ -1,10 +1,6 @@
 {
-    "cSpell.enabledLanguageIds": [
-        "plaintext"
-    ],
-    "suggest.minTriggerInputLength": [
-        "2"
-    ],
+    "cSpell.enabledLanguageIds": [ "plaintext" ],
+    "suggest.minTriggerInputLength":  2,
     "suggest.completionItemKindLabels": {
         "keyword": "[Keyword]",
         "variable": "[Variable]",
@@ -26,9 +22,11 @@
         "file": "[File]",
         "folder": "[Directory]",
         "snippet": "[Snippet]",
-        "default": "",
+        "default": ""
     },
-    "suggest.snippetIndicator": [
-        ""
-    ]
+    "suggest.snippetIndicator": "",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
+    "clangd.inlayHints.enable": true,
+    "clangd.checkUpdates": true,
+    "colors.filetypes": ["*"]
 }

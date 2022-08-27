@@ -9,7 +9,7 @@ popup_during_fullscreen smart
 exec            sxhkd
 exec            picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
-exec            feh --bg-scale /home/logan/pictures/wallpapers/davide-manzini.jpg&
+exec            feh --bg-scale /home/logan/Pictures/wallpapers/davide-manzini.jpg&
 exec_always     i3-layouts --debug > ~/.cache/i3-layouts-log.txt&
 exec_always     i3-msg gaps inner all set 10
 
@@ -41,6 +41,8 @@ bindsym $super+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $super+Shift+5 move container to workspace $ranger; workspace $ranger
+bindsym $super+Shift+w move container to workspace $firefox; workspace $firefox
 
 set $i3l vstack 0.5             to workspace $ws1
 set $i3l vstack 0.5             to workspace $ws2
@@ -77,6 +79,7 @@ for_window [title="Library"]        floating enable
 for_window [title="nmtui"]          floating enable
 for_window [class="qBittorrent"]    floating enable
 for_window [class="Galculator"]     floating enable
+for_window [class="kcalc"]          floating enable
 
 hide_edge_borders both
 

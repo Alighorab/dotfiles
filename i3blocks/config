@@ -2,6 +2,13 @@ full_text=
 separator=false
 separator_block_width=5
 
+[Recording]
+full_text=
+command= [ $(pgrep record.sh) ] && echo "[ Recording ]"
+interval=1
+
+[separator]
+
 [Music]
 full_text=
 command= $HOME/.scripts/player.sh

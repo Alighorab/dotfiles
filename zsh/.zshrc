@@ -3,8 +3,8 @@ autoload -U colors && colors
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.cache/zsh/.histfile
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=10000000
+SAVEHIST=10000000
 
 # Basic auto/tab complete:
 autoload -U compinit

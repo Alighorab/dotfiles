@@ -76,13 +76,19 @@ super + 0
     $HOME/.scripts/i3launcher.sh Windows10
 
 super + shift + t
-	$HOME/.scripts/i3launcher.sh Trello
+	$HOME/.scripts/touchpad_toggle.sh
 
 super + m
     $HOME/.scripts/i3launcher.sh Gimp
 
 super + a
 	$HOME/.scripts/i3launcher.sh Anghami
+
+super + v
+	$HOME/.scripts/i3launcher.sh Code
+
+super + grave
+	$HOME/.scripts/i3workspaces.sh
 
 # control
 super + x
@@ -109,14 +115,14 @@ Print
 	maim -u | xclip -selection clipboard -t image/png
 # print screen and save to disk and clipboard
 ctrl + Print
-	maim -u | tee ~/pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+	maim -u | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
 # select portion and save to clipboard
 super + Print
 	maim -s |  xclip -selection clipboard -t image/png
 # select portion and save to disk and clipboard
 super + ctrl + Print
-	maim -s | tee ~/pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+	maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
 super + ctrl + r
 	kill -USR1 $(pgrep sxhkd)

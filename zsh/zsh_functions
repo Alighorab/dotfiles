@@ -60,7 +60,7 @@ ex ()
 
 dir ()
 {
-    local directory=$(find $HOME/study/computer-science-engineering -type d | fzf)
+    local directory=$(find $HOME/Study/computer-science-engineering -type d | fzf)
     if [[ $directory ]]; then
         cd $directory
         clear
@@ -68,3 +68,10 @@ dir ()
 }
 zvm_after_init_commands+=('zle -N dir')
 zvm_after_init_commands+=('bindkey -s "^f" "dir^M"')
+
+
+toTwitterFormat()
+{
+    ffmpeg -i $1 -c:v libx264 -crf 20 -preset slow -vf format=yuv420p -c:a aac -movflags +faststart $2
+}
+

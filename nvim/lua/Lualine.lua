@@ -3,8 +3,8 @@ require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = 'gruvbox',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
         disabled_filetypes = {},
         always_divide_middle = true,
         globalstatus = false,
@@ -28,8 +28,8 @@ require('lualine').setup {
             }
         },
         lualine_x = {'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location', "os.date('%I:%M %p')", 'data', "require'lsp-status'.status()"}
+        lualine_y = {'progress', 'location'},
+        lualine_z = {"os.date('%I:%M %p')", 'data', "require'lsp-status'.status()"}
     },
     inactive_sections = {
         lualine_a = {},
@@ -39,13 +39,6 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    tabline = {
-        lualine_a = {'buffers'},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {'tabs'}
-    },
+    tabline = {},
     extensions = {}
 }
