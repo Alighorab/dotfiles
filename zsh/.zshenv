@@ -33,7 +33,3 @@ export HIST_EXPIRE_DUPS_FIRST=true
 export ZVM_KEYTIMEOUT=2
 export ZVM_VI_HIGHLIGHT_BACKGROUND=gray 
 export ZVM_VI_HIGHLIGHT_FOREGROUND=gray 
-
-export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
-
-export OUTPUT_PATH="$HOME/Study/computer-science-engineering/problem.solving/out.txt"

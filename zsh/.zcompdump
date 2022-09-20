@@ -271,6 +271,8 @@ _comps=(
 'dmesg' '_dmesg'
 'dmidecode' '_dmidecode'
 'doas' '_doas'
+'docker' '_docker'
+'dockerd' '_docker'
 'domainname' '_yp'
 'dos2unix' '_dos2unix'
 'downgrade' '_downgrade'
@@ -1696,7 +1698,7 @@ bindkey '^[~' _bash_complete-word
 
 autoload -Uz _alacritty _archinstallscripts _bat _bluetoothctl _bootctl \
             _bspc _busctl _bwrap _calibre _cargo \
-            _checkupdates _code _coredumpctl _curl _downgrade \
+            _checkupdates _coredumpctl _curl _docker _downgrade \
             _exa _fd _hostnamectl _journalctl _kdeconnect \
             _kernel-install _kitty _libinput _localectl _loginctl \
             _machinectl _meson _mkinitcpio _mpv _networkctl \

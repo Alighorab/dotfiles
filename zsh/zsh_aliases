@@ -11,8 +11,8 @@ alias lai='la --git-ignore'
 alias lli='ll --git-ignore'
 alias llai='lla --git-ignore'
 alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
+alias egrep='grep -E'
+alias fgrep='grep -F'
 alias cp="cp -i"                          # confirm before overwriting something
 alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
@@ -28,7 +28,8 @@ alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias d='dict'
-alias reload='exec zsh'                   # Reload zsh
+alias zreload='exec zsh'                   # Reload zsh
+alias treload='pkill -USR1 kitty'
 alias copydir='echo -n $(pwd) | xclip -selection clipboard'
 alias time='/usr/bin/time'
 alias mkdir='mkdir -p'

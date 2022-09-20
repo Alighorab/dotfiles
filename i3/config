@@ -65,14 +65,14 @@ set $i3l tabbed                 to workspace $anghami
 assign [class="firefox"] $firefox
 assign [class="discord"] $discord
 assign [class="TelegramDesktop"] $telegram
-assign [class="Terminator"] $ranger
+assign [class="ranger"] $ranger
 assign [class="Trello"] $trello
 assign [class="syncplay"] $syncplay
 assign [class="processing-app-Base"] $arduino
 assign [class="Gimp"] $gimp
 assign [class="Code"] $code
 assign [class="anghami"] $anghami
-for_window [title="spotify"] move to workspace $spotify
+for_window [title="Spotify"] move to workspace $spotify
 
 for_window [class="Pavucontrol"]    floating enable
 for_window [title="Library"]        floating enable
@@ -80,8 +80,19 @@ for_window [title="nmtui"]          floating enable
 for_window [class="qBittorrent"]    floating enable
 for_window [class="Galculator"]     floating enable
 for_window [class="kcalc"]          floating enable
+for_window [title="video0 - mpv"]   floating enable, sticky enable, resize set 480 px 360 px, move position 1440 px 720 px
 
 hide_edge_borders both
+
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #232324

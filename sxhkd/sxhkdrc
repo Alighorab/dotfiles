@@ -7,10 +7,10 @@ super + shift + {j, k, l, h}
 	i3l move {down, up, right, left}
 
 super + {s, g}
-	$HOME/.scripts/resize-master.sh {shrink, grow}
+	i3-msg {'resize shrink width 5 px or 5 ppt', 'resize grow width 5 px or 5 ppt'}
 
 super + shift + {s, g}
-	i3-msg {'resize shrink height 2 px or 2 ppt', 'resize grow height 2 px or 2 ppt'}
+	i3-msg {'resize shrink height 5 px or 5 ppt', 'resize grow height 5 px or 5 ppt'}
 
 super + f
 	i3-msg 'fullscreen toggle'
@@ -18,8 +18,11 @@ super + f
 super + b
     $HOME/.scripts/toggle-i3bar.sh
 
-super + shift + space
+super + shift + f
 	i3-msg 'floating toggle'
+
+super + shift + i
+	i3-msg 'sticky toggle'
 
 super + shift + r
 	i3-msg restart
@@ -47,6 +50,9 @@ super + shift + n
 
 super + Tab
     i3-msg 'workspace back_and_forth'
+
+super + alt + r
+	i3-msg 'mode "resize"'
 
 super + Return
 	kitty
@@ -90,6 +96,9 @@ super + v
 super + grave
 	$HOME/.scripts/i3workspaces.sh
 
+super + shift + v
+	virtualbox
+
 # control
 super + x
     $HOME/.scripts/lock.sh
@@ -105,9 +114,6 @@ super + shift + {equal, minus, BackSpace}
 
 super + ctrl + {equal, minus}
 	$HOME/.scripts/brightness.sh {up, down}
-
-super + ctrl + {s, n, p}
-    $HOME/.scripts/playerctl.sh {"play-pause", "next", "previous"}
 
 # print screen
 # print screen and save to clipboard

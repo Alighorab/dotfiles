@@ -60,7 +60,8 @@ ex ()
 
 dir ()
 {
-    local directory=$(find $HOME/Study/computer-science-engineering -type d | fzf)
+    local base=$HOME/Study/computer-science-engineering
+    local directory=$(find $base/ -path $base/learning/Yocto/poky -prune -o -type d | fzf)
     if [[ $directory ]]; then
         cd $directory
         clear
