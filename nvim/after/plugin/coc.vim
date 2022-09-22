@@ -36,6 +36,8 @@ nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>ca <Plug>(coc-codeaction)
 nmap <silent> <leader>qf <Plug>(coc-fix-current)
 nmap <silent> <leader>cd <cmd>CocDiagnostics<cr>
+nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
 
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)

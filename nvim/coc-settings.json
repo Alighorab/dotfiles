@@ -24,11 +24,18 @@
         "default": ""
     },
     "suggest.snippetIndicator": "",
+
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.0/clangd_15.0.0/bin/clangd",
     "clangd.inlayHints.enable": false,
     "clangd.checkUpdates": true,
+
     "colors.filetypes": ["*"],
+
     "go.goplsOptions": {
         "completeUnimported": true
-    }
+    },
+     
+    "Lua.telemetry.enable": false,
+    "Lua.hint.enable": true,
+    "Lua.diagnostics.globals": ["vim"]
 }

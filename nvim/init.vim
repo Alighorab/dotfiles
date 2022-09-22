@@ -63,6 +63,7 @@ Plug 'morhetz/gruvbox'
 "   and efficiently update the syntax tree as the source file
 "   is edited.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 " sxhkd config syntax highlighting
 Plug 'kovetskiy/sxhkd-vim'
 " kitty config syntax highlighting
@@ -89,8 +90,17 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" DAP
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+
 " Autoformatter
 Plug 'sbdchd/neoformat'
+
+" Nvimtree
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Toggleterm
 Plug 'akinsho/toggleterm.nvim'

@@ -56,3 +56,8 @@ end)
 nnoremap("<leader>fz", function()
     require('telescope.builtin').current_buffer_fuzzy_find()
 end)
+
+nnoremap("<leader>tk", function()
+    require('telescope.builtin').keymaps()
+end)
+
