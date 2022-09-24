@@ -30,6 +30,7 @@ set $arduino    ""
 set $gimp       ""
 set $code       ""
 set $anghami    ""
+set $keep       ""
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
@@ -60,6 +61,7 @@ set $i3l tabbed                 to workspace $arduino
 set $i3l tabbed                 to workspace $gimp
 set $i3l tabbed                 to workspace $code
 set $i3l tabbed                 to workspace $anghami
+set $i3l tabbed                 to workspace $keep
 
 
 assign [class="firefox"] $firefox
@@ -72,6 +74,7 @@ assign [class="processing-app-Base"] $arduino
 assign [class="Gimp"] $gimp
 assign [class="Code"] $code
 assign [class="anghami"] $anghami
+assign [class="silos-google-keep"] $keep
 for_window [title="Spotify"] move to workspace $spotify
 
 for_window [class="Pavucontrol"]    floating enable
