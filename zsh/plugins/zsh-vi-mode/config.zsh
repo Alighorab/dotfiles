@@ -1,4 +1,3 @@
-zvm_after_init_commands+=('source $PLUGINS_DIR/fzf-tab-git/fzf-tab.plugin.zsh')
 zvm_after_init_commands+=('export ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK')
 zvm_after_init_commands+=('export ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK')
 zvm_after_init_commands+=('export ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE')

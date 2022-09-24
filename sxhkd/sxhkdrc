@@ -96,9 +96,6 @@ super + v
 super + grave
 	$HOME/.scripts/i3workspaces.sh
 
-super + shift + v
-	virtualbox
-
 # control
 super + x
     $HOME/.scripts/lock.sh

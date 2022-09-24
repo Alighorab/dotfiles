@@ -24,15 +24,16 @@ setopt PROMPT_SUBST
 export PLUGINS_DIR="$HOME/.config/zsh/plugins"
 
 # Plugins
-source $PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh 
-source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh # Not maintained anymore
 source $PLUGINS_DIR/zsh-256color/zsh-256color.plugin.zsh
 source $PLUGINS_DIR/dirhistory/dirhistory.plugin.zsh
 source $PLUGINS_DIR/git/git.zsh
 source $PLUGINS_DIR/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $PLUGINS_DIR/zsh-vi-mode/config.zsh
 zvm_after_init_commands+=('source $PLUGINS_DIR/zsh-autopair/zsh-autopair.plugin.zsh')
+zvm_after_init_commands+=('source $PLUGINS_DIR/fzf-tab-git/fzf-tab.plugin.zsh')
 zvm_after_init_commands+=('source $PLUGINS_DIR/fzf-key-bindings/key-bindings.zsh')
+zvm_after_init_commands+=('source $PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh') 
 
 # Source some files to set aliases, functions, keys, and environment variables
 [ -f "$HOME/.config/zsh/zsh_aliases"    ] && source "$HOME/.config/zsh/zsh_aliases"

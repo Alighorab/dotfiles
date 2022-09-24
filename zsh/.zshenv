@@ -33,3 +33,6 @@ export HIST_EXPIRE_DUPS_FIRST=true
 export ZVM_KEYTIMEOUT=2
 export ZVM_VI_HIGHLIGHT_BACKGROUND=gray 
 export ZVM_VI_HIGHLIGHT_FOREGROUND=gray 
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"

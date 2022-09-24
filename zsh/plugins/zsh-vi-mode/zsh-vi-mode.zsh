@@ -285,7 +285,7 @@ if $ZVM_LAZY_KEYBINDINGS; then
   ZVM_LAZY_KEYBINDINGS_LIST=()
 fi
 
-# Set the cursor stlye in defferent vi modes, the value you could use
+# Set the cursor style in defferent vi modes, the value you could use
 # the predefined value, such as $ZVM_CURSOR_BLOCK, $ZVM_CURSOR_BEAM,
 # $ZVM_CURSOR_BLINKING_BLOCK and so on.
 : ${ZVM_INSERT_MODE_CURSOR:=$ZVM_CURSOR_BEAM}
@@ -322,12 +322,20 @@ fi
 : ${ZVM_CURSOR_STYLE_ENABLED:=true}
 
 # All the extra commands
-zvm_before_init_commands=()
-zvm_after_init_commands=()
-zvm_before_select_vi_mode_commands=()
-zvm_after_select_vi_mode_commands=()
-zvm_before_lazy_keybindings_commands=()
-zvm_after_lazy_keybindings_commands=()
+commands_array_names=(
+  zvm_before_init_commands
+  zvm_after_init_commands
+  zvm_before_select_vi_mode_commands
+  zvm_after_select_vi_mode_commands
+  zvm_before_lazy_keybindings_commands
+  zvm_after_lazy_keybindings_commands
+)
+for commands_array_name in $commands_array_names; do
+  # Ensure commands set to an empty array, if not already set.
+  if [[ -z "${(P)commands_array_name}" ]]; then
+    typeset -g -a $commands_array_name
+  fi
+done
 
 # All the handlers for switching keyword
 zvm_switch_keyword_handlers=(
@@ -2993,19 +3001,13 @@ function zvm_viins_undo() {
   fi
 }
 
-# Change cursor to support for inside/outside tmux
 function zvm_set_cursor() {
   # Term of vim isn't supported
   if [[ -n $VIMRUNTIME ]]; then
     return
   fi
 
-  # Tmux sequence
-  if [[ -z $TMUX ]]; then
-    echo -ne "$1"
-  else
-    echo -ne "\ePtmux;\e\e$1\e\\"
-  fi
+  echo -ne "$1"
 }
 
 # Get the escape sequence of cursor style
@@ -3151,9 +3153,7 @@ function zvm_zle-line-pre-redraw() {
   if [[ -n $TMUX ]]; then
     zvm_update_cursor
     # Fix display is not updated in the terminal of IntelliJ IDE.
-    # We should update display only when the last widget isn't a
-    # completion widget
-    [[ $LASTWIDGET =~ 'complet' ]] || zle redisplay
+    [[ "$TERMINAL_EMULATOR" == "JetBrains-JediTerm" ]] && zle redisplay
   fi
   zvm_update_highlight
   zvm_update_repeat_commands
