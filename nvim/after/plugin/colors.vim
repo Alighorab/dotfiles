@@ -4,3 +4,4 @@ let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 " Make the window transparent
 hi Normal guibg=NONE ctermbg=NONE
+highlight clear SignColumn

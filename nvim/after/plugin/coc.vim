@@ -9,6 +9,8 @@ let g:coc_global_extensions = [
             \ 'coc-tag',
             \ 'coc-html',
             \ 'coc-sh',
+            \ 'coc-lua',
+            \ 'coc-rust-analyzer',
             \ '@yaegassy/coc-pylsp' 
             \ ]
 

@@ -3,7 +3,7 @@ local dap = require("dap")
 dap.adapters.cppdbg = {
 	id = "cppdbg",
 	type = "executable",
-	command = "/home/logan/opt/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7",
+	command = "/usr/bin/OpenDebugAD",
 }
 
 dap.configurations.cpp = {
@@ -40,3 +40,4 @@ dap.configurations.cpp = {
 }
 
 dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp

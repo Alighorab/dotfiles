@@ -17,11 +17,10 @@ vim.fn.sign_define(
 )
 vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "debugPC", numhl = "debugPC" })
 
-dap.defaults.fallback.external_terminal = {
-    command = '/usr/bin/kitty';
-    args = {'-e'};
-}
+dap.defaults.fallback.force_external_terminal = true
+
 daptext.setup()
+
 dapui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
 	mappings = {
@@ -55,43 +54,45 @@ dapui.setup({
 -- Functions
 
 local setup = function ()
+    local args
     Target = vim.fn.input('Debug target [{f}ile, {p}roject]: ')
     Exec = nil
+    Args = {}
     if Target == "p" then
         Exec = vim.fn.input('Exec name: ')
     end
-    Args = {}
-    do
-        local i = 1
-        local arg = vim.fn.input(string.format("argv[%d]: ", i))
-        while arg ~= nil and arg ~= '' do
-            Args[i] = arg
-            i = i + 1
-            arg = vim.fn.input(string.format("argv[%d]: ", i))
-        end
+    args = vim.fn.input(string.format("argv: "))
+    for arg in string.gmatch(args, "%S+") do
+        table.insert(Args, arg)
     end
     vim.cmd('echo ""')
 end
 
-local compile = function(target)
+local compile = function()
     local file_type = vim.bo.filetype
-    if target == "f" then
+    if Target == "f" then
         local file_name = vim.fn.expand("%")
 
         if file_type == "c" then
             os.execute(string.format("gcc -g %s -o debug", file_name))
         elseif file_type == "cpp" then
             os.execute(string.format("gcc -g %s -o debug", file_name))
+        elseif file_type == "rust" then
+            os.execute("cargo build")
         end
-    elseif target == "p" then
-        os.execute("make clean; make")
+    elseif Target == "p" then
+        if file_type == "rust" then
+            os.execute("cargo build")
+        else
+            os.execute("make")
+        end
     end
 end
 
 local continue = function()
     if Target == "f" or Target == "p" then
         dapui.open()
-        compile(Target)
+        compile()
         dap.continue()
     else
         vim.cmd('echohl WarningMsg | echo "Type <F6> to call setup()" | echohl None')
@@ -110,7 +111,7 @@ end
 local restart = function()
 	dap.terminate()
 	vim.cmd("sleep 50ms")
-	compile(Target)
+	compile()
 	dap.continue()
 end
 
@@ -119,6 +120,11 @@ local exit = function()
 	dapui.close()
 	vim.cmd("sleep 50ms")
 	dap.repl.close()
+    if Target == "f" then
+        os.remove("debug")
+    elseif Target == "p" then
+        os.execute("make clean")
+    end
 end
 
 -- Mappings --
@@ -148,3 +154,5 @@ nnoremap("<leader>rc", dap.run_to_cursor)
 nnoremap("<F11>", dap.step_into)
 
 nnoremap("<F12>", dap.step_out)
+
+nnoremap('<leader>dp', dap.pause)
