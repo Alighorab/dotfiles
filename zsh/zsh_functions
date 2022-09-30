@@ -32,7 +32,7 @@ sfzfe () {
 }
 
 zvm_after_init_commands+=('zle -N sfzfe')
-zvm_after_init_commands+=('bindkey -s "^[[102;6u" "sfzfe^Mcls^Mr"')
+zvm_after_init_commands+=('bindkey -s "^[[102;6u" "sfzfe^Mcls^M"')
 
 # ex - archive extractor
 ex ()

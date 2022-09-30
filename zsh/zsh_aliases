@@ -25,7 +25,7 @@ alias ..='cd ..'
 alias cat='bat --paging=never -p'
 alias batman='man'
 alias v='nvim'
-alias vi='nvim'
+alias vi='~/opt/nvim-linux64/bin/nvim'
 alias vim='nvim'
 alias d='dict'
 alias zreload='exec zsh'                   # Reload zsh

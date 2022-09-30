@@ -46,6 +46,8 @@ set noshowmode
 filetype plugin on
 " Map leader key to <space>
 let mapleader = " "
+" For CursorHold
+set updatetime=300
 
 " vim-plug: A Minimalist Vim Plugin Manager
 call plug#begin('~/.vim/plugged')
@@ -55,6 +57,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'lilydjwg/colorizer'
 
 " Nvim Treesitter configurations and abstraction layer
 " Treesitter:
@@ -95,6 +98,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim'
 
 " Autoformatter
 Plug 'sbdchd/neoformat'

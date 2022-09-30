@@ -5,8 +5,8 @@ require('code_runner').setup ({
     -- put here the commands by filetype
     filetype = {
         python = "python3 -u",
-        c = "gcc -o $fileNameWithoutExt -O2 -Wall $fileName; ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
-        cpp = "g++ -o $fileNameWithoutExt -O2 -Wall $fileName; ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
+        c = "gcc -o $fileNameWithoutExt -Wall $fileName; ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
+        cpp = "g++ -o $fileNameWithoutExt -Wall $fileName; ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
         go = "go run $fileName",
         lua = "lua $fileName",
         rust = "cargo run"
