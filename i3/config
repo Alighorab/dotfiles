@@ -10,7 +10,6 @@ exec            sxhkd
 exec            picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
 exec            feh --bg-scale /home/logan/Pictures/wallpapers/davide-manzini.jpg&
-exec_always     i3-layouts --debug > ~/.cache/i3-layouts-log.txt&
 exec_always     i3-msg gaps inner all set 10
 
 set $ws1        "1"
@@ -44,25 +43,6 @@ bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $super+Shift+5 move container to workspace $ranger; workspace $ranger
 bindsym $super+Shift+w move container to workspace $firefox; workspace $firefox
-
-set $i3l vstack 0.5             to workspace $ws1
-set $i3l vstack 0.5             to workspace $ws2
-set $i3l vstack 0.5             to workspace $ws3
-set $i3l tabbed                 to workspace $ws4
-set $i3l tabbed                 to workspace $firefox
-set $i3l tabbed                 to workspace $discord
-set $i3l tabbed                 to workspace $telegram
-set $i3l tabbed                 to workspace $spotify
-set $i3l tabbed                 to workspace $ranger
-set $i3l tabbed                 to workspace $windows
-set $i3l tabbed                 to workspace $trello
-set $i3l tabbed                 to workspace $syncplay
-set $i3l tabbed                 to workspace $arduino
-set $i3l tabbed                 to workspace $gimp
-set $i3l tabbed                 to workspace $code
-set $i3l tabbed                 to workspace $anghami
-set $i3l tabbed                 to workspace $keep
-
 
 assign [class="firefox"] $firefox
 assign [class="discord"] $discord

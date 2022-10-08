@@ -16,6 +16,18 @@ interval=1
 
 [separator]
 
+[CPU]
+command= $HOME/.scripts/cpu.sh
+interval= 5
+
+[separator]
+
+[GPU]
+command= $HOME/.scripts/gpu.sh
+interval= 5
+
+[separator]
+
 [Microphone]
 command= $HOME/.scripts/i3mic 
 interval=once
@@ -32,7 +44,7 @@ signal=10
 
 [Date]
 label= 
-command= date '+%a, %b %d %I:%M:%S %p %Y'
+command= date '+%a, %b %d %I:%M %p %Y'
 interval=1
 
 [separator]

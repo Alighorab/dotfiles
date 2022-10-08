@@ -55,7 +55,7 @@ super + alt + r
 	i3-msg 'mode "resize"'
 
 super + Return
-	kitty
+	alacritty
 
 super + d
 	dmenu_run
