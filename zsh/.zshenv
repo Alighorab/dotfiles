@@ -37,3 +37,8 @@ export ZVM_VI_HIGHLIGHT_FOREGROUND=gray
 # Rust
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$GEM_HOME/bin:$HOME/.cargo/bin:$PATH"
+
+# GPU
+export DRI_PRIME=1
+export LIBVA_DRIVER_NAME=radeonsi
+export VDPAU_DRIVER=radeonsi

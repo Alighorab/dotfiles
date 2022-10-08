@@ -31,8 +31,8 @@ sfzfe () {
     [[ "$f" ]] && echo -n "$f" | xclip -selection primary
 }
 
-zvm_after_init_commands+=('zle -N sfzfe')
-zvm_after_init_commands+=('bindkey -s "^[[102;6u" "sfzfe^Mcls^M"')
+zle -N sfzfe
+bindkey -s "^[[102;6u" "sfzfe^Mcls^M"
 
 # ex - archive extractor
 ex ()
@@ -67,12 +67,6 @@ dir ()
         clear
     fi
 }
-zvm_after_init_commands+=('zle -N dir')
-zvm_after_init_commands+=('bindkey -s "^f" "dir^M"')
 
-
-toTwitterFormat()
-{
-    ffmpeg -i $1 -c:v libx264 -crf 20 -preset slow -vf format=yuv420p -c:a aac -movflags +faststart $2
-}
-
+zle -N dir
+bindkey -s "^f" "dir^M"
