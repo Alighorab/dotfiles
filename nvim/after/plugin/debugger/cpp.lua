@@ -25,13 +25,34 @@ dap.configurations.cpp = {
 	{
 		type = "codelldb",
 		request = "launch",
-		program = "${workspaceFolder}/${fileBasenameNoExtension}",
+		program = function ()
+            -- Compile and return exec name
+            local filetype = vim.bo.filetype
+            local filename = vim.fn.expand("%")
+            local basename = vim.fn.expand('%:t:r')
+            local handle = io.popen("(ls | grep -i makefile)")
+---@diagnostic disable-next-line: need-check-nil
+            local makefile = handle:read("*a")
+            if makefile ~= "" then
+                os.execute("make")
+            else
+                if filetype == "c" then
+                    os.execute(string.format("gcc -g -o %s %s", basename, filename))
+                else
+                    os.execute(string.format("g++ -g -o %s %s", basename, filename))
+                end
+            end
+---@diagnostic disable-next-line: need-check-nil
+            handle:close()
+            return basename
+		end,
 		args = function ()
             local argv = {}
-            arg = vim.fn.input(string.format("argv: "))
+            local arg = vim.fn.input(string.format("argv: "))
             for a in string.gmatch(arg, "%S+") do
                 table.insert(argv, a)
             end
+            vim.cmd('echo ""')
             return argv
 		end,
 		cwd = "${workspaceFolder}",
@@ -54,13 +75,17 @@ dap.configurations.rust = {
 	{
 		type = "codelldb",
 		request = "launch",
-		program = "target/debug/${workspaceFolderBasename}",
+		program = function ()
+            os.execute("cargo build &> /dev/null")
+            return "target/debug/${workspaceFolderBasename}"
+		end,
 		args = function ()
             local argv = {}
-            arg = vim.fn.input(string.format("argv: "))
+            local arg = vim.fn.input(string.format("argv: "))
             for a in string.gmatch(arg, "%S+") do
                 table.insert(argv, a)
             end
+            vim.cmd('echo ""')
             return argv
 		end,
 		cwd = "${workspaceFolder}",

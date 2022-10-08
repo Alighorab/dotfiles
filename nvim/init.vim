@@ -36,7 +36,7 @@ set encoding=utf-8
 set showcmd
 " Minimal number of screen lines to keep above and below the cursor
 set scrolloff=8
-" Allow mouse support for all modes
+" allow mouse support for all modes
 set mouse=a
 " Enables 24-bit RGB color in the TUI
 set termguicolors
@@ -67,32 +67,34 @@ Plug 'lilydjwg/colorizer'
 "   is edited.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
-" sxhkd config syntax highlighting
-Plug 'kovetskiy/sxhkd-vim'
-" kitty config syntax highlighting
-Plug 'fladson/vim-kitty'
-
-" Undotree
-Plug 'mbbill/undotree'
-
-" text objects
-Plug 'michaeljsmith/vim-indent-object'
-
-" Replace with register content
-Plug 'vim-scripts/ReplaceWithRegister'
-
-" tpope
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-speeddating'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/lspkind-nvim'
+Plug 'nvim-lua/lsp_extensions.nvim'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'simrat39/symbols-outline.nvim'
+
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-nvim-lsp-document-symbol'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+Plug 'ray-x/cmp-treesitter'
+Plug 'rcarriga/cmp-dap'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+Plug 'simrat39/rust-tools.nvim'
 
 " DAP
 Plug 'mfussenegger/nvim-dap'
@@ -100,19 +102,22 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'nvim-telescope/telescope-dap.nvim'
 
-" Autoformatter
+" MISC
+Plug 'mbbill/undotree'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-speeddating'
+Plug 'numToStr/Comment.nvim'
+Plug 'windwp/nvim-autopairs'
 Plug 'sbdchd/neoformat'
-
-" Nvimtree
 Plug 'kyazdani42/nvim-tree.lua'
-
-" Toggleterm
-Plug 'akinsho/toggleterm.nvim'
-
-" Harpoon
 Plug 'ThePrimeagen/harpoon'
-
-" Code Runner
+Plug 'akinsho/toggleterm.nvim'
 Plug 'CRAG666/code_runner.nvim'
+Plug 'dstein64/vim-startuptime'
+Plug 'kovetskiy/sxhkd-vim'
+Plug 'fladson/vim-kitty'
 
 call plug#end()

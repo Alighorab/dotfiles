@@ -43,4 +43,4 @@ require("nvim-tree").setup({
     }
 })
 
-nnoremap("<C-->", ":NvimTreeToggle<CR>", silent)
+nnoremap("<leader><leader>", ":NvimTreeToggle<CR>", silent)

@@ -18,7 +18,17 @@ vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "debugPC"
 
 dap.defaults.fallback.force_external_terminal = true
 
-daptext.setup()
+daptext.setup({
+	enabled = true,
+	enabled_commands = true,
+	highlight_changed_variables = true,
+	highlight_new_as_changed = true,
+	show_stop_reason = true,
+	commented = false,
+	only_first_definition = true,
+	all_references = true,
+	filter_references_pattern = "<module",
+})
 
 dapui.setup({
 	layouts = {
@@ -62,13 +72,13 @@ telescope.load_extension("dap")
 -- Start
 nnoremap("<F9>", function()
 	dap.continue()
-	dapui.open()
+	dapui.open({})
 end)
 
 -- Exit
 nnoremap("<F7>", function()
 	dap.terminate()
-	dapui.close()
+	dapui.close({})
 	vim.cmd("sleep 50ms")
 	dap.repl.close()
 end)
