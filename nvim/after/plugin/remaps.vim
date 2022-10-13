@@ -16,3 +16,8 @@ xnoremap il g_o^
 onoremap il :normal vil<cr>
 " Reselct pasted text
 nnoremap gp `[v`]
+" Copying and pasting from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nmap <leader>Y "+Y
