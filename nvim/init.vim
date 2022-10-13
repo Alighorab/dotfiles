@@ -1,10 +1,12 @@
+" Improves the performance of startup time
+lua _G.__luacache_config = { modpaths = { enable = false } } -- Don't miss up rtp
+lua require("impatient")
+" Trun syntax highlighting on
 syntax on
 " No compatiblity with vim
 set nocompatible
 " Enable nice window in EX mode
 set wildmenu
-" Use clipboard for ALL operations 
-set clipboard=unnamedplus
 " Make the cursor shape as block
 set guicursor=
 " OBVIOUS
@@ -37,7 +39,7 @@ set showcmd
 " Minimal number of screen lines to keep above and below the cursor
 set scrolloff=8
 " allow mouse support for all modes
-set mouse=a
+set mouse=
 " Enables 24-bit RGB color in the TUI
 set termguicolors
 " Don't show mode below
@@ -47,7 +49,7 @@ filetype plugin on
 " Map leader key to <space>
 let mapleader = " "
 " For CursorHold
-set updatetime=300
+set updatetime=100
 
 " vim-plug: A Minimalist Vim Plugin Manager
 call plug#begin('~/.vim/plugged')
@@ -67,6 +69,7 @@ Plug 'lilydjwg/colorizer'
 "   is edited.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
