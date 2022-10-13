@@ -9,11 +9,13 @@ vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     auto_reload_on_write = true,
+    open_on_setup = true,
     view = {
         adaptive_size = false,
         relativenumber = true,
+        number = true,
         float = {
-            enable = true,
+            enable = false,
             open_win_config = {
                 relative = "editor",
                 border = "rounded",
@@ -26,6 +28,18 @@ require("nvim-tree").setup({
     },
     renderer = {
         group_empty = true,
+        highlight_opened_files = "all",
+        indent_markers = {
+            enable = true,
+            inline_arrows = true,
+            icons = {
+                corner = "└",
+                edge = "│",
+                item = "│",
+                bottom = "─",
+                none = " ",
+            },
+        },
     },
     filters = {
         dotfiles = true,
