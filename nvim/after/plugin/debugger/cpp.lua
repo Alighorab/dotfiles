@@ -31,8 +31,12 @@ dap.configurations.cpp = {
             local filename = vim.fn.expand("%")
             local basename = vim.fn.expand('%:t:r')
             local handle = io.popen("(ls | grep -i makefile)")
----@diagnostic disable-next-line: need-check-nil
-            local makefile = handle:read("*a")
+            local makefile
+            if handle then
+                makefile = handle:read("*a")
+            else
+                return 1
+            end
             if makefile ~= "" then
                 os.execute("make")
             else
@@ -42,7 +46,6 @@ dap.configurations.cpp = {
                     os.execute(string.format("g++ -g -o %s %s", basename, filename))
                 end
             end
----@diagnostic disable-next-line: need-check-nil
             handle:close()
             return basename
 		end,
