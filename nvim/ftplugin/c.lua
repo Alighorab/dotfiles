@@ -1,8 +1,3 @@
-setlocal cindent
-nmap <silent> <leader>gh <cmd>CocCommand clangd.switchSourceHeader<CR>
-
-lua << END
-
 local Remap = require("keymap")
 local nnoremap = Remap.nnoremap
 
@@ -12,7 +7,14 @@ nnoremap("<F6>", function()
     local filename = vim.fn.expand("%")
     local basename = vim.fn.expand('%:t:r')
     local handle = io.popen("(ls | grep -i makefile)")
-    local makefile = handle:read("*a")
+    local makefile
+
+    if handle then
+        makefile = handle:read("*a")
+    else
+        return 1
+    end
+
     if makefile ~= "" then
         os.execute("make")
     else
@@ -25,5 +27,3 @@ nnoremap("<F6>", function()
     handle:close()
     vim.cmd("echo " .. "\"" .. string.format("Compiled %s to %s", filename, basename) .. "\"")
 end)
-
-END
