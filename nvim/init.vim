@@ -49,7 +49,9 @@ filetype plugin on
 " Map leader key to <space>
 let mapleader = " "
 " For CursorHold
-set updatetime=100
+set updatetime=300
+" SignColumn
+set signcolumn=yes
 
 " vim-plug: A Minimalist Vim Plugin Manager
 call plug#begin('~/.vim/plugged')
@@ -122,5 +124,7 @@ Plug 'CRAG666/code_runner.nvim'
 Plug 'dstein64/vim-startuptime'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'fladson/vim-kitty'
+Plug 'tpope/vim-fugitive'
+Plug 'tanvirtin/vgit.nvim'
 
 call plug#end()
