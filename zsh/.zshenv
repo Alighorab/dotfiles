@@ -42,3 +42,6 @@ export PATH="$GEM_HOME/bin:$HOME/.cargo/bin:$PATH"
 export DRI_PRIME=1
 export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
+
+# Go
+export PATH="$PATH:$HOME/go/bin/"
