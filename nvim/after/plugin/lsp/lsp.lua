@@ -115,6 +115,18 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+require("lspconfig").gopls.setup(({
+    cmd = { "gopls", "serve" },
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+        },
+    },
+}))
+
 require("rust-tools").setup({
 	server = {
 		on_attach = on_attach,

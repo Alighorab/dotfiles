@@ -4,9 +4,10 @@ local luasnip = require("luasnip")
 require("kinds").setup()
 
 local source_mapping = {
-	buffer = "[Buffer]",
+	buffer = "[Buf]",
 	nvim_lsp = "[LSP]",
 	nvim_lua = "[Lua]",
+    treesitter = "[TS]",
 	cmp_tabnine = "[TN]",
 	path = "[Path]",
 	luasnip = "[Snip]",
@@ -77,18 +78,14 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<C-j>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
+			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
 		["<C-k>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
@@ -96,28 +93,16 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
-		{ name = "gh_issues" },
-		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "gh_issues" },
+		{ name = "nvim_lua" },
 		{ name = "cmp_tabnine" },
 		{ name = "treesitter" },
-		{ name = "nvim_lsp_signature_help" },
 	}, {
 		{ name = "buffer" },
 		{ name = "path" },
 	}),
-	sorting = {
-		comparators = {
-			cmp.config.compare.offset,
-			cmp.config.compare.exact,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.kind,
-			cmp.config.compare.sort_text,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
-		},
-	},
 })
 
 cmp.setup({
