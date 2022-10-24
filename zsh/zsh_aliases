@@ -60,6 +60,3 @@ alias youtube-dl="youtube-dl --external-downloader aria2c --external-downloader-
 
 # python
 alias py='python3'
-
-# bear
-alias bear='bear --output .vim/compile_commands.json'

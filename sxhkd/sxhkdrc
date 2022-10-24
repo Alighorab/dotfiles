@@ -78,20 +78,11 @@ super + i
 super + y
     $HOME/.scripts/i3launcher.sh Spotify
 
-super + 0
-    $HOME/.scripts/i3launcher.sh Windows10
-
 super + shift + t
 	$HOME/.scripts/touchpad_toggle.sh
 
 super + m
     $HOME/.scripts/i3launcher.sh Gimp
-
-super + a
-	$HOME/.scripts/i3launcher.sh Anghami
-
-super + v
-	$HOME/.scripts/i3launcher.sh Code
 
 super + grave
 	$HOME/.scripts/i3workspaces.sh
