@@ -134,7 +134,7 @@ vgit.setup({
 			},
 		},
 		signs = {
-			priority = 10,
+			priority = 1,
 			definitions = {
 				GitSignsAddLn = {
 					linehl = "GitSignsAddLn",

@@ -142,8 +142,6 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
-require("luasnip.loaders.from_vscode").lazy_load()
-
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 require("nvim-autopairs").setup({})

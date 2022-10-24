@@ -1,6 +1,7 @@
 " Improves the performance of startup time
 lua _G.__luacache_config = { modpaths = { enable = false } } -- Don't miss up rtp
 lua require("impatient")
+let g:did_install_default_menus = 1 " avoid stupid menu.vim (saves ~100ms)
 " Trun syntax highlighting on
 syntax on
 " No compatiblity with vim
@@ -72,6 +73,9 @@ Plug 'lilydjwg/colorizer'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground'
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'andymass/vim-matchup'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -83,6 +87,7 @@ Plug 'onsails/lspkind-nvim'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/symbols-outline.nvim'
+Plug 'j-hui/fidget.nvim' " Standalone UI for nvim-lsp progress
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
