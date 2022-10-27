@@ -1,4 +1,4 @@
-local Remap = require("keymap")
+local Remap = require("logan.keymap")
 local silent = { silent = true }
 local nnoremap = Remap.nnoremap
 

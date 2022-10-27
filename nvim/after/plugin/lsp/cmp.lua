@@ -1,7 +1,7 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-require("kinds").setup()
+require("logan.kinds").setup()
 
 local source_mapping = {
 	buffer = "[Buf]",
@@ -122,24 +122,6 @@ tabnine:setup({
 	sort = true,
 	run_on_every_keystroke = true,
 	snippet_placeholder = "..",
-})
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "buffer" },
-	},
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline" },
-	}),
 })
 
 -- If you want insert `(` after select function or method item
