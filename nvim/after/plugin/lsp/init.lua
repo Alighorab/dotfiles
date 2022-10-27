@@ -34,7 +34,8 @@ vim.diagnostic.config({
 	float = {
 		source = "always", -- Or "if_many"
 		severity_sort = true,
-        scope = "cursor"
+        scope = "cursor",
+        focusable = false
 	},
 })
 

@@ -3,7 +3,6 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Color schemes and icons
-	use("ryanoasis/vim-devicons")
 	use("kyazdani42/nvim-web-devicons")
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -68,11 +67,8 @@ return require("packer").startup(function(use)
 
 	-- MISC
 	use("mbbill/undotree")
-	use("michaeljsmith/vim-indent-object")
-	use("vim-scripts/ReplaceWithRegister")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
-	use("tpope/vim-speeddating")
 	use("numToStr/Comment.nvim")
 	use("windwp/nvim-autopairs")
 	use("sbdchd/neoformat")
@@ -81,9 +77,9 @@ return require("packer").startup(function(use)
 	use("akinsho/toggleterm.nvim")
 	use("CRAG666/code_runner.nvim")
 	use("dstein64/vim-startuptime")
-	use("kovetskiy/sxhkd-vim")
-	use("fladson/vim-kitty")
 	use("tpope/vim-fugitive")
 	use("tanvirtin/vgit.nvim")
 	use("lewis6991/impatient.nvim")
+	use("farmergreg/vim-lastplace")
+	use("folke/tokyonight.nvim")
 end)

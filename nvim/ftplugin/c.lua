@@ -1,4 +1,4 @@
-local Remap = require("keymap")
+local Remap = require("logan.keymap")
 local nnoremap = Remap.nnoremap
 
 -- Compile
