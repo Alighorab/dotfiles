@@ -38,5 +38,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.updatetime = 50
 -- Disable mouse entirely
 vim.opt.mouse = ""
+-- Don't show mode
+vim.opt.showmode = false
 -- Map leader key to <space>
 vim.g.mapleader = " "

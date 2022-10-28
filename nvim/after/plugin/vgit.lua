@@ -109,7 +109,7 @@ vgit.setup({
 		scene = {
 			diff_preference = "unified", -- unified or split
 			keymaps = {
-				quit = "q",
+				quit = "<esc>",
 			},
 		},
 		diff_preview = {
