@@ -4,5 +4,6 @@ require("impatient")
 require("logan.set")
 require("logan.colors")
 require("logan.remaps")
+require("logan.au")
 
 require("logan.packer")
