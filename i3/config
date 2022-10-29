@@ -9,8 +9,8 @@ popup_during_fullscreen smart
 exec            sxhkd
 exec            picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
-exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/davide-manzini.jpg&
-exec_always     i3-msg gaps inner all set 10
+exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/lucas-kapla-wQLAGv4_OYs-unsplash.jpg
+exec_always     i3-msg gaps inner all set 25
 
 set $ws1        "1"
 set $ws2        "2"
@@ -74,6 +74,7 @@ for_window [class="qBittorrent"]    floating enable
 for_window [class="Galculator"]     floating enable
 for_window [class="kcalc"]          floating enable
 for_window [title="video0 - mpv"]   floating enable, sticky enable, resize set 480 px 360 px, move position 1440 px 720 px
+for_window [class="firefox"] fullscreen enable
 
 hide_edge_borders both
 
@@ -112,7 +113,7 @@ bar {
         statusline #FFFFFF
         separator  #666666
 
-        focused_workspace  #606018 #285577 #FFFFFF
+        focused_workspace  #285577 #285577 #FFFFFF
         active_workspace   #333333 #222222 #FFFFFF
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2F343A #900000 #FFFFFF
