@@ -1,0 +1,92 @@
+window:
+  opacity: 0.9
+  padding:
+    x: 3
+    y: 0
+  decorations: none
+  title: alacritty
+  dynamic_title: false
+  class:
+    instance: Alacritty
+    general: Alacritty
+  dynamic_padding: true
+
+scrolling:
+  history: 100000
+  multiplier: 3
+
+font:
+  normal:
+    family: Inconsolata Nerd Font Mono
+    style: Regular
+
+  bold:
+    family: Inconsolata Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: Inconsolata Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    family: Inconsolata Nerd Font Mono
+    style: Bold Italic
+
+  size: 10
+
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#d4be98'
+  
+  normal:
+    black:   '#665c54'
+    red:     '#ea6962'
+    green:   '#a9b665'
+    yellow:  '#e78a4e'
+    blue:    '#7daea3'
+    magenta: '#d3869b'
+    cyan:    '#89b482'
+    white:   '#d4be98'
+
+  bright:
+    black:   '#928374'
+    red:     '#ea6962'
+    green:   '#a9b665'
+    yellow:  '#d8a657'
+    blue:    '#7daea3'
+    magenta: '#d3869b'
+    cyan:    '#89b482'
+    white:   '#d4be98'
+
+  cursor:
+    text: '#665c54'
+    cursor: '#a89984'
+
+cursor:
+  style:
+    shape: Block
+    blinking: Always
+
+mouse:
+    hide_when_typing: true
+
+live_config_reload: true
+
+key_bindings:
+  - { key: Key0,           mods: Control,                         action: None }
+  - { key: Equals,         mods: Control,                         action: None }
+  - { key: Plus,           mods: Control,                         action: None }
+  - { key: Minus,          mods: Control,                         action: None }
+  
+  - { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
+  - { key: C,              mods: Control|Shift,                   action: Copy             }
+  - { key: F,              mods: Control|Shift, mode: ~Search,    action: SearchForward    }
+  - { key: B,              mods: Control|Shift, mode: ~Search,    action: SearchBackward   }
+  - { key: C,              mods: Control|Shift, mode: Vi|~Search, action: ClearSelection   }
+  - { key: Insert,         mods: Shift,                           action: PasteSelection   }
+  - { key: Key0,           mods: Alt,                             action: ResetFontSize    }
+  - { key: Equals,         mods: Alt,                             action: IncreaseFontSize }
+  - { key: Plus,           mods: Alt,                             action: IncreaseFontSize }
+  - { key: Minus,          mods: Alt,                             action: DecreaseFontSize }
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }

@@ -3,7 +3,6 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Color schemes and icons
-	use("kyazdani42/nvim-web-devicons")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
@@ -51,7 +50,6 @@ return require("packer").startup(function(use)
 	use({
 		"tzachar/cmp-tabnine",
 		run = "./install.sh",
-		requires = "hrsh7th/nvim-cmp",
 	})
 	use("ray-x/cmp-treesitter")
 	use("rcarriga/cmp-dap")

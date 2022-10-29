@@ -9,13 +9,6 @@ interval=1
 
 [separator]
 
-[Music]
-full_text=
-command= $HOME/.scripts/player.sh
-interval=1
-
-[separator]
-
 [CPU]
 command= $HOME/.scripts/cpu.sh
 interval= 5
