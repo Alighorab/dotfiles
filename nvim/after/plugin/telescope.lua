@@ -60,4 +60,3 @@ end)
 nnoremap("<leader>tk", function()
     require('telescope.builtin').keymaps()
 end)
-

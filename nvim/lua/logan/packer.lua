@@ -38,7 +38,9 @@ return require("packer").startup(function(use)
 	use("nvim-lua/lsp_extensions.nvim")
 	use("glepnir/lspsaga.nvim")
 	use("simrat39/symbols-outline.nvim")
-	use("j-hui/fidget.nvim") -- Standalone UI for nvim-lsp progress
+	use("j-hui/fidget.nvim", {
+        config = require("fidget").setup()
+    }) -- Standalone UI for nvim-lsp progress
 
 	-- Completion
 	use("hrsh7th/cmp-nvim-lsp")
@@ -70,9 +72,15 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
-	use("numToStr/Comment.nvim")
+	use("numToStr/Comment.nvim", {
+        config = require("Comment").setup()
+    })
 	use("windwp/nvim-autopairs")
-	use("sbdchd/neoformat")
+	use("sbdchd/neoformat", {
+        config = function ()
+            vim.g.shfmt_opt = "-ci"
+        end
+    })
 	use("kyazdani42/nvim-tree.lua")
 	use("ThePrimeagen/harpoon")
 	use("akinsho/toggleterm.nvim")
