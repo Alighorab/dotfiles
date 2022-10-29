@@ -18,11 +18,7 @@ nnoremap("<F6>", function()
     if makefile ~= "" then
         os.execute("make")
     else
-        if filetype == "c" then
-            os.execute(string.format("gcc -g -o %s %s", basename, filename))
-        else
-            os.execute(string.format("g++ -g -o %s %s", basename, filename))
-        end
+        os.execute(string.format("gcc -g -o %s %s", basename, filename))
     end
     handle:close()
     vim.cmd("echo " .. "\"" .. string.format("Compiled %s to %s", filename, basename) .. "\"")

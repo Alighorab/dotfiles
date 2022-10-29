@@ -29,8 +29,6 @@ vim.opt.termguicolors = true
 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
--- Give more space for displaying messages.
-vim.opt.cmdheight = 1
 -- Remember not to excede 79 characters in one line!
 vim.opt.colorcolumn = "80"
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -40,5 +38,6 @@ vim.opt.updatetime = 50
 vim.opt.mouse = ""
 -- Don't show mode
 vim.opt.showmode = false
+vim.opt.background = "dark"
 -- Map leader key to <space>
 vim.g.mapleader = " "

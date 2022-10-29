@@ -10,6 +10,9 @@ return require("packer").startup(function(use)
 	})
 	use("morhetz/gruvbox")
 	use("lilydjwg/colorizer")
+	use("folke/tokyonight.nvim")
+	use("EdenEast/nightfox.nvim")
+    use("sainnhe/gruvbox-material")
 
 	-- Nvim Treesitter configurations and abstraction layer
 	-- Treesitter:
@@ -81,5 +84,4 @@ return require("packer").startup(function(use)
 	use("tanvirtin/vgit.nvim")
 	use("lewis6991/impatient.nvim")
 	use("farmergreg/vim-lastplace")
-	use("folke/tokyonight.nvim")
 end)
