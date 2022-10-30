@@ -104,6 +104,16 @@ cmp.setup({
 	}),
 })
 
+cmp.setup({
+	enabled = function()
+		local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+		if buftype == "prompt" then
+			return false
+		end
+		return true
+	end,
+})
+
 local tabnine = require("cmp_tabnine.config")
 tabnine:setup({
 	max_lines = 1000,

@@ -1,11 +1,12 @@
 local augroup = vim.api.nvim_create_augroup
-local ClangFormat = augroup("ClangFormat", {})
-
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup("HighlightYank", {})
+
+local ClangFormat = augroup("ClangFormat", {})
+local Yank = augroup("HighlightYank", {})
+local Help = augroup("HelpGroup", {})
 
 autocmd("TextYankPost", {
-	group = yank_group,
+	group = Yank,
 	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank({
@@ -22,4 +23,11 @@ autocmd({ "BufReadPost" }, {
 	callback = function()
 		vim.opt.filetype = "yaml"
 	end,
+})
+
+autocmd({ "FileType help" }, {
+    group = Help,
+    callback = function ()
+        vim.cmd("vertical resize 82")
+    end,
 })

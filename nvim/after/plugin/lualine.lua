@@ -38,26 +38,5 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {}
     },
-    tabline = {
-        -- lualine_a = {
-        --     {
-        --         'buffers',
-        --         show_filename_only = true,
-        --         show_modified_status = true,
-        --         mode = 0,
-        --         max_length = vim.o.columns * 2 / 3,
-        --         symbols = {
-        --             modified = ' ●',      -- Text to show when the buffer is modified
-        --             alternate_file = '', -- Text to show to identify the alternate file
-        --             directory =  '',     -- Text to show when the buffer is a directory
-        --         },
-        --     }
-        -- },
-        -- lualine_b = {},
-        -- lualine_c = {},
-        -- lualine_x = {},
-        -- lualine_y = {},
-        -- lualine_z = {}
-    },
     extensions = {}
 }

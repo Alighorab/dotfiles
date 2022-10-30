@@ -7,11 +7,15 @@ return require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons" },
 	})
+	use("akinsho/bufferline.nvim", {
+		tag = "v3.*",
+		requires = "kyazdani42/nvim-web-devicons",
+	})
 	use("morhetz/gruvbox")
 	use("lilydjwg/colorizer")
 	use("folke/tokyonight.nvim")
 	use("EdenEast/nightfox.nvim")
-    use("sainnhe/gruvbox-material")
+	use("sainnhe/gruvbox-material")
 
 	-- Nvim Treesitter configurations and abstraction layer
 	-- Treesitter:
@@ -22,7 +26,6 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter", {
 		run = ":TSUpdate",
 	})
-	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-treesitter/playground")
 	use("p00f/nvim-ts-rainbow")
@@ -39,8 +42,8 @@ return require("packer").startup(function(use)
 	use("glepnir/lspsaga.nvim")
 	use("simrat39/symbols-outline.nvim")
 	use("j-hui/fidget.nvim", {
-        config = require("fidget").setup()
-    }) -- Standalone UI for nvim-lsp progress
+		config = require("fidget").setup(),
+	}) -- Standalone UI for nvim-lsp progress
 
 	-- Completion
 	use("hrsh7th/cmp-nvim-lsp")
@@ -73,14 +76,14 @@ return require("packer").startup(function(use)
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
 	use("numToStr/Comment.nvim", {
-        config = require("Comment").setup()
-    })
+		config = require("Comment").setup(),
+	})
 	use("windwp/nvim-autopairs")
 	use("sbdchd/neoformat", {
-        config = function ()
-            vim.g.shfmt_opt = "-ci"
-        end
-    })
+		config = function()
+			vim.g.shfmt_opt = "-ci"
+		end,
+	})
 	use("kyazdani42/nvim-tree.lua")
 	use("ThePrimeagen/harpoon")
 	use("akinsho/toggleterm.nvim")
