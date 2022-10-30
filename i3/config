@@ -17,7 +17,7 @@ set $ws2        "2"
 set $ws3        "3"
 set $ws4        "4"
 set $ws5        "5"
-set $firefox    ""
+set $firefox    ""
 set $discord    ""
 set $telegram   ""
 set $spotify    ""
@@ -74,7 +74,6 @@ for_window [class="qBittorrent"]    floating enable
 for_window [class="Galculator"]     floating enable
 for_window [class="kcalc"]          floating enable
 for_window [title="video0 - mpv"]   floating enable, sticky enable, resize set 480 px 360 px, move position 1440 px 720 px
-for_window [class="firefox"] fullscreen enable
 
 hide_edge_borders both
 

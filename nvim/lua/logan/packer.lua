@@ -3,19 +3,21 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Color schemes and icons
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	})
+	use("nvim-tree/nvim-web-devicons", {
+        config = require("nvim-web-devicons").setup()
+    })
+	use("nvim-lualine/lualine.nvim")
 	use("akinsho/bufferline.nvim", {
 		tag = "v3.*",
-		requires = "kyazdani42/nvim-web-devicons",
 	})
 	use("morhetz/gruvbox")
 	use("lilydjwg/colorizer")
 	use("folke/tokyonight.nvim")
 	use("EdenEast/nightfox.nvim")
 	use("sainnhe/gruvbox-material")
+	use("tjdevries/colorbuddy.nvim", {
+		config = require("colorbuddy").setup(),
+	})
 
 	-- Nvim Treesitter configurations and abstraction layer
 	-- Treesitter:
@@ -26,6 +28,7 @@ return require("packer").startup(function(use)
 	use("nvim-treesitter/nvim-treesitter", {
 		run = ":TSUpdate",
 	})
+	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("nvim-treesitter/playground")
 	use("p00f/nvim-ts-rainbow")
@@ -44,32 +47,31 @@ return require("packer").startup(function(use)
 	use("j-hui/fidget.nvim", {
 		config = require("fidget").setup(),
 	}) -- Standalone UI for nvim-lsp progress
+	use("folke/trouble.nvim", {
+		config = require("trouble").setup()
+	})
+	use("simrat39/rust-tools.nvim")
 
 	-- Completion
 	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lsp-signature-help")
 	use("hrsh7th/cmp-nvim-lsp-document-symbol")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use({
-		"tzachar/cmp-tabnine",
-		run = "./install.sh",
-	})
-	use("ray-x/cmp-treesitter")
-	use("rcarriga/cmp-dap")
 	use("hrsh7th/cmp-nvim-lua")
 	use("saadparwaiz1/cmp_luasnip")
 	use("hrsh7th/nvim-cmp")
-	use("L3MON4D3/LuaSnip")
+    use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
-	use("simrat39/rust-tools.nvim")
+	use("windwp/nvim-autopairs", {
+		config = require("nvim-autopairs").setup({}),
+	})
 
 	-- DAP
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
 	use("theHamsta/nvim-dap-virtual-text")
 	use("nvim-telescope/telescope-dap.nvim")
+    use("jbyuki/one-small-step-for-vimkind")
 
 	-- MISC
 	use("mbbill/undotree")
@@ -78,7 +80,6 @@ return require("packer").startup(function(use)
 	use("numToStr/Comment.nvim", {
 		config = require("Comment").setup(),
 	})
-	use("windwp/nvim-autopairs")
 	use("sbdchd/neoformat", {
 		config = function()
 			vim.g.shfmt_opt = "-ci"

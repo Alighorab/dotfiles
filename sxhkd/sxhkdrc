@@ -63,9 +63,6 @@ super + d
 super + w
     $HOME/.scripts/i3launcher.sh Firefox
 
-super + shift + w
-    $HOME/.scripts/i3launcher.sh PrivateFirefox
-
 super + r
 	$HOME/.scripts/i3launcher.sh Ranger
 
@@ -80,9 +77,6 @@ super + y
 
 super + shift + t
 	$HOME/.scripts/touchpad_toggle.sh
-
-super + m
-    $HOME/.scripts/i3launcher.sh Gimp
 
 super + grave
 	$HOME/.scripts/i3workspaces.sh
@@ -118,11 +112,17 @@ super + Print
 super + ctrl + Print
 	maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
+# Reload sxhkd
 super + ctrl + r
 	kill -USR1 $(pgrep sxhkd)
 
+# Record screen
 super + c
 	$HOME/.scripts/record.sh
 
 super + shift + c
 	kill -SIGTERM $(pgrep ffmpeg)
+
+# Show time
+super + e
+    notify-send "$(date +%r)" -t 2000

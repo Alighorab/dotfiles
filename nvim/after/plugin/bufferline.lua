@@ -1,7 +1,6 @@
-local bufferline = require("bufferline")
-local Remap = require("logan.keymap")
-local nnoremap = Remap.nnoremap
+--[[ local bufferline = require("bufferline")
 local signs = { Error = " ✘ ", Warn = " ▲ ", Hint = " ⚑ ", Info = "  " }
+local colors = { Error = "#EC5241", Warn = "#EFB839", Hint = "#A3BA5E", Info = "#7EA9A7" }
 
 bufferline.setup({
     options = {
@@ -50,24 +49,22 @@ bufferline.setup({
                 local hint = #vim.diagnostic.get(0, {severity = seve.HINT})
 
                 if error ~= 0 then
-                    table.insert(result, {text = signs.Error.. error, fg = "#EC5241"})
+                    table.insert(result, {text = signs.Error.. error, fg = colors.Error })
                 end
 
                 if warning ~= 0 then
-                    table.insert(result, {text = signs.Warn.. warning, fg = "#EFB839"})
+                    table.insert(result, {text = signs.Warn.. warning, fg = colors.Warn })
                 end
 
                 if hint ~= 0 then
-                    table.insert(result, {text = signs.Hint.. hint, fg = "#A3BA5E"})
+                    table.insert(result, {text = signs.Hint.. hint, fg = colors.Hint })
                 end
 
                 if info ~= 0 then
-                    table.insert(result, {text = signs.Info.. info, fg = "#7EA9A7"})
+                    table.insert(result, {text = signs.Info.. info, fg = colors.Info })
                 end
                 return result
             end,
         }
     }
-})
-
-nnoremap("gf", bufferline.pick_buffer)
+}) ]]

@@ -7,11 +7,16 @@ local nmap = Remap.nmap
 
 local silent = {silent = true}
 
-nnoremap('<Tab>', '<cmd>bnext<cr>', silent)
-nnoremap('<S-Tab>', '<cmd>bprevious<cr>', silent)
+nnoremap('<Tab>', '<C-6>', silent)
 nnoremap('<leader>bd', '<cmd>bd!<cr>', silent)
 
-nnoremap('Y', 'y$')
+nnoremap('Y', 'yg$')
+nnoremap("n", "nzzzv")
+nnoremap("N", "Nzzzv")
+nnoremap("J", "mzJ`z")
+-- Jump and center
+nnoremap('<C-d>', '<C-d>zz')
+nnoremap('<C-u>', '<C-u>zz')
 
 --[[ 
 The best remaps ever!

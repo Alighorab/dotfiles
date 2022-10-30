@@ -29,7 +29,8 @@ require("nvim-tree").setup({
 	},
 	renderer = {
 		group_empty = true,
-		highlight_opened_files = "all",
+        root_folder_modifier = ":~",
+		highlight_opened_files = "icon",
 		indent_markers = {
 			enable = true,
 			inline_arrows = true,

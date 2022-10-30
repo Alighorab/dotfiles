@@ -25,38 +25,33 @@ end
 require("telescope").setup {
     defaults = {
         buffer_previewer_maker = new_maker,
-    }
+    },
 }
 
-
-nnoremap("<leader>ff", function()
-    require('telescope.builtin').find_files({layout_strategy='vertical',layout_config={width=0.8}})
+nnoremap("gff", function()
+    require('telescope.builtin').find_files()
 end)
 
-nnoremap("<leader>fg", function()
+nnoremap("gfg", function()
     require('telescope.builtin').git_files()
 end)
 
-nnoremap("<leader>fb", function()
-    require('telescope.builtin').buffers({layout_strategy='vertical',layout_config={width=0.8}})
+nnoremap("gfb", function()
+    require('telescope.builtin').buffers()
 end)
 
-nnoremap("<leader>fh", function()
+nnoremap("gfh", function()
     require('telescope.builtin').help_tags()
 end)
 
-nnoremap("<leader>ft", function()
-    require('telescope.builtin').tags({layout_strategy='vertical',layout_config={width=0.8}})
-end)
-
-nnoremap("<leader>fs", function()
+nnoremap("gft", function()
     require('telescope.builtin').treesitter()
 end)
 
-nnoremap("<leader>fz", function()
+nnoremap("gfz", function()
     require('telescope.builtin').current_buffer_fuzzy_find()
 end)
 
-nnoremap("<leader>tk", function()
+nnoremap("gfk", function()
     require('telescope.builtin').keymaps()
 end)

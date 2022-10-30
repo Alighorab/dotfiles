@@ -9,12 +9,25 @@ local on_attach = function(client, bufnr)
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", bufopts)
+	vim.keymap.set("n", "gh", function ()
+	   vim.cmd("Lspsaga lsp_finder")
+	end, bufopts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "gD", "<cmd>TSTextobjectPeekDefinitionCode @function.outer<CR>", bufopts)
-	vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
-	vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
-	vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", bufopts)
+	vim.keymap.set("n", "gD", function ()
+	   vim.cmd("TSTextobjectPeekDefinitionCode @function.outer")
+	end, bufopts)
+	vim.keymap.set("n", "K", function ()
+	   vim.cmd("Lspsaga hover_doc")
+	end, bufopts)
+	vim.keymap.set("n", "<leader>rn", function ()
+	   vim.cmd("Lspsaga rename")
+	end, bufopts)
+	vim.keymap.set({ "n", "v" }, "<leader>ca", function ()
+	   vim.cmd("Lspsaga code_action")
+	end, bufopts)
+    vim.keymap.set("n", "<leader>tr", function ()
+        vim.cmd("Trouble")
+    end, bufopts)
 
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
@@ -126,6 +139,7 @@ require("lspconfig").sumneko_lua.setup({
 			workspace = {
 				-- Make the server aware of Neovim runtime files
 				library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {

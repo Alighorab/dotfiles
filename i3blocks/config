@@ -15,6 +15,12 @@ interval= 5
 
 [separator]
 
+[GPU]
+command= $HOME/.scripts/gpu.sh
+interval= 5
+
+[separator]
+
 [Microphone]
 command= $HOME/.scripts/i3mic 
 interval=once
