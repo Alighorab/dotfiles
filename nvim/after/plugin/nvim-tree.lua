@@ -1,6 +1,7 @@
 local Remap = require("logan.keymap")
 local nnoremap = Remap.nnoremap
 local silent = { silent = true }
+local api = require("nvim-tree.api")
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded = 1
@@ -99,4 +100,7 @@ require("nvim-tree").setup({
 	},
 })
 
-nnoremap("<leader><leader>", ":NvimTreeToggle<CR>", silent)
+nnoremap("<leader><leader>", function ()
+    api.tree.toggle()
+    api.tree.reload()
+end, silent)

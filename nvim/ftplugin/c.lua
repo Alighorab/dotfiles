@@ -3,7 +3,6 @@ local nnoremap = Remap.nnoremap
 
 -- Compile
 nnoremap("<F6>", function()
-    local filetype = vim.bo.filetype
     local filename = vim.fn.expand("%")
     local basename = vim.fn.expand('%:t:r')
     local handle = io.popen("(ls | grep -i makefile)")

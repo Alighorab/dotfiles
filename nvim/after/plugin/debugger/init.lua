@@ -8,13 +8,13 @@ local nnoremap = Remap.nnoremap
 
 vim.fn.sign_define(
 	"DapBreakpoint",
-	{ text = "●", texthl = "", linehl = "debugBreakpoint", numhl = "debugBreakpoint" }
+	{ text = "●", texthl = "", linehl = "", numhl = "" }
 )
 vim.fn.sign_define(
 	"DapBreakpointCondition",
-	{ text = "◆", texthl = "", linehl = "debugBreakpoint", numhl = "debugBreakpoint" }
+	{ text = "◆", texthl = "", linehl = "", numhl = "" }
 )
-vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "debugPC", numhl = "debugPC" })
+vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = "" })
 
 dap.defaults.fallback.force_external_terminal = true
 
@@ -73,6 +73,7 @@ telescope.load_extension("dap")
 nnoremap("<F9>", function()
 	dap.continue()
 	dapui.open({})
+    vim.opt.mouse = "a"
 end)
 
 -- Exit
@@ -81,6 +82,7 @@ nnoremap("<F7>", function()
 	dapui.close({})
 	vim.cmd("sleep 50ms")
 	dap.repl.close()
+    vim.opt.mouse = ""
 end)
 
 -- Restart
