@@ -7,7 +7,7 @@ new_window pixel 1
 popup_during_fullscreen smart
 
 exec            sxhkd
-exec            picom
+exec_always     pkill picom; picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
 exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/lucas-kapla-wQLAGv4_OYs-unsplash.jpg
 exec_always     i3-msg gaps inner all set 25
