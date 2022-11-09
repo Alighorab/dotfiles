@@ -7,9 +7,6 @@ return require("packer").startup(function(use)
         config = require("nvim-web-devicons").setup()
     })
 	use("nvim-lualine/lualine.nvim")
-	use("akinsho/bufferline.nvim", {
-		tag = "v3.*",
-	})
 	use("morhetz/gruvbox")
 	use("lilydjwg/colorizer")
 	use("folke/tokyonight.nvim")
