@@ -3,9 +3,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- Color schemes and icons
-	use("nvim-tree/nvim-web-devicons", {
-        config = require("nvim-web-devicons").setup()
-    })
+	use("nvim-tree/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
 	use("morhetz/gruvbox")
 	use("lilydjwg/colorizer")
@@ -22,8 +20,12 @@ return require("packer").startup(function(use)
 	--   It can build a concrete syntax tree for a source file
 	--   and efficiently update the syntax tree as the source file
 	--   is edited.
-	use("nvim-treesitter/nvim-treesitter", {
-		run = ":TSUpdate",
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+			ts_update()
+		end,
 	})
 	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
@@ -45,7 +47,7 @@ return require("packer").startup(function(use)
 		config = require("fidget").setup(),
 	}) -- Standalone UI for nvim-lsp progress
 	use("folke/trouble.nvim", {
-		config = require("trouble").setup()
+		config = require("trouble").setup(),
 	})
 	use("simrat39/rust-tools.nvim")
 
@@ -57,7 +59,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-nvim-lua")
 	use("saadparwaiz1/cmp_luasnip")
 	use("hrsh7th/nvim-cmp")
-    use("L3MON4D3/LuaSnip")
+	use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
 	use("windwp/nvim-autopairs", {
 		config = require("nvim-autopairs").setup({}),
@@ -68,7 +70,6 @@ return require("packer").startup(function(use)
 	use("rcarriga/nvim-dap-ui")
 	use("theHamsta/nvim-dap-virtual-text")
 	use("nvim-telescope/telescope-dap.nvim")
-    use("jbyuki/one-small-step-for-vimkind")
 
 	-- MISC
 	use("mbbill/undotree")

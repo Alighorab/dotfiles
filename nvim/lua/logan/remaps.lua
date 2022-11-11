@@ -7,7 +7,8 @@ local nmap = Remap.nmap
 
 local silent = {silent = true}
 
-nnoremap('<Tab>', '<C-6>', silent)
+nnoremap('<Tab>', '<cmd>bnext<cr>', silent)
+nnoremap('<S-Tab>', '<cmd>bprevious<cr>', silent)
 nnoremap('<leader>bd', '<cmd>bd!<cr>', silent)
 
 nnoremap('Y', 'yg$')

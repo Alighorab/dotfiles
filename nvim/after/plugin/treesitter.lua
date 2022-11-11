@@ -1,7 +1,7 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 	ignore_install = { "vim" },
-	sync_install = false,
+	sync_install = true,
 
 	highlight = {
 		enable = true,
@@ -22,6 +22,10 @@ require("nvim-treesitter.configs").setup({
 				["ac"] = "@class.outer",
 				-- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
 				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+                ["ir"] = "@parameter.inner",
+                ["ar"] = "@parameter.outer",
+                ["io"] = "@loop.inner",
+                ["ao"] = "@loop.outer",
 			},
 			-- You can choose the select mode (default is charwise 'v')
 			--
@@ -53,26 +57,6 @@ require("nvim-treesitter.configs").setup({
 			},
 			swap_previous = {
 				["<leader>A"] = "@parameter.inner",
-			},
-		},
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
-			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
 			},
 		},
 	},
