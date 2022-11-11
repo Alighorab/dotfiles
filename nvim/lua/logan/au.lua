@@ -4,6 +4,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local ClangFormat = augroup("ClangFormat", {})
 local Yank = augroup("HighlightYank", {})
 
+-- Highlight yanked text
 autocmd("TextYankPost", {
 	group = Yank,
 	pattern = "*",
@@ -21,5 +22,13 @@ autocmd({ "BufReadPost" }, {
 	pattern = ".clang-format",
 	callback = function()
 		vim.opt.filetype = "yaml"
+	end,
+})
+
+-- Winbar
+autocmd("BufWinEnter", {
+	group = vim.api.nvim_create_augroup("WinBarGroup", {}),
+	callback = function()
+		vim.opt_local.winbar = require("logan.winbar").find_buffers()
 	end,
 })
