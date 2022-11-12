@@ -93,7 +93,7 @@ return require("packer").startup(function(use)
 	use("lewis6991/impatient.nvim")
 	use("farmergreg/vim-lastplace")
     use("ellisonleao/glow.nvim")
-    use("Alighorab/winbar.nvim", {
+    use("$HOME/plugins/winbar.nvim", {
         config = require("winbar").setup()
     })
 end)

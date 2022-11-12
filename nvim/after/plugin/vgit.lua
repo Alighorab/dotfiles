@@ -114,55 +114,6 @@ vgit.setup({
 	},
 })
 
-local nvim_tree_api = require("nvim-tree.api")
-
-nnoremap("<leader>gd", function()
-	vgit.buffer_diff_preview()
-end)
-
-nnoremap("<leader>gD", function()
-	vgit.project_diff_preview()
-end)
-
-nnoremap("<leader>gh", function()
-	vgit.buffer_history_preview()
-end)
-
-nnoremap("<leader>ga", function()
-	vgit.buffer_stage()
-    nvim_tree_api.tree.reload()
-end)
-
-nnoremap("<leader>gu", function()
-	vgit.buffer_unstage()
-    nvim_tree_api.tree.reload()
-end)
-
-nnoremap("<leader>gA", function()
-	vgit.project_stage_all()
-    nvim_tree_api.tree.reload()
-end)
-
-nnoremap("<leader>gU", function()
-	vgit.project_unstage_all()
-    nvim_tree_api.tree.reload()
-end)
-
-nnoremap("<leader>gl", function()
-	vgit.project_logs_preview()
-end)
-
--- tpope vim-fugutive
-nnoremap("<leader>gs", function()
-	vim.cmd("Telescope git_status")
-end)
-
-nnoremap("<leader>gc", function()
-	vim.cmd("Git commit")
-    nvim_tree_api.tree.reload()
-end)
-
-nnoremap("<leader>gC", function()
-	vim.cmd("Git commit --amend")
-    nvim_tree_api.tree.reload()
+nnoremap("<leader>gg", function ()
+    vim.cmd("Git")
 end)
