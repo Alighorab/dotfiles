@@ -2,6 +2,26 @@ local function getcwd()
 	return "%=" .. vim.fn.getcwd()
 end
 
+local function get_icon(name, extension)
+    local icon, color
+    if name == "Makefile" then
+        icon, color = require("nvim-web-devicons").get_icon("makefile", "", {})
+    else
+        icon, color = require("nvim-web-devicons").get_icon(name, extension, {})
+    end
+    return icon, color
+end
+
+local function filename()
+    local icon, color = get_icon(vim.fn.expand("%:t"), vim.fn.expand("%:e"))
+    local fn = vim.fn.fnamemodify(vim.fn.expand("%"), ":~:.")
+    if icon and color then
+        return '%=' .. icon .. ' ' .. fn .. " %m"
+    else
+        return "%=" .. fn .. "%m"
+    end
+end
+
 local extention = {
 	sections = {
 		lualine_a = { "mode" },
@@ -27,9 +47,9 @@ require("lualine").setup({
 		always_divide_middle = true,
 		globalstatus = true,
 	},
-	sections = {
-		lualine_c = {},
-	},
+    sections = {
+        lualine_c = { filename }
+    },
 	extensions = {
 		"nvim-dap-ui",
 		extention,
