@@ -9,30 +9,53 @@ local on_attach = function(client, bufnr)
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gh", function ()
-	   vim.cmd("Lspsaga lsp_finder")
+	vim.keymap.set("n", "gh", function()
+		vim.cmd("Lspsaga lsp_finder")
 	end, bufopts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "gD", function ()
-	   vim.cmd("TSTextobjectPeekDefinitionCode @function.outer")
+	vim.keymap.set("n", "gD", function()
+		vim.cmd("TSTextobjectPeekDefinitionCode @function.outer")
 	end, bufopts)
-	vim.keymap.set("n", "K", function ()
-	   vim.cmd("Lspsaga hover_doc")
+	vim.keymap.set("n", "K", function()
+		vim.cmd("Lspsaga hover_doc")
 	end, bufopts)
-	vim.keymap.set("n", "<leader>rn", function ()
-	   vim.cmd("Lspsaga rename")
+	vim.keymap.set("n", "<leader>rn", function()
+		vim.cmd("Lspsaga rename")
 	end, bufopts)
-	vim.keymap.set({ "n", "v" }, "<leader>ca", function ()
-	   vim.cmd("Lspsaga code_action")
+	vim.keymap.set({ "n", "v" }, "<leader>ca", function()
+		vim.cmd("Lspsaga code_action")
 	end, bufopts)
-    vim.keymap.set("n", "<leader>tr", function ()
-        vim.cmd("Trouble")
-    end, bufopts)
+	vim.keymap.set("n", "<leader>tr", function()
+		vim.cmd("Trouble")
+	end, bufopts)
 
-	vim.api.nvim_create_autocmd("CursorHold", {
+	vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged" }, {
 		buffer = bufnr,
 		callback = function()
-			vim.diagnostic.open_float()
+			if vim.api.nvim_get_mode().mode == "n" then
+				vim.diagnostic.open_float({
+					border = "single",
+					source = "always", -- Or "if_many"
+					severity_sort = false,
+					scope = "line",
+					focusable = true,
+					focus = false,
+					close_events = {
+						"CursorMoved",
+						"InsertEnter",
+					},
+					format = function(diagnostic)
+						local WIN_WIDTH = vim.fn.winwidth(0)
+						local max_width = math.floor(WIN_WIDTH * 0.7)
+						local wrap_msg = require("logan.utils.wrap").wrap_text(diagnostic.message, max_width)
+						local msg = ""
+						for _, m in ipairs(wrap_msg) do
+							msg = msg .. m .. "\n"
+						end
+						return msg
+					end,
+				})
+			end
 		end,
 	})
 end
@@ -44,12 +67,6 @@ local lsp_flags = {
 -- Diagnostics config
 vim.diagnostic.config({
 	virtual_text = false,
-	float = {
-		source = "always", -- Or "if_many"
-		severity_sort = true,
-        scope = "cursor",
-        focusable = false
-	},
 })
 
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "" }
@@ -139,7 +156,7 @@ require("lspconfig").sumneko_lua.setup({
 			workspace = {
 				-- Make the server aware of Neovim runtime files
 				library = vim.api.nvim_get_runtime_file("", true),
-                checkThirdParty = false,
+				checkThirdParty = false,
 			},
 			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
@@ -148,3 +165,10 @@ require("lspconfig").sumneko_lua.setup({
 		},
 	},
 })
+
+vim.cmd("highlight! FloatBorder guibg=None guifg=DarkYellow")
+vim.cmd("highlight! NormalFloat guibg=None guifg=None")
+vim.cmd("highlight! DiagnosticFloatingError guibg=None guifg=Red")
+vim.cmd("highlight! DiagnosticFloatingWarn guibg=None guifg=DarkYellow")
+vim.cmd("highlight! DiagnosticFloatingInfo guibg=None guifg=LightBlue")
+vim.cmd("highlight! DiagnosticFloatingHint guibg=None guifg=LightGrey")
