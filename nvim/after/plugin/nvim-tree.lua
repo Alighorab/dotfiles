@@ -1,4 +1,4 @@
-local Remap = require("logan.keymap")
+local Remap = require("logan.utils.keymap")
 local nnoremap = Remap.nnoremap
 local silent = { silent = true }
 local api = require("nvim-tree.api")

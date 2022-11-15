@@ -1,5 +1,5 @@
 local vgit = require("vgit")
-local Remap = require("logan.keymap")
+local Remap = require("logan.utils.keymap")
 local nnoremap = Remap.nnoremap
 
 vgit.setup({

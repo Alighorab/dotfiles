@@ -1,4 +1,4 @@
-local Remap = require("logan.keymap")
+local Remap = require("logan.utils.keymap")
 local dap = require("dap")
 local dapui = require("dapui")
 local daptext = require("nvim-dap-virtual-text")
