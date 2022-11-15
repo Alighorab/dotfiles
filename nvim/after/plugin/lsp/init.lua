@@ -1,6 +1,44 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+
+local open_float_opts = {
+    border = "single",
+    source = "always", -- Or "if_many"
+    severity_sort = true,
+    scope = "cursor",
+    focusable = true,
+    focus = false,
+    close_events = {
+        "CursorMoved",
+        "CursorMovedI",
+        "InsertEnter",
+        "DiagnosticChanged"
+    },
+    prefix = function(diagnostic, _, _)
+        local signs = {
+            [vim.diagnostic.severity.ERROR] = function() return " " end,
+            [vim.diagnostic.severity.WARN] = function() return " " end,
+            [vim.diagnostic.severity.HINT] = function() return "ﴞ " end,
+            [vim.diagnostic.severity.INFO] = function() return " " end
+        }
+        local colors = {
+            [vim.diagnostic.severity.ERROR] = function() return "DiagnosticFloatingError" end,
+            [vim.diagnostic.severity.WARN] = function() return "DiagnosticFloatingWarn" end,
+            [vim.diagnostic.severity.HINT] = function() return "DiagnosticFloatingHint" end,
+            [vim.diagnostic.severity.INFO] = function() return "DiagnosticFloatingInfo" end
+        }
+        return signs[diagnostic.severity](), colors[diagnostic.severity]()
+    end,
+    format = function(diagnostic)
+        local WIN_WIDTH = vim.fn.winwidth(0)
+        local max_width = math.floor(WIN_WIDTH * 0.7)
+        local wrap_msg = require("logan.utils.wrap").wrap_text(diagnostic.message, max_width)
+        local msg = table.concat(wrap_msg, "\n")
+        return msg
+    end,
+}
+
 ---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
@@ -32,30 +70,7 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged" }, {
 		buffer = bufnr,
 		callback = function()
-			if vim.api.nvim_get_mode().mode == "n" then
-				vim.diagnostic.open_float({
-					border = "single",
-					source = "always", -- Or "if_many"
-					severity_sort = false,
-					scope = "line",
-					focusable = true,
-					focus = false,
-					close_events = {
-						"CursorMoved",
-						"InsertEnter",
-					},
-					format = function(diagnostic)
-						local WIN_WIDTH = vim.fn.winwidth(0)
-						local max_width = math.floor(WIN_WIDTH * 0.7)
-						local wrap_msg = require("logan.utils.wrap").wrap_text(diagnostic.message, max_width)
-						local msg = ""
-						for _, m in ipairs(wrap_msg) do
-							msg = msg .. m .. "\n"
-						end
-						return msg
-					end,
-				})
-			end
+            vim.diagnostic.open_float(open_float_opts)
 		end,
 	})
 end
@@ -166,9 +181,9 @@ require("lspconfig").sumneko_lua.setup({
 	},
 })
 
-vim.cmd("highlight! FloatBorder guibg=None guifg=DarkYellow")
-vim.cmd("highlight! NormalFloat guibg=None guifg=None")
-vim.cmd("highlight! DiagnosticFloatingError guibg=None guifg=Red")
+-- vim.cmd("highlight! FloatBorder guibg=None guifg=DarkYellow")
+-- vim.cmd("highlight! NormalFloat guibg=None guifg=None")
+vim.cmd("highlight! DiagnosticFloatingError guibg=None guifg=#fb4934")
 vim.cmd("highlight! DiagnosticFloatingWarn guibg=None guifg=DarkYellow")
 vim.cmd("highlight! DiagnosticFloatingInfo guibg=None guifg=LightBlue")
 vim.cmd("highlight! DiagnosticFloatingHint guibg=None guifg=LightGrey")
