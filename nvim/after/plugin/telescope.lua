@@ -33,7 +33,7 @@ nnoremap("gff", function()
 end)
 
 nnoremap("gfg", function()
-    require('telescope.builtin').git_files()
+    require('telescope.builtin').live_grep()
 end)
 
 nnoremap("gfb", function()

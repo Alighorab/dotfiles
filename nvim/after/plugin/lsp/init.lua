@@ -1,10 +1,13 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+
+-- Diagnostics Configurations
+vim.diagnostic.config({
+	virtual_text = false,
+})
 
 local open_float_opts = {
     border = "single",
-    source = "always", -- Or "if_many"
+    source = "always",
     severity_sort = true,
     scope = "cursor",
     focusable = true,
@@ -39,38 +42,37 @@ local open_float_opts = {
     end,
 }
 
----@diagnostic disable-next-line: unused-local
-local on_attach = function(client, bufnr)
-	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(_, bufnr)
 	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gh", function()
-		vim.cmd("Lspsaga lsp_finder")
+        require("lspsaga.finder"):lsp_finder()
 	end, bufopts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "gD", function()
-		vim.cmd("TSTextobjectPeekDefinitionCode @function.outer")
-	end, bufopts)
 	vim.keymap.set("n", "K", function()
-		vim.cmd("Lspsaga hover_doc")
+        require("lspsaga.hover"):render_hover_doc()
 	end, bufopts)
-	vim.keymap.set("n", "<leader>rn", function()
-		vim.cmd("Lspsaga rename")
+	vim.keymap.set("n", "grn", function()
+        require("lspsaga.rename"):lsp_rename()
 	end, bufopts)
-	vim.keymap.set({ "n", "v" }, "<leader>ca", function()
-		vim.cmd("Lspsaga code_action")
+	vim.keymap.set({ "n", "v" }, "gca", function()
+        require("lspsaga.codeaction"):code_action()
 	end, bufopts)
-	vim.keymap.set("n", "<leader>tr", function()
-		vim.cmd("Trouble")
+	vim.keymap.set("n", "gtr", function()
+        require("trouble"):open()
 	end, bufopts)
 
+    -- Diagnostics
+    local group = vim.api.nvim_create_augroup("LspDiagnostics", { clear = true })
 	vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged" }, {
 		buffer = bufnr,
+        group = group,
 		callback = function()
-            vim.diagnostic.open_float(open_float_opts)
+			if vim.api.nvim_get_mode().mode == "n" then
+				vim.diagnostic.open_float(open_float_opts)
+			end
 		end,
 	})
 end
@@ -79,11 +81,7 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 
--- Diagnostics config
-vim.diagnostic.config({
-	virtual_text = false,
-})
-
+-- Signs
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
@@ -91,7 +89,6 @@ for type, icon in pairs(signs) do
 end
 
 -- Servers --
-
 local lspconfig = require("lspconfig")
 
 local servers = {

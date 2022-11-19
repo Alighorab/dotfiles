@@ -5,14 +5,9 @@ return require("packer").startup(function(use)
 	-- Color schemes and icons
 	use("nvim-tree/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
-	use("morhetz/gruvbox")
 	use("lilydjwg/colorizer")
-	use("folke/tokyonight.nvim")
 	use("EdenEast/nightfox.nvim")
 	use("sainnhe/gruvbox-material")
-	use("tjdevries/colorbuddy.nvim", {
-		config = require("colorbuddy").setup(),
-	})
 
 	-- Nvim Treesitter configurations and abstraction layer
 	-- Treesitter:
@@ -29,8 +24,6 @@ return require("packer").startup(function(use)
 	})
 	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
-	use("nvim-treesitter/playground")
-	use("p00f/nvim-ts-rainbow")
 	use("andymass/vim-matchup")
 
 	-- Telescope
@@ -40,12 +33,10 @@ return require("packer").startup(function(use)
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("onsails/lspkind-nvim")
-	use("nvim-lua/lsp_extensions.nvim")
 	use("glepnir/lspsaga.nvim")
-	use("simrat39/symbols-outline.nvim")
 	use("j-hui/fidget.nvim", {
 		config = require("fidget").setup(),
-	}) -- Standalone UI for nvim-lsp progress
+	})
 	use("folke/trouble.nvim", {
 		config = require("trouble").setup(),
 	})
@@ -53,10 +44,8 @@ return require("packer").startup(function(use)
 
 	-- Completion
 	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lsp-document-symbol")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-nvim-lua")
 	use("saadparwaiz1/cmp_luasnip")
 	use("hrsh7th/nvim-cmp")
 	use("L3MON4D3/LuaSnip")
@@ -68,7 +57,6 @@ return require("packer").startup(function(use)
 	-- DAP
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
-	use("theHamsta/nvim-dap-virtual-text")
 	use("nvim-telescope/telescope-dap.nvim")
 
 	-- MISC
@@ -89,11 +77,13 @@ return require("packer").startup(function(use)
 	use("CRAG666/code_runner.nvim")
 	use("dstein64/vim-startuptime")
 	use("tpope/vim-fugitive")
-	use("tanvirtin/vgit.nvim")
+	-- use("tanvirtin/vgit.nvim")
 	use("lewis6991/impatient.nvim")
 	use("farmergreg/vim-lastplace")
-    use("ellisonleao/glow.nvim")
-    use("$HOME/plugins/winbar.nvim", {
-        config = require("winbar").setup({})
-    })
+	use("$HOME/plugins/winbar.nvim", {
+		config = require("winbar").setup({}),
+	})
+	use("AckslD/messages.nvim", {
+		config = require("messages").setup(),
+	})
 end)

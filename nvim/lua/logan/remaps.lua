@@ -44,5 +44,10 @@ nnoremap('<leader>y', '"+y')
 vnoremap('<leader>y', '"+y')
 nmap('<leader>Y', '"+Y')
 
+-- Git
+nnoremap('<leader>gg', function ()
+    vim.cmd("Git")
+end)
+
 -- Terminal mode
 vim.cmd('tnoremap <esc> <C-\\><C-n>')

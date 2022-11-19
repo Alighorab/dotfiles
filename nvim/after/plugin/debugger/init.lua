@@ -1,7 +1,6 @@
 local Remap = require("logan.utils.keymap")
 local dap = require("dap")
 local dapui = require("dapui")
-local daptext = require("nvim-dap-virtual-text")
 local telescope = require("telescope")
 
 local nnoremap = Remap.nnoremap
@@ -17,18 +16,6 @@ vim.fn.sign_define(
 vim.fn.sign_define("DapStopped", { text = "▶", texthl = "", linehl = "", numhl = "" })
 
 dap.defaults.fallback.force_external_terminal = true
-
-daptext.setup({
-	enabled = true,
-	enabled_commands = true,
-	highlight_changed_variables = true,
-	highlight_new_as_changed = true,
-	show_stop_reason = true,
-	commented = false,
-	only_first_definition = true,
-	all_references = true,
-	filter_references_pattern = "<module",
-})
 
 dapui.setup({
 	layouts = {

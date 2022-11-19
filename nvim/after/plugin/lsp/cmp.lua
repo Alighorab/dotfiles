@@ -60,14 +60,12 @@ cmp.setup({
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
----@diagnostic disable-next-line: unused-local
-		["<C-j>"] = cmp.mapping(function(fallback)
+		["<C-j>"] = cmp.mapping(function(_)
 			if luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			end
 		end, { "i", "s" }),
----@diagnostic disable-next-line: unused-local
-		["<C-k>"] = cmp.mapping(function(fallback)
+		["<C-k>"] = cmp.mapping(function(_)
 			if luasnip.jumpable(-1) then
 				luasnip.jump(-1)
 			end

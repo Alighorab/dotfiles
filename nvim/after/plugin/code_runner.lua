@@ -8,7 +8,7 @@ require('code_runner').setup ({
         c = "gcc -o $fileNameWithoutExt -Wall $fileName; ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
         cpp = "g++ -o $fileNameWithoutExt -Wall $fileName; ./$fileNameWithoutExt; rm -f $fileNameWithoutExt",
         go = "go run $fileName",
-        lua = "lua $fileName",
+        lua = "luajit $fileName",
         rust = "cargo run"
     },
     mode = 'toggle',

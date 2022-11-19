@@ -51,7 +51,6 @@ require("lualine").setup({
         lualine_c = { filename }
     },
 	extensions = {
-		"nvim-dap-ui",
 		extention,
 	},
 })
