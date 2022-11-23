@@ -37,6 +37,20 @@ local extention = {
 	},
 }
 
+local toggleterm = {
+    sections = {
+		lualine_a = { "mode" },
+		lualine_b = { "branch" },
+		lualine_c = {},
+		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_y = { "progress" },
+		lualine_z = { "location" },
+    },
+    filetypes = {
+        "toggleterm"
+    }
+}
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
@@ -52,5 +66,6 @@ require("lualine").setup({
     },
 	extensions = {
 		extention,
+        toggleterm
 	},
 })

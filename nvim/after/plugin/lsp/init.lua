@@ -9,7 +9,7 @@ local open_float_opts = {
     border = "single",
     source = "always",
     severity_sort = true,
-    scope = "cursor",
+    scope = "line",
     focusable = true,
     focus = false,
     close_events = {
@@ -99,7 +99,6 @@ local servers = {
 	"html",
 	"jsonls",
 	"yamlls",
-	"prosemd_lsp",
 }
 
 for _, lsp in ipairs(servers) do

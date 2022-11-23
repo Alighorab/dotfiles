@@ -1,6 +1,5 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
-	ignore_install = { "vim" },
 	sync_install = true,
 
 	highlight = {
