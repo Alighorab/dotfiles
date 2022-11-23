@@ -4,7 +4,6 @@ return require("packer").startup(function(use)
 
 	-- Color schemes and icons
 	use("nvim-tree/nvim-web-devicons")
-	use("nvim-lualine/lualine.nvim")
 	use("lilydjwg/colorizer")
 	use("EdenEast/nightfox.nvim")
 	use("sainnhe/gruvbox-material")
@@ -63,6 +62,7 @@ return require("packer").startup(function(use)
 	use("mbbill/undotree")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
+	use("tpope/vim-fugitive")
 	use("numToStr/Comment.nvim", {
 		config = require("Comment").setup(),
 	})
@@ -72,18 +72,25 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use("kyazdani42/nvim-tree.lua")
+	use("nvim-lualine/lualine.nvim")
 	use("ThePrimeagen/harpoon")
 	use("akinsho/toggleterm.nvim")
 	use("CRAG666/code_runner.nvim")
 	use("dstein64/vim-startuptime")
-	use("tpope/vim-fugitive")
-	-- use("tanvirtin/vgit.nvim")
 	use("lewis6991/impatient.nvim")
 	use("farmergreg/vim-lastplace")
-	use("$HOME/plugins/winbar.nvim", {
-		config = require("winbar").setup({}),
-	})
 	use("AckslD/messages.nvim", {
 		config = require("messages").setup(),
 	})
+	use("$HOME/plugins/winbar.nvim", {
+		config = require("winbar").setup({}),
+	})
+    use("$HOME/plugins/markdown.nvim", {
+        config = require("markdown").setup({
+            browser = {
+                command = "firefox",
+                args = { "-P", "Markdown-Composer", "--class", "markdown", "http://localhost:4000" }
+            }
+        })
+    })
 end)
