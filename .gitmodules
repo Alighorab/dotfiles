@@ -1,3 +1,21 @@
+[submodule "zsh/plugins/fast-syntax-highlighting"]
+    path = zsh/plugins/fast-syntax-highlighting
+    url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+[submodule "zsh/plugins/fzf"]
+    path = zsh/plugins/fzf
+    url = https://github.com/junegunn/fzf
+[submodule "zsh/plugins/fzf-tab"]
+    path = zsh/plugins/fzf-tab
+    url = https://github.com/Aloxaf/fzf-tab
+[submodule "zsh/plugins/ohmyzsh"]
+    path = zsh/plugins/ohmyzsh
+    url = https://github.com/ohmyzsh/ohmyzsh
 [submodule "zsh/plugins/zsh-256color"]
 	path = zsh/plugins/zsh-256color
-	url = https://github.com/chrissicool/zsh-256color.git
+	url = https://github.com/chrissicool/zsh-256color
+[submodule "zsh/plugins/zsh-autopair"]
+	path = zsh/plugins/zsh-autopair
+	url = https://github.com/hlissner/zsh-autopair
+[submodule "zsh/plugins/zsh-autosuggestions"]
+	path = zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
