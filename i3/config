@@ -31,6 +31,7 @@ set $gimp       ""
 set $code       ""
 set $anghami    ""
 set $keep       ""
+set $neovide    ""
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
@@ -39,7 +40,7 @@ bindsym $super+4 workspace $ws4
 bindsym $super+5 workspace $ranger
 bindsym $super+6 workspace $spotify
 bindsym $super+7 workspace $telegram
-bindsym $super+8 workspace $keep
+bindsym $super+8 workspace $neovide
 bindsym $super+9 workspace $discord
 bindsym $super+0 workspace $firefox
 
@@ -50,7 +51,7 @@ bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $super+Shift+5 move container to workspace $ranger; workspace $ranger
 bindsym $super+Shift+6 move container to workspace $spotify; workspace $spotify
 bindsym $super+Shift+7 move container to workspace $telegram; workspace $telegram
-bindsym $super+Shift+8 move container to workspace $keep; workspace $keep
+bindsym $super+Shift+8 move container to workspace $neovide; workspace $neovide
 bindsym $super+Shift+9 move container to workspace $discord; workspace $discord
 bindsym $super+Shift+0 move container to workspace $firefox; workspace $firefox
 
@@ -65,6 +66,7 @@ assign [class="Gimp"] $gimp
 assign [class="Code"] $code
 assign [class="anghami"] $anghami
 assign [class="silos-google-keep"] $keep
+assign [class="neovide"] $neovide
 for_window [title="Spotify"] move to workspace $spotify
 
 for_window [class="Pavucontrol"]    floating enable
