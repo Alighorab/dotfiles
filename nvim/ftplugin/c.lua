@@ -1,6 +1,8 @@
 local Remap = require("logan.utils.keymap")
 local nnoremap = Remap.nnoremap
 
+local bufopts = { silent = true, buffer = true }
+
 -- Compile
 nnoremap("<F6>", function()
     local filename = vim.fn.expand("%")
@@ -21,4 +23,4 @@ nnoremap("<F6>", function()
     end
     handle:close()
     vim.cmd("echo " .. "\"" .. string.format("Compiled %s to %s", filename, basename) .. "\"")
-end)
+end, bufopts)
