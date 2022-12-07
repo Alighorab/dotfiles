@@ -45,6 +45,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
+    use("hrsh7th/cmp-nvim-lsp-signature-help")
 	use("saadparwaiz1/cmp_luasnip")
 	use("hrsh7th/nvim-cmp")
 	use("L3MON4D3/LuaSnip")
@@ -82,15 +83,25 @@ return require("packer").startup(function(use)
 	use("AckslD/messages.nvim", {
 		config = require("messages").setup(),
 	})
+	use("lewis6991/gitsigns.nvim", {
+		config = require("gitsigns").setup(),
+	})
+	use({
+		"lewis6991/spaceless.nvim",
+		config = function()
+			require("spaceless").setup()
+		end,
+	})
+    use("iamcco/markdown-preview.nvim")
 	use("$HOME/plugins/winbar.nvim", {
 		config = require("winbar").setup({}),
 	})
-    use("$HOME/plugins/markdown.nvim", {
-        config = require("markdown").setup({
-            browser = {
-                command = "firefox",
-                args = { "-P", "Markdown-Composer", "--class", "markdown", "http://localhost:4000" }
-            }
-        })
-    })
+	use("$HOME/plugins/markdown.nvim", {
+		config = require("markdown").setup({
+			browser = {
+				command = "firefox",
+				args = { "-P", "Markdown-Composer", "--class", "markdown" },
+			},
+		}),
+	})
 end)
