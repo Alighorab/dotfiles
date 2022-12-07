@@ -75,6 +75,9 @@ super + i
 super + y
     $HOME/.scripts/i3launcher.sh Spotify
 
+super + v
+    $HOME/.scripts/i3launcher.sh Neovide
+
 super + shift + t
 	$HOME/.scripts/touchpad_toggle.sh
 
