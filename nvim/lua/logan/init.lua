@@ -1,5 +1,4 @@
 require("logan.packer")
 require("logan.set")
-require("logan.colors")
 require("logan.remaps")
 require("logan.au")
