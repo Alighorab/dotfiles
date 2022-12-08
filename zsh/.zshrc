@@ -30,7 +30,7 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 export KEYTIMEOUT=1
 
-export PLUGINS_DIR="$HOME/.config/zsh/plugins"
+export PLUGINS_DIR="$XDG_CONFIG_HOME/zsh/plugins"
 # Plugins
 source $PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh
 source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh # Not maintained anymore
@@ -42,6 +42,6 @@ source $PLUGINS_DIR/fzf/shell/key-bindings.zsh
 source $PLUGINS_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Source some files to set aliases, functions, keys, and environment variables
-[ -f "$HOME/.config/zsh/zsh_aliases"    ] && source "$HOME/.config/zsh/zsh_aliases"
-[ -f "$HOME/.config/zsh/zsh_functions"  ] && source "$HOME/.config/zsh/zsh_functions"
-[ -f "$HOME/.config/zsh/zsh_keys"       ] && source "$HOME/.config/zsh/zsh_keys"
+[ -f "$XDG_CONFIG_HOME/zsh/zsh_aliases"    ] && source "$XDG_CONFIG_HOME/zsh/zsh_aliases"
+[ -f "$XDG_CONFIG_HOME/zsh/zsh_functions"  ] && source "$XDG_CONFIG_HOME/zsh/zsh_functions"
+[ -f "$XDG_CONFIG_HOME/zsh/zsh_keys"       ] && source "$XDG_CONFIG_HOME/zsh/zsh_keys"
