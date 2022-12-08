@@ -56,6 +56,15 @@ dapui.setup({
 
 telescope.load_extension("dap")
 
+-- Mason
+require("mason-nvim-dap").setup({
+    ensure_installed = {
+        "cppdbg",
+        "lldb",
+        "python",
+    },
+})
+
 -- Start
 nnoremap("<F9>", function()
 	dap.continue()

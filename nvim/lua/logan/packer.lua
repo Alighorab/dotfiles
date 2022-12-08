@@ -59,6 +59,23 @@ return require("packer").startup(function(use)
 	use("rcarriga/nvim-dap-ui")
 	use("nvim-telescope/telescope-dap.nvim")
 
+    -- Package manager
+    use("williamboman/mason.nvim", {
+        config = require("mason").setup({
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                }
+            },
+            -- The directory in which to install packages.
+            install_root_dir = vim.fn.stdpath("data") .. "/mason",
+        })
+    })
+    use("williamboman/mason-lspconfig.nvim")
+    use("jayp0521/mason-nvim-dap.nvim")
+
 	-- MISC
 	use("mbbill/undotree")
 	use("tpope/vim-repeat")
@@ -80,17 +97,8 @@ return require("packer").startup(function(use)
 	use("dstein64/vim-startuptime")
 	use("lewis6991/impatient.nvim")
 	use("farmergreg/vim-lastplace")
-	use("AckslD/messages.nvim", {
-		config = require("messages").setup(),
-	})
 	use("lewis6991/gitsigns.nvim", {
 		config = require("gitsigns").setup(),
-	})
-	use({
-		"lewis6991/spaceless.nvim",
-		config = function()
-			require("spaceless").setup()
-		end,
 	})
     use("iamcco/markdown-preview.nvim")
 	use("$HOME/plugins/winbar.nvim", {

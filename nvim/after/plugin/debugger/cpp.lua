@@ -3,22 +3,16 @@ local dap = require("dap")
 dap.adapters.cppdbg = {
 	id = "cppdbg",
 	type = "executable",
-	command = "/usr/bin/OpenDebugAD",
+	command = "OpenDebugAD7",
 }
 
 dap.adapters.codelldb = {
 	type = "server",
 	port = "${port}",
 	executable = {
-		command = "/usr/bin/codelldb",
+		command = "codelldb",
 		args = { "--port", "${port}" },
 	},
-}
-
-dap.adapters.lldb = {
-  type = 'executable',
-  command = '/usr/bin/lldb-vscode',
-  name = 'lldb'
 }
 
 dap.configurations.cpp = {

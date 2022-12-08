@@ -88,7 +88,23 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Servers --
+-- Mason
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "clangd",
+        "vimls",
+        "pyright",
+        "bashls",
+        "html",
+        "jsonls",
+        "yamlls",
+        "gopls",
+        "rust_analyzer",
+        "sumneko_lua",
+    }
+})
+
+-- Servers
 local lspconfig = require("lspconfig")
 
 local servers = {
