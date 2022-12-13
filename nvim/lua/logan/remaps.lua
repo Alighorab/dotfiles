@@ -7,9 +7,9 @@ local nmap = Remap.nmap
 
 local silent = {silent = true}
 
-nnoremap('<Tab>', '<cmd>bnext<cr>', silent)
-nnoremap('<S-Tab>', '<cmd>bprevious<cr>', silent)
-nnoremap('<leader>bd', '<cmd>bd!<cr>', silent)
+nnoremap('<Tab>', vim.cmd.bnext, silent)
+nnoremap('<S-Tab>', vim.cmd.bprevious, silent)
+nnoremap('<leader>bd', vim.cmd.bdelete, silent)
 
 nnoremap('Y', 'yg$')
 nnoremap("n", "nzzzv")
@@ -43,11 +43,6 @@ nnoremap('<leader>p', '"+p')
 nnoremap('<leader>y', '"+y')
 vnoremap('<leader>y', '"+y')
 nmap('<leader>Y', '"+Y')
-
--- Git
-nnoremap('<leader>gg', function ()
-    vim.cmd("Git")
-end)
 
 -- Terminal mode
 vim.cmd('tnoremap <esc> <C-\\><C-n>')

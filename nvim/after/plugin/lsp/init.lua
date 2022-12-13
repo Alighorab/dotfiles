@@ -67,7 +67,6 @@ local on_attach = function(_, bufnr)
     -- Diagnostics
     local group = vim.api.nvim_create_augroup("LspDiagnostics", { clear = true })
 	vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged" }, {
-		buffer = bufnr,
         group = group,
 		callback = function()
 			if vim.api.nvim_get_mode().mode == "n" then

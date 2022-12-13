@@ -103,5 +103,5 @@ require("nvim-tree").setup({
 
 nnoremap("<leader><leader>", function ()
     api.tree.toggle()
-    api.tree.reload()
+    api.tree.reload({}, 0)
 end, silent)

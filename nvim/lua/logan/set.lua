@@ -38,7 +38,7 @@ vim.opt.updatetime = 50
 vim.opt.mouse = ""
 -- Don't show mode
 vim.opt.showmode = false
-vim.opt.background = "dark"
+-- open help in vertical split
 vim.cmd("cabbrev h vert h")
 -- Map leader key to <space>
 vim.g.mapleader = " "

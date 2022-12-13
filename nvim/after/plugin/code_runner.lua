@@ -32,7 +32,7 @@ require('code_runner').setup ({
         blend = 0,
     },
     project = {
-        ["/home/logan/Study/computer-science-engineering/courses/15-213-Introduction-to-Computer-Systems/lab-solutions/7.ProxyLab/proxylab-handout"] = {
+        ["/home/logan/Study/computer-science-engineering/learning/15-213-Introduction-to-Computer-Systems/lab-solutions/7.ProxyLab/proxylab-handout"] = {
             name = "Proxy",
             description = "A simple, multi-threaded proxy server",
             file_name = "proxy.c",
@@ -41,5 +41,7 @@ require('code_runner').setup ({
     }
 })
 
-nnoremap("<F5>", ":RunCode<CR>")
-nnoremap("<F17>", ":RunClose<CR>")
+local commands = require("code_runner.commands")
+
+nnoremap("<F5>", commands.run_code)
+nnoremap("<F17>", commands.run_close) -- Shift <F5>

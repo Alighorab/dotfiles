@@ -5,10 +5,6 @@ local markdown = require("markdown")
 
 local bufopts = { silent = true, buffer = true }
 
-vnoremap("<leader>mf", function ()
-    vim.cmd("!fmt -w 79")
-end, bufopts)
-
 nnoremap("<leader>mg", function ()
     markdown.spawn_server()
     markdown.spawn_browser()
