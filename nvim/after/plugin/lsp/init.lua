@@ -88,21 +88,6 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Mason
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        "clangd",
-        "vimls",
-        "pyright",
-        "bashls",
-        "html",
-        "jsonls",
-        "yamlls",
-        "gopls",
-        "rust_analyzer",
-        "sumneko_lua",
-    }
-})
 
 -- Servers
 local lspconfig = require("lspconfig")
@@ -116,6 +101,21 @@ local servers = {
 	"jsonls",
 	"yamlls",
 }
+
+-- Mason
+local ensure_installed = vim.tbl_flatten(servers)
+local additional_servers = {
+    "gopls",
+    "rust_analyzer",
+    "sumneko_lua",
+}
+for _, server in ipairs(additional_servers) do
+    table.insert(ensure_installed, server)
+end
+
+require("mason-lspconfig").setup({
+    ensure_installed = ensure_installed,
+})
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -193,9 +193,12 @@ require("lspconfig").sumneko_lua.setup({
 	},
 })
 
--- vim.cmd("highlight! FloatBorder guibg=None guifg=DarkYellow")
--- vim.cmd("highlight! NormalFloat guibg=None guifg=None")
-vim.cmd("highlight! DiagnosticFloatingError guibg=None guifg=#fb4934")
-vim.cmd("highlight! DiagnosticFloatingWarn guibg=None guifg=DarkYellow")
-vim.cmd("highlight! DiagnosticFloatingInfo guibg=None guifg=LightBlue")
-vim.cmd("highlight! DiagnosticFloatingHint guibg=None guifg=LightGrey")
+-- Colors
+vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { bg = "None", fg = "#fb4934" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { bg = "None", fg = "LightBlue" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { bg = "None", fg = "DarkYellow" })
+vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { bg = "None", fg = "LightGrey" })
+--[[
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "None", fg = "DarkYellow" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None", fg = "None" })
+]]
