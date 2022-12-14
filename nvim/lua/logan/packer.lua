@@ -5,7 +5,6 @@ return require("packer").startup(function(use)
 	-- Color schemes and icons
 	use("nvim-tree/nvim-web-devicons")
 	use("lilydjwg/colorizer")
-	use("EdenEast/nightfox.nvim")
 	use("sainnhe/gruvbox-material")
     use("folke/tokyonight.nvim")
 

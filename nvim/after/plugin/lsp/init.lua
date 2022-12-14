@@ -96,9 +96,6 @@ local servers = {
 	"vimls",
 	"pyright",
 	"bashls",
-	"html",
-	"jsonls",
-	"yamlls",
 }
 
 -- Mason
@@ -197,7 +194,5 @@ vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { bg = "None", fg = "#fb4934" 
 vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { bg = "None", fg = "LightBlue" })
 vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { bg = "None", fg = "DarkYellow" })
 vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { bg = "None", fg = "LightGrey" })
---[[
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "None", fg = "DarkYellow" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None", fg = "None" })
-]]
+--[[ vim.api.nvim_set_hl(0, "FloatBorder", { bg = "None", fg = "DarkYellow" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None", fg = "None" }) ]]

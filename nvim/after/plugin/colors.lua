@@ -10,13 +10,13 @@ vim.opt.background = "dark"
 
 -- tokyonight
 require("tokyonight").setup({
-    transparent = true,
-    styles = {
-        sidebars = "transparent",
-    }
+	transparent = true,
+	styles = {
+		sidebars = "transparent",
+		functions = { bold = true },
+	},
+	lualine_bold = true,
 })
 
 -- Set colorscheme
 vim.cmd.colorscheme("tokyonight-moon")
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#E1D9D1" })
-vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { bg = "None" })

@@ -30,7 +30,7 @@ require("nvim-tree").setup({
 	renderer = {
 		group_empty = true,
         root_folder_modifier = ":~",
-		highlight_opened_files = "icon",
+		highlight_opened_files = "all",
 		indent_markers = {
 			enable = true,
 			inline_arrows = true,
@@ -105,3 +105,9 @@ nnoremap("<leader><leader>", function ()
     api.tree.toggle()
     api.tree.reload({}, 0)
 end, silent)
+
+local fg = require("tokyonight.colors").moon().fg
+local bg = require("tokyonight.colors").moon().bg_highlight
+
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = fg })
+vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { bg = bg, fg = "None" })
