@@ -7,6 +7,7 @@ return require("packer").startup(function(use)
 	use("lilydjwg/colorizer")
 	use("EdenEast/nightfox.nvim")
 	use("sainnhe/gruvbox-material")
+    use("folke/tokyonight.nvim")
 
 	-- Nvim Treesitter configurations and abstraction layer
 	-- Treesitter:
@@ -41,6 +42,7 @@ return require("packer").startup(function(use)
 		config = require("trouble").setup(),
 	})
 	use("simrat39/rust-tools.nvim")
+    use("jose-elias-alvarez/null-ls.nvim")
 
 	-- Completion
 	use("hrsh7th/cmp-nvim-lsp")
@@ -76,6 +78,7 @@ return require("packer").startup(function(use)
     })
     use("williamboman/mason-lspconfig.nvim")
     use("jayp0521/mason-nvim-dap.nvim")
+    use("jay-babu/mason-null-ls.nvim")
 
 	-- MISC
 	use("mbbill/undotree")
@@ -84,11 +87,6 @@ return require("packer").startup(function(use)
 	use("tpope/vim-fugitive")
 	use("numToStr/Comment.nvim", {
 		config = require("Comment").setup(),
-	})
-	use("sbdchd/neoformat", {
-		config = function()
-			vim.g.shfmt_opt = "-ci"
-		end,
 	})
 	use("kyazdani42/nvim-tree.lua")
 	use("nvim-lualine/lualine.nvim")
