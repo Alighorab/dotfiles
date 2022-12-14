@@ -1,5 +1,4 @@
 local formatters = {
-	"clang_format",
 	"stylua",
 	"shfmt",
 	"rustfmt",
@@ -26,7 +25,6 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
         -- Formatters
-		null_ls.builtins.formatting.clang_format,
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.shfmt.with({
 			extra_args = { "-ci" },
