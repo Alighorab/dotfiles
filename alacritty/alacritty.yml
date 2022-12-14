@@ -34,34 +34,66 @@ font:
 
   size: 10
 
+# colors:
+#   primary:
+#     background: '#000000'
+#     foreground: '#d4be98'
+#   
+#   normal:
+#     black:   '#665c54'
+#     red:     '#ea6962'
+#     green:   '#a9b665'
+#     yellow:  '#e78a4e'
+#     blue:    '#7daea3'
+#     magenta: '#d3869b'
+#     cyan:    '#89b482'
+#     white:   '#d4be98'
+#
+#   bright:
+#     black:   '#928374'
+#     red:     '#ea6962'
+#     green:   '#a9b665'
+#     yellow:  '#d8a657'
+#     blue:    '#7daea3'
+#     magenta: '#d3869b'
+#     cyan:    '#89b482'
+#     white:   '#d4be98'
+#
+#   cursor:
+#     text: '#665c54'
+#     cursor: '#a89984'
+# TokyoNight Alacritty Colors
 colors:
+  # Default colors
   primary:
     background: '#000000'
-    foreground: '#d4be98'
-  
+    foreground: '#c8d3f5'
+
+  # Normal colors
   normal:
-    black:   '#665c54'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#e78a4e'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#d4be98'
+    black:   '#1b1d2b'
+    red:     '#ff757f'
+    green:   '#c3e88d'
+    yellow:  '#ffc777'
+    blue:    '#82aaff'
+    magenta: '#c099ff'
+    cyan:    '#86e1fc'
+    white:   '#828bb8'
 
+  # Bright colors
   bright:
-    black:   '#928374'
-    red:     '#ea6962'
-    green:   '#a9b665'
-    yellow:  '#d8a657'
-    blue:    '#7daea3'
-    magenta: '#d3869b'
-    cyan:    '#89b482'
-    white:   '#d4be98'
+    black:   '#444a73'
+    red:     '#ff757f'
+    green:   '#c3e88d'
+    yellow:  '#ffc777'
+    blue:    '#82aaff'
+    magenta: '#c099ff'
+    cyan:    '#86e1fc'
+    white:   '#c8d3f5'
 
-  cursor:
-    text: '#665c54'
-    cursor: '#a89984'
+  indexed_colors:
+    - { index: 16, color: '#ff966c' }
+    - { index: 17, color: '#c53b53' }
 
 cursor:
   style:
