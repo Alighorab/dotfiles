@@ -38,6 +38,9 @@ vim.opt.updatetime = 50
 vim.opt.mouse = ""
 -- Don't show mode
 vim.opt.showmode = false
+-- providers
+vim.g.python3_host_prog = "/usr/bin/python3"
+vim.g.loaded_perl_provider = 0
 -- open help in vertical split
 vim.cmd("cabbrev h vert h")
 -- Map leader key to <space>
