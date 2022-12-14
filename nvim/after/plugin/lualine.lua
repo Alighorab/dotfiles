@@ -54,7 +54,7 @@ local toggleterm = {
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
-		theme = "nightfox",
+		theme = "tokyonight",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},

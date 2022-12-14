@@ -7,5 +7,16 @@ vim.g.gruvbox_material_foreground = "mix"
 vim.g.gruvbox_material_enable_bold = 1
 vim.g.gruvbox_material_enable_italic = 1
 vim.opt.background = "dark"
+
+-- tokyonight
+require("tokyonight").setup({
+    transparent = true,
+    styles = {
+        sidebars = "transparent",
+    }
+})
+
 -- Set colorscheme
-vim.cmd.colorscheme("gruvbox-material")
+vim.cmd.colorscheme("tokyonight-moon")
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = "#E1D9D1" })
+vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { bg = "None" })
