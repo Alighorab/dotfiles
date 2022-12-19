@@ -12,7 +12,7 @@ require("nvim-tree").setup({
 	auto_reload_on_write = true,
 	open_on_setup = false,
 	view = {
-		adaptive_size = true,
+		adaptive_size = false,
 		relativenumber = true,
 		number = true,
 		float = {
@@ -105,9 +105,3 @@ nnoremap("<leader><leader>", function ()
     api.tree.toggle()
     api.tree.reload({}, 0)
 end, silent)
-
-local fg = require("tokyonight.colors").moon().fg
-local bg = require("tokyonight.colors").moon().bg_highlight
-
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = fg })
-vim.api.nvim_set_hl(0, "NvimTreeOpenedFile", { bg = bg, fg = "None" })

@@ -4,20 +4,8 @@ separator_block_width=5
 
 [Recording]
 full_text=
-command= [ $(pgrep record.sh) ] && echo "[ Recording ]"
+command= [ $(pgrep record.sh) ] && echo "[ Recording.. ]"
 interval=1
-
-[separator]
-
-[CPU]
-command= $HOME/.scripts/cpu.sh
-interval= 5
-
-[separator]
-
-[GPU]
-command= $HOME/.scripts/gpu.sh
-interval= 5
 
 [separator]
 

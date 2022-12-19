@@ -5,8 +5,7 @@ return require("packer").startup(function(use)
 	-- Color schemes and icons
 	use("nvim-tree/nvim-web-devicons")
 	use("lilydjwg/colorizer")
-	use("sainnhe/gruvbox-material")
-    use("folke/tokyonight.nvim")
+    use("catppuccin/nvim", { as = "catppuccin"})
 
 	-- Nvim Treesitter configurations and abstraction layer
 	-- Treesitter:
@@ -99,15 +98,4 @@ return require("packer").startup(function(use)
 		config = require("gitsigns").setup(),
 	})
     use("iamcco/markdown-preview.nvim")
-	use("$HOME/plugins/winbar.nvim", {
-		config = require("winbar").setup({}),
-	})
-	use("$HOME/plugins/markdown.nvim", {
-		config = require("markdown").setup({
-			browser = {
-				command = "firefox",
-				args = { "-P", "Markdown-Composer", "--class", "markdown" },
-			},
-		}),
-	})
 end)

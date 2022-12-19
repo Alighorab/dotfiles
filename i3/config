@@ -9,8 +9,8 @@ popup_during_fullscreen smart
 exec            sxhkd
 exec_always     pkill picom; picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
-exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/lucas-kapla-wQLAGv4_OYs-unsplash.jpg
-exec_always     i3-msg gaps inner all set 25
+exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/wallpapers/waves/cat-waves.png
+exec_always     i3-msg gaps inner all set 30
 
 set $ws1        "1"
 set $ws2        "2"
@@ -89,35 +89,53 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #232324
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
 
-
-client.focused          #2E9EF4 #184848 #FFFFFF #2E9EF4   #285577
-client.focused_inactive #333333 #5F676A #FFFFFF #484E50   #5F676A
-client.unfocused        #333333 #222222 #888888 #292D2E   #222222
-client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
-client.background       #FFFFFF
+# target                 title     bg    text   indicator  border
+client.focused           $pink     $base $text  $blue      $blue
+client.focused_inactive  $mauve    $base $text  $mauve     $base
+client.unfocused         $mauve    $base $text  $base      $base
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 bar {
-    font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 10 
-    height 21
+    font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 11
+    height 25
     position top
     status_command i3blocks
     tray_output none
     colors {
-        background #000000
-        statusline #FFFFFF
-        separator  #666666
+        background $base
 
-        focused_workspace  #285577 #285577 #FFFFFF
-        active_workspace   #333333 #222222 #FFFFFF
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2F343A #900000 #FFFFFF
-        binding_mode       #2F343A #900000 #FFFFFF
+        focused_workspace  $base $mantle $text
+        active_workspace   $base $base   $text
+        inactive_workspace $base $base   $surface2
+        urgent_workspace   $base $base   $red
+        binding_mode       $base $red    $text
     }
 }
