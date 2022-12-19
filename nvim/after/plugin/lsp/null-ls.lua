@@ -4,7 +4,7 @@ local formatters = {
 	"rustfmt",
 	"black",
 	"gofumpt",
-	"prettier",
+    "eslint_d",
 }
 
 local linters = {
@@ -32,27 +32,10 @@ null_ls.setup({
 		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.formatting.black,
 		null_ls.builtins.formatting.gofumpt,
-		null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.eslint_d,
 
         -- Linters
         null_ls.builtins.diagnostics.flake8,
+        null_ls.builtins.diagnostics.eslint_d,
 	},
 })
-
-local Reamp = require("logan.utils.keymap")
-local nnoremap = Reamp.nnoremap
-local vnoremap = Reamp.vnoremap
-
-local range_formatting = function()
-    local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
-    local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
-	vim.lsp.buf.format({
-		range = {
-			["start"] = { start_row, 0 },
-			["end"] = { end_row, 0 },
-		},
-	})
-end
-
-nnoremap("<leader>f", vim.lsp.buf.format)
-vnoremap("<leader>f", range_formatting)
