@@ -5,19 +5,22 @@ local xnoremap = Remap.xnoremap
 local onoremap = Remap.onoremap
 local nmap = Remap.nmap
 
-local silent = {silent = true}
+local silent = { silent = true }
 
-nnoremap('<Tab>', vim.cmd.bnext, silent)
-nnoremap('<S-Tab>', vim.cmd.bprevious, silent)
-nnoremap('<leader>bd', vim.cmd.bdelete, silent)
+nnoremap("<Tab>", vim.cmd.bnext, silent)
+nnoremap("<S-Tab>", vim.cmd.bprevious, silent)
+nnoremap("<leader>bd", vim.cmd.bdelete, silent)
 
-nnoremap('Y', 'yg$')
+nnoremap("Y", "yg$")
 nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
 nnoremap("J", "mzJ`z")
 -- Jump and center
-nnoremap('<C-d>', '<C-d>zz')
-nnoremap('<C-u>', '<C-u>zz')
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
+
+-- Reselct pasted text
+nnoremap("gp", "`[v`]")
 
 --[[ 
 The best remaps ever!
@@ -26,23 +29,20 @@ The best remaps ever!
     Move the lines given by [range] to below the line
     given by {address}. 
 ]]
-vnoremap('J', ':m \'>+1<CR>gv=gv')
-vnoremap('K', ':m \'<-2<CR>gv=gv')
-nnoremap('<leader>j', ':m .+1<CR>==')
-nnoremap('<leader>k', ':m .-2<CR>==')
+vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("K", ":m '<-2<CR>gv=gv")
+nnoremap("<leader>j", ":m .+1<CR>==")
+nnoremap("<leader>k", ":m .-2<CR>==")
 
 -- Line text object
-xnoremap('il', 'g_o^')
-onoremap('il', ':normal vil<cr>')
-
--- Reselct pasted text
-nnoremap('gp', '`[v`]')
+xnoremap("il", "g_o^")
+onoremap("il", ":normal vil<cr>")
 
 -- Copying and pasting from clipboard
-nnoremap('<leader>p', '"+p')
-nnoremap('<leader>y', '"+y')
-vnoremap('<leader>y', '"+y')
-nmap('<leader>Y', '"+Y')
+nnoremap("<leader>p", '"+p')
+nnoremap("<leader>y", '"+y')
+vnoremap("<leader>y", '"+y')
+nmap("<leader>Y", '"+Y')
 
 -- Terminal mode
-vim.cmd('tnoremap <esc> <C-\\><C-n>')
+vim.cmd("tnoremap <esc> <C-\\><C-n>")
