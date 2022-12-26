@@ -1,3 +1,6 @@
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
 -- Make the cursor shape as block
 vim.opt.guicursor = ""
 -- line and relativeline number
@@ -41,7 +44,14 @@ vim.opt.showmode = false
 -- providers
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.loaded_perl_provider = 0
+-- eol
+-- vim.opt.list = true
+-- vim.opt.listchars:append("eol:↴")
 -- open help in vertical split
 vim.cmd("cabbrev h vert h")
+-- Neovide font
+if vim.g.neovide then
+  vim.opt.guifont = "Inconsolata for Powerline:h11"
+end
 -- Map leader key to <space>
 vim.g.mapleader = " "
