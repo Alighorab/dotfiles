@@ -27,11 +27,10 @@ set $windows    ""
 set $trello     ""
 set $syncplay   ""
 set $arduino    ""
-set $gimp       ""
+set $gimp       ""
 set $code       ""
 set $anghami    ""
-set $keep       ""
-set $neovide    ""
+set $neovide    ""
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
@@ -65,9 +64,10 @@ assign [class="processing-app-Base"] $arduino
 assign [class="Gimp"] $gimp
 assign [class="Code"] $code
 assign [class="anghami"] $anghami
-assign [class="silos-google-keep"] $keep
 assign [class="neovide"] $neovide
 for_window [title="Spotify"] move to workspace $spotify
+# do not focus preview window on open
+no_focus [title="^Peek preview$"]
 
 for_window [class="Pavucontrol"]    floating enable
 for_window [title="Library"]        floating enable
@@ -116,26 +116,28 @@ set $mantle    #181825
 set $crust     #11111b
 
 # target                 title     bg    text   indicator  border
-client.focused           $pink     $base $text  $blue      $blue
-client.focused_inactive  $mauve    $base $text  $mauve     $base
+client.focused           $pink     $base $text  $pink      $pink
+client.focused_inactive  $mauve    $base $text  $base      $base
 client.unfocused         $mauve    $base $text  $base      $base
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-bar {
-    font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 11
-    height 25
-    position top
-    status_command i3blocks
-    tray_output none
-    colors {
-        background $base
+# bar {
+#     font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 11
+#     height 25
+#     position top
+#     status_command i3blocks
+#     tray_output none
+#     colors {
+#         background $base
+#
+#         focused_workspace  $base $mantle $text
+#         active_workspace   $base $base   $text
+#         inactive_workspace $base $base   $surface2
+#         urgent_workspace   $base $base   $red
+#         binding_mode       $base $red    $text
+#     }
+# }
 
-        focused_workspace  $base $mantle $text
-        active_workspace   $base $base   $text
-        inactive_workspace $base $base   $surface2
-        urgent_workspace   $base $base   $red
-        binding_mode       $base $red    $text
-    }
-}
+exec_always pkill polybar; polybar -r

@@ -4,7 +4,7 @@ super + {j, k, h, l, o}
 	i3-msg focus {'down', 'up', 'left', 'right', 'mode_toggle'}
 
 super + shift + {j, k, l, h}
-	i3l move {down, up, right, left}
+	i3-msg move {down, up, right, left}
 
 super + {s, g}
 	i3-msg {'resize shrink width 5 px or 5 ppt', 'resize grow width 5 px or 5 ppt'}
@@ -14,6 +14,12 @@ super + shift + {s, g}
 
 super + f
 	i3-msg 'fullscreen toggle'
+
+super + v
+    i3-msg 'layout splitv'
+
+super + shift + v
+    i3-msg 'layout splith'
 
 super + b
     $HOME/.scripts/toggle-i3bar.sh
@@ -74,9 +80,6 @@ super + i
 
 super + y
     $HOME/.scripts/i3launcher.sh Spotify
-
-super + v
-    $HOME/.scripts/i3launcher.sh Neovide
 
 super + shift + t
 	$HOME/.scripts/touchpad_toggle.sh
