@@ -43,7 +43,7 @@ require("catppuccin").setup({
   integrations = {
     cmp = true,
     gitsigns = true,
-    nvimtree = false,
+    nvimtree = true,
     telescope = true,
     fidget = true,
     dap = {
