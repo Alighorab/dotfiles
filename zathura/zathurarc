@@ -1,0 +1,4 @@
+include catppuccin-mocha
+
+set nohlsearch false
+set incremental-search true
