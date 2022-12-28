@@ -25,8 +25,8 @@ require("nvim-treesitter.configs").setup({
         ["ac"] = "@class.outer",
         -- you can optionally set descriptions to the mappings (used in the desc parameter of nvim_buf_set_keymap
         ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-        ["ir"] = "@parameter.inner",
-        ["ar"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+        ["aa"] = "@parameter.outer",
         ["io"] = "@loop.inner",
         ["ao"] = "@loop.outer",
       },
