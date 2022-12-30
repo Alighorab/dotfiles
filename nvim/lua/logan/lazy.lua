@@ -1,3 +1,17 @@
+-- Bootstrap lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.runtimepath:prepend(lazypath)
+
 local opts = {
   concurrency = 4, ---@type number limit the maximum amount of concurrent tasks
   install = {
@@ -12,7 +26,7 @@ vim.g.mapleader = " "
 require("lazy").setup({
   -- Color schemes and icons
   "nvim-tree/nvim-web-devicons",
-  "lilydjwg/colorizer",
+  "norcalli/nvim-colorizer.lua",
   { "catppuccin/nvim", name = "catppuccin" },
 
   -- Nvim Treesitter configurations and abstraction layer
@@ -32,6 +46,7 @@ require("lazy").setup({
   "nvim-treesitter/nvim-treesitter-textobjects",
   "nvim-treesitter/playground",
   "andymass/vim-matchup",
+
 
   -- Telescope
   "nvim-lua/plenary.nvim",
@@ -81,12 +96,14 @@ require("lazy").setup({
   "jayp0521/mason-nvim-dap.nvim",
   "jay-babu/mason-null-ls.nvim",
 
-  -- MISC
-  "mbbill/undotree",
+  -- Tpope
   "tpope/vim-repeat",
   "tpope/vim-surround",
   "tpope/vim-fugitive",
   "tpope/vim-eunuch",
+
+  -- MISC
+  "mbbill/undotree",
   { "numToStr/Comment.nvim", config = true },
   "kyazdani42/nvim-tree.lua",
   "nvim-lualine/lualine.nvim",
@@ -96,6 +113,7 @@ require("lazy").setup({
   "vim-scripts/ReplaceWithRegister",
   "dstein64/vim-startuptime",
   "farmergreg/vim-lastplace",
+  "folke/twilight.nvim",
   { "lewis6991/gitsigns.nvim", config = true },
   "toppair/peek.nvim",
   {
