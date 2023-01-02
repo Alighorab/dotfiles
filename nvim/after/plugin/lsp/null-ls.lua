@@ -2,13 +2,13 @@ local formatters = {
   "stylua",
   "shfmt",
   "rustfmt",
-  "black",
+  "black", -- python
   "gofumpt",
-  "eslint_d",
+  "eslint_d", -- js and ts
 }
 
 local linters = {
-  "flake8",
+  "ruff", -- python
 }
 
 local ensure_installed = vim.tbl_flatten(formatters)
@@ -35,7 +35,7 @@ null_ls.setup({
     null_ls.builtins.formatting.eslint_d,
 
     -- Linters
-    null_ls.builtins.diagnostics.flake8,
+    null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.diagnostics.eslint_d,
   },
 })
