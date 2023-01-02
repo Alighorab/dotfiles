@@ -18,6 +18,21 @@ local opts = {
     -- try to load one of these colorschemes when starting an installation during startup
     colorscheme = { "catppuccin" },
   },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = true, -- get a notification when changes are found
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "netrwPlugin",
+        "zipPlugin",
+      },
+    },
+  },
 }
 
 -- Map leader key to <space>
@@ -44,9 +59,6 @@ require("lazy").setup({
   },
   "nvim-treesitter/nvim-treesitter-context",
   "nvim-treesitter/nvim-treesitter-textobjects",
-  "nvim-treesitter/playground",
-  "andymass/vim-matchup",
-
 
   -- Telescope
   "nvim-lua/plenary.nvim",
@@ -54,12 +66,11 @@ require("lazy").setup({
 
   -- LSP
   "neovim/nvim-lspconfig",
+  "jose-elias-alvarez/null-ls.nvim",
   "onsails/lspkind-nvim",
-  "glepnir/lspsaga.nvim",
   { "j-hui/fidget.nvim", config = true },
   { "folke/trouble.nvim", config = true },
   "simrat39/rust-tools.nvim",
-  "jose-elias-alvarez/null-ls.nvim",
 
   -- Completion
   "hrsh7th/cmp-nvim-lsp",
@@ -99,23 +110,36 @@ require("lazy").setup({
   -- Tpope
   "tpope/vim-repeat",
   "tpope/vim-surround",
-  "tpope/vim-fugitive",
+  {
+    "tpope/vim-fugitive",
+    keys = {
+      { "<leader>gg", vim.cmd.Git, desc = "fugitive" },
+      {
+        "<leader>gd",
+        function()
+          vim.cmd.Git("diff %")
+        end,
+        desc = "git diff",
+      },
+    },
+  },
   "tpope/vim-eunuch",
 
-  -- MISC
+  -- Utils
   "mbbill/undotree",
+  "vim-scripts/ReplaceWithRegister",
+  "farmergreg/vim-lastplace",
   { "numToStr/Comment.nvim", config = true },
+  { "lewis6991/gitsigns.nvim", config = true },
+
+  -- MISC
   "kyazdani42/nvim-tree.lua",
   "nvim-lualine/lualine.nvim",
   "ThePrimeagen/harpoon",
   "akinsho/toggleterm.nvim",
   "CRAG666/code_runner.nvim",
-  "vim-scripts/ReplaceWithRegister",
-  "dstein64/vim-startuptime",
-  "farmergreg/vim-lastplace",
   "folke/twilight.nvim",
-  { "lewis6991/gitsigns.nvim", config = true },
-  "toppair/peek.nvim",
+  { "toppair/peek.nvim", config = true },
   {
     "lukas-reineke/indent-blankline.nvim",
     config = {

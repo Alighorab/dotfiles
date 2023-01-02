@@ -1,6 +1,3 @@
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
 -- Make the cursor shape as block
 vim.opt.guicursor = ""
 -- line and relativeline number
