@@ -83,17 +83,3 @@ cmp.setup({
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
--- Colors
-vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "None", fg = "#808080", strikethrough = true })
-vim.api.nvim_set_hl(0, "CmpItemMenu", { bg = "None", fg = "#808080" })
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "None", fg = "#569CD6" })
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
-vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "None", fg = "#9CDCFE" })
-vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
-vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
-vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "None", fg = "#C586C0" })
-vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
-vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "None", fg = "#D4D4D4" })
-vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
-vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })

@@ -59,6 +59,11 @@ require("catppuccin").setup({
         information = { "underline" },
       },
     },
+    harpoon = true,
+    markdown = true,
+    treesitter = true,
+    treesitter_context = true,
+    lsp_trouble = true,
     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
   },
 })
