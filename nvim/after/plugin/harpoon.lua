@@ -1,27 +1,23 @@
-local Remap = require("logan.utils.keymap")
-local silent = { silent = true }
-local nnoremap = Remap.nnoremap
-
-nnoremap("<leader>hm", function()
+vim.keymap.set("n", "<leader>hm", function()
   require("harpoon.mark").add_file()
-end, silent)
+end, { silent = true, desc = "Harppon Add File" })
 
-nnoremap("<leader>hu", function()
+vim.keymap.set("n", "<leader>hu", function()
   require("harpoon.ui").toggle_quick_menu()
-end, silent)
+end, { silent = true, desc = "Harppon Quick Menu Toggle" })
 
-nnoremap("<A-1>", function()
+vim.keymap.set("n", "<A-1>", function()
   require("harpoon.ui").nav_file(1)
-end, silent)
+end, { silent = true, desc = "Harppon Navigate File (1)" })
 
-nnoremap("<A-2>", function()
+vim.keymap.set("n", "<A-2>", function()
   require("harpoon.ui").nav_file(2)
-end, silent)
+end, { silent = true, desc = "Harppon File (2)" })
 
-nnoremap("<A-3>", function()
+vim.keymap.set("n", "<A-3>", function()
   require("harpoon.ui").nav_file(3)
-end, silent)
+end, { silent = true, desc = "Harppon File (3)" })
 
-nnoremap("<A-4>", function()
+vim.keymap.set("n", "<A-4>", function()
   require("harpoon.ui").nav_file(4)
-end, silent)
+end, { silent = true, desc = "Harppon File (4)" })

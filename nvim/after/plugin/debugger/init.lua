@@ -1,8 +1,5 @@
-local Remap = require("logan.utils.keymap")
 local dap = require("dap")
 local dapui = require("dapui")
-
-local nnoremap = Remap.nnoremap
 
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "◆", texthl = "", linehl = "", numhl = "" })
@@ -57,57 +54,57 @@ require("mason-nvim-dap").setup({
 })
 
 -- Start
-nnoremap("<F9>", function()
+vim.keymap.set("n", "<F9>", function()
   dap.continue()
   dapui.open({})
   vim.opt.mouse = "a"
-end)
+end, { desc = "Dap Continue" })
 
 -- Exit
-nnoremap("<F7>", function()
+vim.keymap.set("n", "<F7>", function()
   dap.terminate()
   dapui.close({})
   vim.cmd("sleep 50ms")
   dap.repl.close()
   vim.opt.mouse = ""
-end)
+end, { desc = "Dap Exit" })
 
 -- Restart
-nnoremap("<F21>", function()
+vim.keymap.set("n", "<F21>", function()
   dap.terminate()
   vim.cmd("sleep 50ms")
   dap.repl.close()
   dap.continue()
-end) -- Shift F9
+end, { desc = "Dap Restart" }) -- Shift F9
 
-nnoremap("<leader>B", function()
+vim.keymap.set("n", "<leader>B", function()
   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end)
+end, { desc = "Dap Conditional Breakpoint" })
 
-nnoremap("<F8>", function()
+vim.keymap.set("n", "<F8>", function()
   dap.toggle_breakpoint()
-end)
+end, { desc = "Dap Toggle Breakpoint" })
 
-nnoremap("<F20>", function()
+vim.keymap.set("n", "<F20>", function()
   dap.clear_breakpoints()
-end) -- SHIFT+F8
+end, { desc = "Dap Clear Breakpoints" }) -- SHIFT+F8
 
-nnoremap("<F10>", function()
+vim.keymap.set("n", "<F10>", function()
   dap.step_over()
-end)
+end, { desc = "Dap Step Over" })
 
-nnoremap("<leader>rc", function()
+vim.keymap.set("n", "<leader>rc", function()
   dap.run_to_cursor()
-end)
+end, { desc = "Dap Run to Cursor" })
 
-nnoremap("<F11>", function()
+vim.keymap.set("n", "<F11>", function()
   dap.step_into()
-end)
+end, { desc = "Dap Step Into" })
 
-nnoremap("<F12>", function()
+vim.keymap.set("n", "<F12>", function()
   dap.step_out()
-end)
+end, { desc = "Dap Step Out" })
 
-nnoremap("<leader>dp", function()
+vim.keymap.set("n", "<leader>dp", function()
   dap.pause()
-end)
+end, { desc = "Dap Pause" })

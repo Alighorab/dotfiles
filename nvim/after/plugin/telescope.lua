@@ -1,5 +1,3 @@
-local Remap = require("logan.utils.keymap")
-local nnoremap = Remap.nnoremap
 local previewers = require("telescope.previewers")
 local Job = require("plenary.job")
 
@@ -28,30 +26,12 @@ require("telescope").setup({
   },
 })
 
-nnoremap("gff", function()
-  require("telescope.builtin").find_files()
-end)
+local builtin = require("telescope.builtin")
 
-nnoremap("gfg", function()
-  require("telescope.builtin").live_grep()
-end)
-
-nnoremap("gfb", function()
-  require("telescope.builtin").buffers()
-end)
-
-nnoremap("gfh", function()
-  require("telescope.builtin").help_tags()
-end)
-
-nnoremap("gft", function()
-  require("telescope.builtin").treesitter()
-end)
-
-nnoremap("gfz", function()
-  require("telescope.builtin").current_buffer_fuzzy_find()
-end)
-
-nnoremap("gfk", function()
-  require("telescope.builtin").keymaps()
-end)
+vim.keymap.set("n", "gff", builtin.find_files, { desc = "Telescope find_files" })
+vim.keymap.set("n", "gfg", builtin.live_grep, { desc = "Telescope live_grep" })
+vim.keymap.set("n", "gfb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "gfh", builtin.help_tags, { desc = "Telescope help_tags" })
+vim.keymap.set("n", "gft", builtin.treesitter, { desc = "Telescope treesitter" })
+vim.keymap.set("n", "gfk", builtin.keymaps, { desc = "Telescope keymaps" })
+vim.keymap.set("n", "<leader>qf", builtin.quickfix, { desc = "Telescope quickfix" })

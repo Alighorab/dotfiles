@@ -1,5 +1,4 @@
 local peek = require("peek")
-peek.setup()
 
-vim.keymap.set("n", "<leader>pp", require("peek").open, { buffer = true })
-vim.keymap.set("n", "<leader>pc", require("peek").close, { buffer = true })
+vim.keymap.set("n", "<leader>pp", peek.open, { buffer = true, desc = "Peek Open Preview" })
+vim.keymap.set("n", "<leader>pc", peek.close, { buffer = true, desc = "Peek Close Preview" })

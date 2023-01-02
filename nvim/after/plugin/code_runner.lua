@@ -1,6 +1,3 @@
-local Remap = require("logan.utils.keymap")
-local nnoremap = Remap.nnoremap
-
 require("code_runner").setup({
   -- put here the commands by filetype
   filetype = {
@@ -37,5 +34,4 @@ require("code_runner").setup({
 
 local commands = require("code_runner.commands")
 
-nnoremap("<F5>", commands.run_code)
-nnoremap("<F17>", commands.run_close) -- Shift <F5>
+vim.keymap.set("n", "<F5>", commands.run_code, { desc = "Run Code" })

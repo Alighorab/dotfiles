@@ -63,22 +63,20 @@ local open_float_opts = {
 local on_attach = function(_, bufnr)
   -- Mappings.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "gh", function()
-    require("lspsaga.finder"):lsp_finder()
-  end, bufopts)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-  vim.keymap.set("n", "K", function()
-    require("lspsaga.hover"):render_hover_doc()
-  end, bufopts)
-  vim.keymap.set("n", "grn", function()
-    require("lspsaga.rename"):lsp_rename()
-  end, bufopts)
-  vim.keymap.set({ "n", "v" }, "gca", function()
-    require("lspsaga.codeaction"):code_action()
-  end, bufopts)
-  vim.keymap.set("n", "gtr", function()
+  vim.keymap.set("n", "gh", vim.lsp.buf.references, vim.tbl_extend("force", bufopts, { desc = "Lsp References" }))
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", bufopts, { desc = "Lsp Definition" }))
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", bufopts, { desc = "Lsp Declaration" }))
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", bufopts, { desc = "Lsp Hover" }))
+  vim.keymap.set("n", "<C-k>", vim.cmd.Man, vim.tbl_extend("force", bufopts, { desc = "Open manpage for cword" }))
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", bufopts, { desc = "Lsp Rename" }))
+  vim.keymap.set({ "n", "v" }, "<leader>ca", function()
+    vim.lsp.buf.code_action({
+      apply = true,
+    })
+  end, vim.tbl_extend("force", bufopts, { desc = "Lsp CodeAction" }))
+  vim.keymap.set("n", "<leader>tr", function()
     require("trouble"):open()
-  end, bufopts)
+  end, vim.tbl_extend("force", bufopts, { desc = "Lsp Diagnostics" }))
 
   local range_formatting = function()
     local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
@@ -92,8 +90,13 @@ local on_attach = function(_, bufnr)
     })
   end
 
-  vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-  vim.keymap.set("v", "<leader>f", range_formatting, { desc = "Range Formatting" })
+  vim.keymap.set(
+    "n",
+    "<leader>f",
+    vim.lsp.buf.format,
+    vim.tbl_extend("force", bufopts, { desc = "Format current buffer" })
+  )
+  vim.keymap.set("v", "<leader>f", range_formatting, vim.tbl_extend("force", bufopts, { desc = "Range formatting" }))
 
   -- Diagnostics
   local group = vim.api.nvim_create_augroup("LspDiagnostics", { clear = true })
@@ -124,7 +127,7 @@ local lspconfig = require("lspconfig")
 local servers = {
   "clangd",
   "vimls",
-  "pyright",
+  "pylsp",
   "bashls",
   "tsserver",
 }
@@ -144,34 +147,32 @@ require("mason-lspconfig").setup({
   ensure_installed = ensure_installed,
 })
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-  })
-end
-
-require("lspconfig").gopls.setup({
+local default_config = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
-  cmd = { "gopls", "serve" },
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
+}
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup(default_config)
+end
+
+require("lspconfig").gopls.setup({
+  vim.tbl_extend("force", default_config, {
+    cmd = { "gopls", "serve" },
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
       },
-      staticcheck = true,
     },
-  },
+  }),
 })
 
 require("rust-tools").setup({
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
+  server = vim.tbl_extend("force", default_config, {
     settings = {
       ["rust-analyzer"] = {
         imports = {
@@ -190,13 +191,10 @@ require("rust-tools").setup({
         },
       },
     },
-  },
+  }),
 })
 
-require("lspconfig").sumneko_lua.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = lsp_flags,
+require("lspconfig").sumneko_lua.setup(vim.tbl_extend("force", default_config, {
   settings = {
     Lua = {
       runtime = {
@@ -218,12 +216,4 @@ require("lspconfig").sumneko_lua.setup({
       },
     },
   },
-})
-
--- Colors
-vim.api.nvim_set_hl(0, "DiagnosticFloatingError", { bg = "None", fg = "#fb4934" })
-vim.api.nvim_set_hl(0, "DiagnosticFloatingInfo", { bg = "None", fg = "LightBlue" })
-vim.api.nvim_set_hl(0, "DiagnosticFloatingWarn", { bg = "None", fg = "DarkYellow" })
-vim.api.nvim_set_hl(0, "DiagnosticFloatingHint", { bg = "None", fg = "LightGrey" })
---[[ vim.api.nvim_set_hl(0, "FloatBorder", { bg = "None", fg = "DarkYellow" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "None", fg = "None" }) ]]
+}))

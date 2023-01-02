@@ -20,7 +20,5 @@ require("twilight").setup({
 })
 
 vim.keymap.set("n", "<leader>tw", require("twilight").toggle, {
-  silent = true,
-  noremap = true,
-  desc = "Toggle twilight"
+  desc = "Toggle twilight",
 })

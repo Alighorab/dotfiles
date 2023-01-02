@@ -1,26 +1,17 @@
-local Remap = require("logan.utils.keymap")
-local nnoremap = Remap.nnoremap
-local vnoremap = Remap.vnoremap
-local xnoremap = Remap.xnoremap
-local onoremap = Remap.onoremap
-local nmap = Remap.nmap
+vim.keymap.set("n", "<Tab>", vim.cmd.bnext, { noremap = true, silent = true })
+vim.keymap.set("n", "<S-Tab>", vim.cmd.bprevious, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { noremap = true, silent = true })
 
-local silent = { silent = true }
-
-nnoremap("<Tab>", vim.cmd.bnext, silent)
-nnoremap("<S-Tab>", vim.cmd.bprevious, silent)
-nnoremap("<leader>bd", vim.cmd.bdelete, silent)
-
-nnoremap("Y", "yg$")
-nnoremap("n", "nzzzv")
-nnoremap("N", "Nzzzv")
-nnoremap("J", "mzJ`z")
+vim.keymap.set("n", "Y", "yg$", { noremap = true })
+vim.keymap.set("n", "n", "nzzzv", { noremap = true })
+vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
+vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
 -- Jump and center
-nnoremap("<C-d>", "<C-d>zz")
-nnoremap("<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 
 -- Reselct pasted text
-nnoremap("gp", "`[v`]")
+vim.keymap.set("n", "gp", "`[v`]", { noremap = true })
 
 --[[ 
 The best remaps ever!
@@ -29,20 +20,37 @@ The best remaps ever!
     Move the lines given by [range] to below the line
     given by {address}. 
 ]]
-vnoremap("J", ":m '>+1<CR>gv=gv")
-vnoremap("K", ":m '<-2<CR>gv=gv")
-nnoremap("<leader>j", ":m .+1<CR>==")
-nnoremap("<leader>k", ":m .-2<CR>==")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
+vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { noremap = true })
+vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { noremap = true })
 
 -- Line text object
-xnoremap("il", "g_o^")
-onoremap("il", ":normal vil<cr>")
+vim.keymap.set("x", "il", "g_o^", { noremap = true })
+vim.keymap.set("o", "il", ":normal vil<cr>", { noremap = true })
 
 -- Copying and pasting from clipboard
-nnoremap("<leader>p", '"+p')
-nnoremap("<leader>y", '"+y')
-vnoremap("<leader>y", '"+y')
-nmap("<leader>Y", '"+Y')
+vim.keymap.set("n", "<leader>p", '"+p', { noremap = true })
+vim.keymap.set("n", "<leader>y", '"+y', { noremap = true })
+vim.keymap.set("v", "<leader>y", '"+y', { noremap = true })
+vim.keymap.set("n", "<leader>Y", '"+Y')
+
+-- Quickfix list
+vim.keymap.set("n", "<leader>qq", function()
+  local qf_exists = false
+  for _, win in pairs(vim.fn.getwininfo()) do
+    if win["quickfix"] == 1 then
+      qf_exists = true
+    end
+  end
+  if qf_exists then
+    vim.cmd.cclose()
+  else
+    vim.cmd.copen()
+  end
+end, { noremap = true })
+vim.keymap.set("n", "<leader>qn", vim.cmd.cnext, { noremap = true })
+vim.keymap.set("n", "<leader>qp", vim.cmd.cprevious, { noremap = true })
 
 -- Terminal mode
-vim.cmd("tnoremap <esc> <C-\\><C-n>")
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true })

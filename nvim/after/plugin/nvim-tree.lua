@@ -1,6 +1,3 @@
-local Remap = require("logan.utils.keymap")
-local nnoremap = Remap.nnoremap
-local silent = { silent = true }
 local api = require("nvim-tree.api")
 
 require("nvim-tree").setup({
@@ -97,7 +94,7 @@ require("nvim-tree").setup({
   },
 })
 
-nnoremap("<leader><leader>", function()
+vim.keymap.set("n", "<leader><leader>", function()
   api.tree.toggle()
   api.tree.reload({}, 0)
-end, silent)
+end, { noremap = true, silent = true, desc = "Toggle NvimTree" })
