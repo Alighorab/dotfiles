@@ -147,6 +147,9 @@ require("lazy").setup({
       show_trailing_blankline_indent = false,
     },
   },
+  {
+    "segeljakt/vim-silicon",
+  },
 
   -- Useless
   "eandrju/cellular-automaton.nvim",
