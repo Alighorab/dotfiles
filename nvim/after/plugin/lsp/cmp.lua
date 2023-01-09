@@ -9,9 +9,10 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  preselect = "none",
   formatting = {
     format = lspkind.cmp_format({
-      with_text = true,
+      mode = "symbol_text",
       menu = {
         buffer = "[Buf]",
         nvim_lsp = "[LSP]",
@@ -56,13 +57,13 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-2),
+    ["<C-d>"] = cmp.mapping.scroll_docs(2),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ["<C-j>"] = cmp.mapping(function(_)
-      if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
       end
     end, { "i", "s" }),
     ["<C-k>"] = cmp.mapping(function(_)
@@ -83,3 +84,5 @@ cmp.setup({
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+vim.api.nvim_set_hl(0, "CmpItemMenu", { bg = "None", fg = "#808080" })
