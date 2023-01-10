@@ -67,9 +67,3 @@ dir ()
         clear
     fi
 }
-
-# zle -N dir
-# bindkey -s "^f" "dir^M"
-
-zle -N $HOME/.scripts/tmux-sessionizer
-bindkey -s "^f" "$HOME/.scripts/tmux-sessionizer^M"
