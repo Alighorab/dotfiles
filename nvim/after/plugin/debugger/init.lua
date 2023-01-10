@@ -44,6 +44,18 @@ dapui.setup({
   },
 })
 
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open({})
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close({})
+  dap.repl.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close({})
+  dap.repl.close()
+end
+
 -- Mason
 require("mason-nvim-dap").setup({
   ensure_installed = {
@@ -56,26 +68,12 @@ require("mason-nvim-dap").setup({
 -- Start
 vim.keymap.set("n", "<F9>", function()
   dap.continue()
-  dapui.open({})
-  vim.opt.mouse = "a"
 end, { desc = "Dap Continue" })
 
 -- Exit
 vim.keymap.set("n", "<F7>", function()
   dap.terminate()
-  dapui.close({})
-  vim.cmd("sleep 50ms")
-  dap.repl.close()
-  vim.opt.mouse = ""
 end, { desc = "Dap Exit" })
-
--- Restart
-vim.keymap.set("n", "<F21>", function()
-  dap.terminate()
-  vim.cmd("sleep 50ms")
-  dap.repl.close()
-  dap.continue()
-end, { desc = "Dap Restart" }) -- Shift F9
 
 vim.keymap.set("n", "<leader>B", function()
   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
