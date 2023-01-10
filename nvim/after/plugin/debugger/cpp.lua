@@ -15,45 +15,123 @@ dap.adapters.codelldb = {
   },
 }
 
+require("dap.ext.vscode").load_launchjs()
+
 dap.configurations.cpp = {
   {
+    name = "Debug",
     type = "codelldb",
     request = "launch",
     program = function()
-      -- Compile and return exec name
-      local filetype = vim.bo.filetype
-      local filename = vim.fn.expand("%")
-      local basename = vim.fn.expand("%:t:r")
-      local handle = io.popen("(ls | grep -i makefile)")
-      local makefile
-      if handle then
-        makefile = handle:read("*a")
-      else
-        return 1
-      end
-      if makefile ~= "" then
-        os.execute("make")
-      else
-        if filetype == "c" then
-          os.execute(string.format("gcc -g -o %s %s", basename, filename))
-        else
-          os.execute(string.format("g++ -g -o %s %s", basename, filename))
-        end
-      end
-      handle:close()
-      return basename
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    -- stopAtEntry = true,
+    MIMode = "gdb",
+    miDebuggerPath = "/usr/bin/gdb",
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  },
+  {
+    name = "Debug (with args)",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
     args = function()
       local argv = {}
-      local arg = vim.fn.input(string.format("argv: "))
+      local arg = vim.fn.input(string.format("Arguments: "))
       for a in string.gmatch(arg, "%S+") do
         table.insert(argv, a)
       end
-      vim.cmd('echo ""')
       return argv
     end,
     cwd = "${workspaceFolder}",
     -- stopAtEntry = true,
+    MIMode = "gdb",
+    miDebuggerPath = "/usr/bin/gdb",
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  },
+  {
+    name = "Debug (file)",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.expand("%:t:r")
+    end,
+    cwd = "${workspaceFolder}",
+    -- stopAtEntry = true,
+    MIMode = "gdb",
+    miDebuggerPath = "/usr/bin/gdb",
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  },
+  {
+    name = "Debug (file with args)",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.expand("%:t:r")
+    end,
+    args = function()
+      local argv = {}
+      local arg = vim.fn.input(string.format("Arguments: "))
+      for a in string.gmatch(arg, "%S+") do
+        table.insert(argv, a)
+      end
+      return argv
+    end,
+    cwd = "${workspaceFolder}",
+    -- stopAtEntry = true,
+    MIMode = "gdb",
+    miDebuggerPath = "/usr/bin/gdb",
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  },
+  {
+    name = "Payment Application",
+    type = "codelldb",
+    request = "launch",
+    cwd = vim.fn.expand("~/Work/Sprints/Payment-App/"),
+    program = "build/PaymentApp",
+    MIMode = "gdb",
+    miDebuggerPath = "/usr/bin/gdb",
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  },
+  {
+    name = "Payment Application Test",
+    type = "codelldb",
+    request = "launch",
+    cwd = vim.fn.expand("~/Work/Sprints/Payment-App/"),
+    program = "build/${fileBasenameNoExtension}",
     MIMode = "gdb",
     miDebuggerPath = "/usr/bin/gdb",
     setupCommands = {
