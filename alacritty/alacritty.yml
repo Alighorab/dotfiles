@@ -47,13 +47,6 @@ mouse:
 
 live_config_reload: true
 
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux attach || tmux"
-
 key_bindings:
   - { key: Key0,           mods: Control,                         action: None }
   - { key: Equals,         mods: Control,                         action: None }
