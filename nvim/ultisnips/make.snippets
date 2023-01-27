@@ -1,0 +1,27 @@
+snippet help "help target for self-documented Makefile"
+help: ## Prints help for targets with comments
+	@cat $(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*$$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+endsnippet
+
+snippet if "if statement"
+ifeq (${1:cond0}, ${2:cond1})
+	$0
+endif
+endsnippet
+
+snippet print "print"
+print-%: ; @echo $*=$($*)
+endsnippet
+
+snippet ife "if else statement"
+ifeq (${1:cond0}, ${2:cond1})
+	$3
+else
+	$4
+endif
+endsnippet
+
+snippet el "else"
+else
+	$0
+endsnippet

@@ -1,0 +1,51 @@
+snippet ase
+self.assertEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0
+endsnippet
+
+snippet asne
+self.assertNotEqual(${1:expected}, ${2:actual}${3:, '${4:message}'})$0
+endsnippet
+
+snippet asr
+self.assertRaises(${1:exception}, ${2:callable}, ${3:args})$0
+endsnippet
+
+snippet ast
+self.assertTrue(${1:actual}${2:, '${3:message}'})$0
+endsnippet
+
+snippet asf
+self.assertFalse(${1:actual}${2:, '${3:message}'})$0
+endsnippet
+
+snippet asi
+self.assertIs(${1:expected}, ${2:actual}${3:, '${4:message}'})$0
+endsnippet
+
+snippet asint
+self.assertIsNot(${1:expected}, ${2:actual}${3:, '${4:message}'})$0
+endsnippet
+
+snippet asino
+self.assertIsNone(${1:actual}${2:, '${3:message}'})$0
+endsnippet
+
+snippet asinno
+self.assertIsNotNone(${1:actual}${2:, '${3:message}'})$0
+endsnippet
+
+snippet asin
+self.assertIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0
+endsnippet
+
+snippet asni
+self.assertNotIn(${1:needle}, ${2:haystack}${3:, '${4:message}'})$0
+endsnippet
+
+snippet as
+self.assert_(${1:boolean expression}${2:, '${3:message}'})$0
+endsnippet
+
+snippet fail
+self.fail('${1:message}')$0
+endsnippet

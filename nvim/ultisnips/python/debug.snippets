@@ -1,0 +1,27 @@
+snippet pdb "Code snippet for pdb debug"
+__import__('pdb').set_trace()$0
+endsnippet
+
+snippet ipdb "Code snippet for ipdb debug"
+__import__('ipdb').set_trace()$0
+endsnippet
+
+snippet rpdb
+import rpdb2; rpdb2.start_embedded_debugger('${1:debug_password}')$0
+endsnippet
+
+snippet pudb "Code snippet for pudb debug"
+import pudb; pudb.set_trace()$0
+endsnippet
+
+snippet ipydb
+from IPython import embed; embed()$0
+endsnippet
+
+snippet rdb "Code snippet for celery remote debugger breakpoint"
+from celery.contrib import rdb; rdb.set_trace()$0
+endsnippet
+
+snippet pprint
+__import__('pprint').pprint(${1:expression})$0
+endsnippet

@@ -1,0 +1,176 @@
+snippet sst "Standard starter template for a tiny C program" b
+#include <stdlib.h>
+#include <stdio.h>
+
+int
+main()
+{
+	$0
+	return 0;
+}
+endsnippet
+
+snippet mainn "Standard main function variant" b
+int
+main(int argc, char *argv[])
+{
+	$0
+	return EXIT_SUCCESS;
+}
+endsnippet
+
+snippet main "Void main function variant" b
+int
+main(void)
+{
+	$0
+	return 0;
+}
+endsnippet
+
+snippet #def "Code snippet for a textual macro" b
+#define ${1:MACRO} ${2:VALUE}
+endsnippet
+
+snippet #if "Code snippet for #if" b
+#if ${1:0}
+$0
+#endif /* if $1 */
+endsnippet
+
+snippet #ifdef "Code snippet for #ifdef" b
+#ifdef ${1:DEBUG}
+$0
+#endif /* ifdef $1 */
+endsnippet
+
+snippet #ifndef "Code snippet for #ifndef" b
+#ifndef ${1:DEBUG}
+$0
+#endif /* ifndef $1 */
+endsnippet
+
+snippet if "Code snippet for if statement" b
+if (${1:true}) {
+	$2
+}
+endsnippet
+
+snippet ife "Code snippet for if with else" b
+if (${1:true}) {
+	$2
+} else {
+	$3
+}
+endsnippet
+
+snippet elif "Code snippet for else-if statement" b
+else if (${1:true}) {
+	$0
+}
+endsnippet
+
+snippet t "Code snippet for ternary operator" b
+$1 ? $2 : $0
+endsnippet
+
+snippet switch "Code snippet for switch statement" b
+switch (${1:switch_on}) {
+$0
+}
+endsnippet
+
+snippet case "Code snippet for case branch" b
+case ${1:0}:
+	$2
+	${3:break;}
+endsnippet
+
+snippet while "Code snippet for while loop" b
+while (${1:true}) {
+	$0
+}
+endsnippet
+
+snippet do "Code snippet for do...while loop" b
+do {
+	$0
+} while(${1:false});
+endsnippet
+
+snippet ex "Code snippet for exit function" b
+exit(1);
+endsnippet
+
+snippet for "Mostly used 'for' loop variant" b
+for (size_t ${2:i} = 0; $2 < ${1:count}; ++$2) {
+	$0
+}
+endsnippet
+
+snippet forr "Mostly used reverse 'for' loop variant" b
+for (${1:size_t} ${2:i} = ${3:count}; $2 > ${4:0}; --$2) {
+	$0
+}
+endsnippet
+
+snippet fund "Declare a function" b
+${2:void} ${1:fun}(${3:void});
+endsnippet
+
+snippet func "Define a function that uses a variable for return" b
+${2:int}
+${1:func}(${3:void})
+{
+	$0
+}
+endsnippet
+
+snippet tys "Code snippet for typedef" b
+typedef struct ${1:MyStruct} {
+	$2
+} $0;
+endsnippet
+
+snippet tye "Code snippet for enum" b
+typedef enum ${1:MyEnum} {
+	$2
+} $0;
+endsnippet
+
+snippet printf "Generic printf() snippet" b
+printf("$1\n"$0);
+endsnippet
+
+snippet sprintf "Generic sprintf() snippet"
+sprintf($1, "$2\n"$0);
+endsnippet
+
+snippet fprintf "Generic fprintf() snippet"
+fprintf(${1:stderr}, "$2\n"$0);
+endsnippet
+
+snippet scanf "Generic scanf() snippet"
+scanf("$1"$0);
+endsnippet
+
+snippet sscanf "Generic sscanf() snippet"
+sscanf($1, "$2"$0);
+endsnippet
+
+snippet fscanf "Generic fscanf() snippet"
+fscanf($1, "$2"$0);
+endsnippet
+
+snippet mal "Allocates memory to a pointer variable using malloc(), then deallocates using free()."
+${1:int} *${2:v} = ${3:malloc}(sizeof($1));
+
+if ($2 == NULL) {
+	fprintf(stderr, "Memory allocation failed!\n");
+	$4;
+}
+
+$0
+
+free($2);
+endsnippet

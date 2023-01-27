@@ -1,0 +1,9 @@
+snippet ig "Header include guard" b
+#ifndef _`!v toupper(expand("%:t:r"))`_H
+#define _`!v toupper(expand("%:t:r"))`_H
+
+$0
+
+#endif /* _`!v toupper(expand("%:t:r"))`_H */
+endsnippet
+

@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-local luasnip = require("luasnip")
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 require("logan.utils.kinds").setup()
 
 local has_words_before = function()
@@ -9,18 +9,18 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  preselect = "none",
   formatting = {
     format = lspkind.cmp_format({
       mode = "symbol_text",
       menu = {
         buffer = "[Buf]",
         nvim_lsp = "[LSP]",
-        luasnip = "[Snip]",
+        ultisnips = "[Snip]",
         path = "[Path]",
       },
     }),
   },
+
   enabled = function()
     -- Disable in telescope prompt
     local buftype = vim.api.nvim_buf_get_option(0, "buftype")
@@ -29,16 +29,19 @@ cmp.setup({
     end
     return true
   end,
+
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      require("luasnip").lsp_expand(args.body)
+      vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
+
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
+
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -61,20 +64,18 @@ cmp.setup({
     ["<C-d>"] = cmp.mapping.scroll_docs(2),
     ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<C-j>"] = cmp.mapping(function(_)
-      if luasnip.jumpable(1) then
-        luasnip.jump(1)
-      end
+
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
     end, { "i", "s" }),
-    ["<C-k>"] = cmp.mapping(function(_)
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      end
+    ["<C-k>"] = cmp.mapping(function(fallback)
+      cmp_ultisnips_mappings.jump_backwards(fallback)
     end, { "i", "s" }),
   }),
+
   sources = cmp.config.sources({
     { name = "nvim_lsp_signature_help" },
-    { name = "luasnip" },
+    { name = "ultisnips" },
     { name = "nvim_lsp" },
     { name = "buffer", keyword_length = 5 },
     { name = "path" },
