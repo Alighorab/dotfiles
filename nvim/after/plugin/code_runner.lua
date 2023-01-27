@@ -28,8 +28,8 @@ require("code_runner").setup({
     -- Transparency (see ':h winblend')
     blend = 0,
   },
-  project = {
-  },
+  project = {},
+  project_path = "",
 })
 
 local commands = require("code_runner.commands")

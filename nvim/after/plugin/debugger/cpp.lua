@@ -15,8 +15,6 @@ dap.adapters.codelldb = {
   },
 }
 
-require("dap.ext.vscode").load_launchjs()
-
 dap.configurations.cpp = {
   {
     name = "Debug",
@@ -114,7 +112,7 @@ dap.configurations.cpp = {
     name = "Payment Application",
     type = "codelldb",
     request = "launch",
-    cwd = vim.fn.expand("~/Work/Sprints/Payment-App/"),
+    cwd = "${workspaceFolder}",
     program = "build/PaymentApp",
     MIMode = "gdb",
     miDebuggerPath = "/usr/bin/gdb",
@@ -130,7 +128,7 @@ dap.configurations.cpp = {
     name = "Payment Application Test",
     type = "codelldb",
     request = "launch",
-    cwd = vim.fn.expand("~/Work/Sprints/Payment-App/"),
+    cwd = "${workspaceFolder}",
     program = "build/${fileBasenameNoExtension}",
     MIMode = "gdb",
     miDebuggerPath = "/usr/bin/gdb",
