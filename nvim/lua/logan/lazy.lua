@@ -59,6 +59,7 @@ require("lazy").setup({
   },
   "nvim-treesitter/nvim-treesitter-context",
   "nvim-treesitter/nvim-treesitter-textobjects",
+  "nvim-treesitter/playground",
 
   -- Telescope
   "nvim-lua/plenary.nvim",
@@ -77,11 +78,27 @@ require("lazy").setup({
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-path",
   "hrsh7th/cmp-nvim-lsp-signature-help",
-  "saadparwaiz1/cmp_luasnip",
   "hrsh7th/nvim-cmp",
-  "L3MON4D3/LuaSnip",
-  "rafamadriz/friendly-snippets",
   { "windwp/nvim-autopairs", config = true },
+
+  {
+    "quangnguyen30192/cmp-nvim-ultisnips",
+    config = function()
+      require("cmp_nvim_ultisnips").setup({
+        filetype_source = "treesitter",
+        show_snippets = "all",
+        documentation = function(snippet)
+          return snippet.description
+        end,
+      })
+    end,
+  },
+  {
+    "SirVer/ultisnips",
+    config = function()
+      vim.g.UltiSnipsSnippetDirectories = { vim.fn.stdpath("config") .. "/ultisnips" }
+    end,
+  },
 
   -- DAP
   "mfussenegger/nvim-dap",
