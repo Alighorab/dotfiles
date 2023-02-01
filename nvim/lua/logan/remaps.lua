@@ -35,6 +35,14 @@ vim.keymap.set("n", "<leader>y", '"+y', { noremap = true })
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true })
 vim.keymap.set("n", "<leader>Y", '"+Y')
 
+-- Resize split horizontally
+vim.keymap.set("n", "+", function()
+  vim.cmd("vertical resize +2")
+end)
+vim.keymap.set("n", "-", function()
+  vim.cmd("vertical resize -2")
+end)
+
 -- Quickfix list
 vim.keymap.set("n", "<leader>qq", function()
   local qf_exists = false
