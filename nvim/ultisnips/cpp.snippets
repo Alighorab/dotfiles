@@ -7,3 +7,44 @@ $0
 #endif /* _`!v toupper(expand("%:t:r"))`_H */
 endsnippet
 
+snippet #def "Code snippet for a textual macro" b
+#define ${1:MACRO} ${2:VALUE}
+endsnippet
+
+snippet #if "Code snippet for #if" b
+#if ${1:0}
+$0
+#endif /* if $1 */
+endsnippet
+
+snippet #ifdef "Code snippet for #ifdef" b
+#ifdef ${1:DEBUG}
+$0
+#endif /* ifdef $1 */
+endsnippet
+
+snippet #ifndef "Code snippet for #ifndef" b
+#ifndef ${1:DEBUG}
+$0
+#endif /* ifndef $1 */
+endsnippet
+
+snippet fund "Declare a function" b
+${2:void} ${1:fun}(${3:void});
+endsnippet
+
+snippet tys "Code snippet for typedef" b
+typedef struct ${1:MyStruct} {
+	$2
+} $0;
+endsnippet
+
+snippet tye "Code snippet for enum" b
+typedef enum ${1:MyEnum} {
+	$2
+} $0;
+endsnippet
+
+snippet com "Comment"
+/* $0 */
+endsnippet
