@@ -6,9 +6,11 @@ font pango:Inconsolata Nerd Font Mono 0
 new_window pixel 1
 popup_during_fullscreen smart
 
+exec            $HOME/.screenlayout/output.sh
 exec            sxhkd
 exec_always     pkill picom; picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
+exec_always     pkill polybar; $HOME/.scripts/polybar.sh
 exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/wallpapers/waves/cat-waves.png
 exec_always     i3-msg gaps inner all set 30
 
@@ -80,16 +82,6 @@ for_window [class="weather"] floating enable, resize set 1265 px 940 px, move ab
 
 hide_edge_borders both
 
-mode "resize" {
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
 set $rosewater #f5e0dc
 set $flamingo  #f2cdcd
 set $pink      #f5c2e7
@@ -124,21 +116,4 @@ client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
-# bar {
-#     font pango:DejaVu Sans Mono, FontAwesome6Free, FontAwesome5Brands 11
-#     height 25
-#     position top
-#     status_command i3blocks
-#     tray_output none
-#     colors {
-#         background $base
-#
-#         focused_workspace  $base $mantle $text
-#         active_workspace   $base $base   $text
-#         inactive_workspace $base $base   $surface2
-#         urgent_workspace   $base $base   $red
-#         binding_mode       $base $red    $text
-#     }
-# }
-
-exec_always pkill polybar; polybar -r
+exec $HOME/.scripts/setworkspaces.sh

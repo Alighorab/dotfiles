@@ -1,16 +1,19 @@
 # i3 bindings
 
-super + {j, k, h, l, o}
-	i3-msg focus {'down', 'up', 'left', 'right', 'mode_toggle'}
+super + {j, k, h, l}
+	i3-cycle {'down', 'up', 'left', 'right'}
+
+super + o
+    i3-msg focus mode_toggle
 
 super + shift + {j, k, l, h}
 	i3-msg move {down, up, right, left}
 
 super + {s, g}
-	i3-msg {'resize shrink width 5 px or 5 ppt', 'resize grow width 5 px or 5 ppt'}
+	i3-msg {'resize shrink width 10 px or 10 ppt', 'resize grow width 10 px or 10 ppt'}
 
 super + shift + {s, g}
-	i3-msg {'resize shrink height 5 px or 5 ppt', 'resize grow height 5 px or 5 ppt'}
+	i3-msg {'resize shrink height 10 px or 10 ppt', 'resize grow height 10 px or 10 ppt'}
 
 super + f
 	i3-msg 'fullscreen toggle'
@@ -49,16 +52,16 @@ super + shift + p
     i3-msg move scratchpad 
 
 super + n
-    i3-msg workspace next
+    i3-msg focus output next
 
 super + shift + n
-    i3-msg workspace previous
+    i3-msg move container to output next; i3-msg workspace back_and_forth
+
+super + shift + w
+    i3-msg move workspace to output next
 
 super + Tab
     i3-msg 'workspace back_and_forth'
-
-super + alt + r
-	i3-msg 'mode "resize"'
 
 super + Return
 	alacritty
