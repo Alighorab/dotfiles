@@ -6,19 +6,16 @@ dap.adapters.cppdbg = {
   command = "OpenDebugAD7",
 }
 
-dap.adapters.codelldb = {
-  type = "server",
-  port = "${port}",
-  executable = {
-    command = "codelldb",
-    args = { "--port", "${port}" },
-  },
+dap.adapters.lldb = {
+  id = "vscode-lldb",
+  type = "executable",
+  command = "lldb-vscode"
 }
 
 dap.configurations.cpp = {
   {
     name = "Debug",
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -37,7 +34,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Debug (with args)",
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -64,7 +61,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Debug (file)",
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     program = function()
       return vim.fn.expand("%:t:r")
@@ -83,7 +80,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Debug (file with args)",
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     program = function()
       return vim.fn.expand("%:t:r")
@@ -110,7 +107,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Payment Application",
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     cwd = "${workspaceFolder}",
     program = "build/PaymentApp",
@@ -126,7 +123,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Payment Application Test",
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     cwd = "${workspaceFolder}",
     program = "build/${fileBasenameNoExtension}",
@@ -146,7 +143,7 @@ dap.configurations.c = dap.configurations.cpp
 
 dap.configurations.rust = {
   {
-    type = "codelldb",
+    type = "lldb",
     request = "launch",
     program = function()
       os.execute("cargo build &> /dev/null")

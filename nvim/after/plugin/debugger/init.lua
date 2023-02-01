@@ -44,18 +44,6 @@ dapui.setup({
   },
 })
 
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open({})
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close({})
-  dap.repl.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close({})
-  dap.repl.close()
-end
-
 -- Mason
 require("mason-nvim-dap").setup({
   ensure_installed = {
@@ -68,11 +56,14 @@ require("mason-nvim-dap").setup({
 -- Start
 vim.keymap.set("n", "<F9>", function()
   dap.continue()
+  dapui.open({})
 end, { desc = "Dap Continue" })
 
 -- Exit
 vim.keymap.set("n", "<F7>", function()
   dap.terminate()
+  dap.repl.close()
+  dapui.close({})
 end, { desc = "Dap Exit" })
 
 vim.keymap.set("n", "<leader>B", function()
