@@ -3,7 +3,6 @@ local api = require("nvim-tree.api")
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   auto_reload_on_write = true,
-  open_on_setup = false,
   view = {
     adaptive_size = false,
     relativenumber = true,
@@ -62,7 +61,7 @@ require("nvim-tree").setup({
         },
         git = {
           unstaged = "M",
-          staged = "S",
+          staged = "M",
           unmerged = "",
           renamed = "➜",
           untracked = "U",
@@ -98,3 +97,14 @@ vim.keymap.set("n", "<leader><leader>", function()
   api.tree.toggle()
   api.tree.reload({}, 0)
 end, { noremap = true, silent = true, desc = "Toggle NvimTree" })
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+  callback = function(data)
+    local directory = vim.fn.isdirectory(data.file) == 1
+    if not directory then
+      return
+    end
+    vim.cmd.cd(data.file)
+    api.tree.open()
+  end,
+})
