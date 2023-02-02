@@ -47,8 +47,6 @@ dapui.setup({
 -- Mason
 require("mason-nvim-dap").setup({
   ensure_installed = {
-    "cppdbg",
-    "lldb",
     "python",
   },
 })
