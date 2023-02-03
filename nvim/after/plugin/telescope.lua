@@ -30,8 +30,10 @@ local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "gff", builtin.find_files, { desc = "Telescope find_files" })
 vim.keymap.set("n", "gfg", builtin.live_grep, { desc = "Telescope live_grep" })
-vim.keymap.set("n", "gfb", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "gfh", builtin.help_tags, { desc = "Telescope help_tags" })
 vim.keymap.set("n", "gft", builtin.treesitter, { desc = "Telescope treesitter" })
 vim.keymap.set("n", "gfk", builtin.keymaps, { desc = "Telescope keymaps" })
 vim.keymap.set("n", "<leader>qf", builtin.quickfix, { desc = "Telescope quickfix" })
+
+vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" })
+vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Git commits" })
