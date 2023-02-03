@@ -34,8 +34,8 @@ vim.opt.colorcolumn = "80"
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
 vim.opt.updatetime = 50
--- Disable mouse entirely
-vim.opt.mouse = ""
+-- enable mouse
+vim.opt.mouse = "a"
 -- Don't show mode
 vim.opt.showmode = false
 -- providers
