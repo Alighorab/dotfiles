@@ -6,7 +6,6 @@ font pango:Inconsolata Nerd Font Mono 0
 new_window pixel 1
 popup_during_fullscreen smart
 
-exec            $HOME/.screenlayout/output.sh
 exec            sxhkd
 exec_always     pkill picom; picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
@@ -23,22 +22,20 @@ set $firefox    ""
 set $discord    ""
 set $telegram   ""
 set $spotify    ""
-set $ranger     ""
-set $youtube    ""
-set $windows    ""
+set $fm     ""
 set $trello     ""
 set $syncplay   ""
-set $arduino    ""
 set $gimp       ""
 set $code       ""
 set $anghami    ""
 set $neovide    ""
+set $okular     ""
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
 bindsym $super+3 workspace $ws3
 bindsym $super+4 workspace $ws4
-bindsym $super+5 workspace $ranger
+bindsym $super+5 workspace $fm
 bindsym $super+6 workspace $spotify
 bindsym $super+7 workspace $telegram
 bindsym $super+8 workspace $neovide
@@ -49,7 +46,7 @@ bindsym $super+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
 bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $super+Shift+5 move container to workspace $ranger; workspace $ranger
+bindsym $super+Shift+5 move container to workspace $fm; workspace $fm
 bindsym $super+Shift+6 move container to workspace $spotify; workspace $spotify
 bindsym $super+Shift+7 move container to workspace $telegram; workspace $telegram
 bindsym $super+Shift+8 move container to workspace $neovide; workspace $neovide
@@ -59,7 +56,7 @@ bindsym $super+Shift+0 move container to workspace $firefox; workspace $firefox
 assign [class="firefox"] $firefox
 assign [class="discord"] $discord
 assign [class="TelegramDesktop"] $telegram
-assign [class="ranger"] $ranger
+assign [class="filemanager"] $fm
 assign [class="Trello"] $trello
 assign [class="syncplay"] $syncplay
 assign [class="processing-app-Base"] $arduino
@@ -67,6 +64,7 @@ assign [class="Gimp"] $gimp
 assign [class="Code"] $code
 assign [class="anghami"] $anghami
 assign [class="neovide"] $neovide
+assign [class="okular"] $okular
 for_window [title="Spotify"] move to workspace $spotify
 # do not focus preview window on open
 no_focus [title="^Peek preview$"]
@@ -115,5 +113,3 @@ client.unfocused         $mauve    $base $text  $base      $base
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
-
-exec $HOME/.scripts/setworkspaces.sh

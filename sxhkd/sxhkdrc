@@ -51,17 +51,23 @@ super + p
 super + shift + p
     i3-msg move scratchpad 
 
-super + n
+alt + n
     i3-msg focus output next
+
+super + n
+    i3-msg workspace next_on_output
 
 super + shift + n
     i3-msg move container to output next; i3-msg workspace back_and_forth
 
 super + shift + w
-    i3-msg move workspace to output next
+    i3-msg move workspace to output next; i3-msg focus output next
 
 super + Tab
     i3-msg 'workspace back_and_forth'
+
+super + u
+    i3-msg workspace $(i3-msg -t get_workspaces | jq '.[] | select(.urgent==true).name' | tr -d '"')
 
 super + Return
 	alacritty
@@ -73,7 +79,7 @@ super + w
     $HOME/.scripts/i3launcher.sh Firefox
 
 super + r
-	$HOME/.scripts/i3launcher.sh Ranger
+	$HOME/.scripts/i3launcher.sh Lf
 
 super + t
     $HOME/.scripts/i3launcher.sh Telegram	
@@ -116,10 +122,10 @@ ctrl + Print
 
 # select portion and save to clipboard
 super + Print
-	maim -s |  xclip -selection clipboard -t image/png
+	maim -su |  xclip -selection clipboard -t image/png
 # select portion and save to disk and clipboard
 super + ctrl + Print
-	maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+	maim -su | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
 # Reload sxhkd
 super + ctrl + r
