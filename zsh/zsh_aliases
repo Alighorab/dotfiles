@@ -34,6 +34,14 @@ alias mkdir='mkdir -p'
 alias sudo='sudo '
 alias sd='spotdl'
 
+# Git
+alias gts='git status -s'
+alias gta='git add'
+alias gtc='git commit'
+alias gtl='git log --oneline'
+alias gtd='git diff'
+alias lg='lazygit'
+
 # kitty
 alias icat="kitty +kitten icat"
 

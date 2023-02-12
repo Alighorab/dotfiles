@@ -72,6 +72,8 @@ require("lazy").setup({
   },
   "nvim-treesitter/nvim-treesitter-context",
   "nvim-treesitter/nvim-treesitter-textobjects",
+  "andymass/vim-matchup",
+  "p00f/nvim-ts-rainbow",
   "nvim-treesitter/playground",
 
   -- Telescope
@@ -144,13 +146,6 @@ require("lazy").setup({
     "tpope/vim-fugitive",
     keys = {
       { "<leader>gg", vim.cmd.Git, desc = "fugitive" },
-      {
-        "<leader>gd",
-        function()
-          vim.cmd.Git("diff %")
-        end,
-        desc = "git diff",
-      },
     },
   },
   "tpope/vim-eunuch",
@@ -161,6 +156,13 @@ require("lazy").setup({
   "farmergreg/vim-lastplace",
   { "numToStr/Comment.nvim", config = true },
   { "lewis6991/gitsigns.nvim", config = true },
+  "voldikss/vim-floaterm",
+  {
+    "ptzz/lf.vim",
+    keys = {
+      { "<leader>lf", vim.cmd.Lf, desc = "lf" },
+    },
+  },
 
   -- MISC
   "kyazdani42/nvim-tree.lua",
@@ -177,9 +179,7 @@ require("lazy").setup({
       show_trailing_blankline_indent = false,
     },
   },
-  {
-    "segeljakt/vim-silicon",
-  },
+  "segeljakt/vim-silicon",
 
   -- Useless
   "eandrju/cellular-automaton.nvim",

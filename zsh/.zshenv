@@ -7,7 +7,7 @@ export PATH="$PATH:$HOME/.local/bin"
 # Default programs
 export EDITOR="nvim"
 export FILE="ranger"
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VIEWER="sxiv"
 export READER="okular"

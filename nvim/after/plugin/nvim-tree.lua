@@ -4,7 +4,7 @@ require("nvim-tree").setup({
   sort_by = "case_sensitive",
   auto_reload_on_write = true,
   view = {
-    adaptive_size = false,
+    adaptive_size = true,
     relativenumber = true,
     number = true,
     float = {
@@ -16,6 +16,24 @@ require("nvim-tree").setup({
         height = 24,
         row = 8,
         col = 60,
+      },
+    },
+    mappings = {
+      custom_only = true,
+      list = {
+        { key = { "<CR>", "<2-LeftMouse>" }, action = "edit" },
+        { key = "<Tab>", action = "preview" },
+        { key = "cd", action = "cd" },
+        { key = "a", action = "create" },
+        { key = "y", action = "copy" },
+        { key = "d", action = "cut" },
+        { key = "p", action = "paste" },
+        { key = "r", action = "rename" },
+        { key = "D", action = "remove" },
+        { key = "E", action = "expand_all" },
+        { key = "W", action = "collapse_all" },
+        { key = "zh", action = "toggle_dotfiles" },
+        { key = "I", action = "toggle_git_ignored" },
       },
     },
   },

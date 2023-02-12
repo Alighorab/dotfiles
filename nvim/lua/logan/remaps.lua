@@ -61,4 +61,4 @@ vim.keymap.set("n", "<leader>qn", vim.cmd.cnext, { noremap = true })
 vim.keymap.set("n", "<leader>qp", vim.cmd.cprevious, { noremap = true })
 
 -- Terminal mode
-vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true })
+-- vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { noremap = true })

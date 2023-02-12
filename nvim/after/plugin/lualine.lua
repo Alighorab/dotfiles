@@ -55,14 +55,36 @@ require("lualine").setup({
   options = {
     icons_enabled = true,
     theme = "catppuccin",
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = true,
   },
+  tabline = {
+    lualine_a = {
+      {
+        "buffers",
+        show_filename_only = false,
+        symbols = { modified = " ●", alternate_file = "", directory = "" },
+        filetype_names = {
+          TelescopePrompt = "Telescope",
+          fugitive = "Fugitive",
+          git = "git",
+          lazy = "Lazy",
+          mason = "Mason",
+          NvimTree = "Explorer",
+        },
+      },
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
   sections = {
-    lualine_c = { filename },
+    lualine_c = { },
   },
   extensions = {
     extention,
