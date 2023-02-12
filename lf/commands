@@ -1,0 +1,76 @@
+# vim: ft=sh
+
+cmd open ${{
+    run() {
+        { setsid -f "$@" >/dev/null 2>&1 & } ||
+            ({ nohup "$@" >/dev/null 2>&1 & } &) ||
+            (exec "$@" >/dev/null 2>&1 &)
+    }
+
+    mime_type="$(file -b --mime-type -- "$(readlink -f $f)")"
+    selected="$fs"
+    if [ ! ${selected} ]; then
+        selected="$f"
+    fi
+
+    case "$mime_type" in
+    image/vnd.djvu | application/pdf | application/postscript | \
+        application/pdf | application/epub*)
+        run "${READER:-okular}" $selected
+        ;;
+    text/* | application/json | application/javascript | \
+        application/pgp-encrypted | inode/x-empty | application/octet-stream)
+        "${EDITOR:-nvim}" ${selected}
+        ;;
+    image/svg+xml | image/png | image/jpeg | image/gif)
+        run "${IMAGE_VIEWER:-eog}" $selected
+        ;;
+    audio/*)
+        run "${AUDIO_PLAYER:-"${MPV:-mpv}"}" --force-window --fs=no $selected
+        ;;
+    video/*)
+        run "${VIDEO_PLAYER:-"${MPV:-mpv}"}" $selected
+        ;;
+    *)
+        for f in $selected; do
+            "${OPENER:-mimeopen}" $f
+        done
+        ;;
+    esac
+}}
+
+cmd extract ${{
+	if [ -f $f ]; then
+		case $f in
+		*.tar.bz2) tar xjf $f ;;
+		*.tar.gz) tar xzf $f ;;
+		*.tar.xz) tar xf $f ;;
+		*.bz2) bunzip2 $f ;;
+		*.rar) unrar x $f ;;
+		*.gz) gunzip $f ;;
+		*.tar) tar xf $f ;;
+		*.tbz2) tar xjf $f ;;
+		*.tgz) tar xzf $f ;;
+		*.zip) unzip $f ;;
+		*.Z) uncompress $f ;;
+		*.7z) 7z x $f ;;
+		*) echo "'$f' cannot be extracted via ex()" ;;
+		esac
+	else
+		echo "'$f' is not a valid file"
+	fi
+}}
+
+cmd trash ${{
+    trashdir="$HOME/.trash/"
+    selected="$fs"
+    if [ ! ${selected} ]; then
+        selected="$f"
+    fi
+    mkdir -p $trashdir
+
+    for s in $selected; do
+        newname="$trashdir/$(date "+%s").$(basename "$s")"
+        mv "$s" "$newname"
+    done
+}}

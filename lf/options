@@ -1,0 +1,9 @@
+set shell sh
+set shellopts '-e'
+set info size
+set ifs "\n"
+set scrolloff 10
+set icons "~/.config/lf/icons"
+set previewer "~/.config/lf/preview"
+set cleaner "~/.config/lf/cleaner"
+set ratios 1:2:3
