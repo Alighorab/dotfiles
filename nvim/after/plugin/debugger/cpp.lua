@@ -1,15 +1,18 @@
 local dap = require("dap")
 
-dap.adapters.lldb = {
-  id = "vscode-lldb",
-  type = "executable",
-  command = "lldb-vscode"
+dap.adapters.codelldb = {
+  type = "server",
+  port = "${port}",
+  executable = {
+    command = "codelldb",
+    args = { "--port", "${port}" },
+  },
 }
 
 dap.configurations.cpp = {
   {
     name = "Debug",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -28,7 +31,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Debug (with args)",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -55,7 +58,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Debug (file)",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
       return vim.fn.expand("%:t:r")
@@ -74,7 +77,7 @@ dap.configurations.cpp = {
   },
   {
     name = "Debug (file with args)",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
       return vim.fn.expand("%:t:r")
@@ -101,9 +104,8 @@ dap.configurations.cpp = {
   },
   {
     name = "Payment Application",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
-    cwd = "${workspaceFolder}",
     program = "build/PaymentApp",
     MIMode = "gdb",
     miDebuggerPath = "/usr/bin/gdb",
@@ -117,9 +119,8 @@ dap.configurations.cpp = {
   },
   {
     name = "Payment Application Test",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
-    cwd = "${workspaceFolder}",
     program = "build/${fileBasenameNoExtension}",
     MIMode = "gdb",
     miDebuggerPath = "/usr/bin/gdb",
@@ -137,7 +138,7 @@ dap.configurations.c = dap.configurations.cpp
 
 dap.configurations.rust = {
   {
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
       os.execute("cargo build &> /dev/null")
