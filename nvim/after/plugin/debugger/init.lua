@@ -13,7 +13,6 @@ dapui.setup({
       elements = {
         "watches",
         { id = "scopes", size = 0.5 },
-        { id = "repl", size = 0.15 },
       },
       size = 79,
       position = "left",
@@ -31,38 +30,44 @@ dapui.setup({
     enabled = true,
     -- Display controls in this element
     element = "repl",
-    icons = {
-      pause = "",
-      play = "",
-      step_into = "",
-      step_over = "",
-      step_out = "",
-      step_back = "",
-      run_last = "↻",
-      terminate = "□",
-    },
   },
 })
 
 -- Mason
 require("mason-nvim-dap").setup({
   ensure_installed = {
+    "lldb",
     "python",
   },
 })
 
+local function after_session()
+  dapui.close()
+  dap.repl.close()
+end
+
+dap.listeners.after.event_initialized["dapui_config"] = dapui.open
+dap.listeners.after.event_terminated["dapui_config"] = after_session
+dap.listeners.after.event_exited["dapui_config"] = after_session
+dap.listeners.after.disconnect["dapui_config"] = after_session
+
 -- Start
 vim.keymap.set("n", "<F9>", function()
   dap.continue()
-  dapui.open({})
 end, { desc = "Dap Continue" })
 
 -- Exit
 vim.keymap.set("n", "<F7>", function()
-  dap.terminate()
-  dap.repl.close()
-  dapui.close({})
+  dap.terminate(_, _, function()
+    dap.repl.close()
+    dapui.close()
+  end)
 end, { desc = "Dap Exit" })
+
+-- Run last
+vim.keymap.set("n", "<F21>", function()
+  dap.run_last()
+end)
 
 vim.keymap.set("n", "<leader>B", function()
   dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
