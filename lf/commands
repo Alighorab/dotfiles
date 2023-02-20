@@ -64,7 +64,7 @@ cmd extract ${{
 cmd trash ${{
     trashdir="$HOME/.trash/"
     selected="$fs"
-    if [ ! ${selected} ]; then
+    if [ ! "${selected}" ]; then
         selected="$f"
     fi
     mkdir -p $trashdir
@@ -73,4 +73,34 @@ cmd trash ${{
         newname="$trashdir/$(date "+%s").$(basename "$s")"
         mv "$s" "$newname"
     done
+}}
+
+cmd pager ${{
+    mime_type="$(file -b --mime-type -- "$(readlink -f "$f")")"
+
+    case "$mime_type" in
+    text/* | application/json | application/javascript | \
+        application/pgp-encrypted | inode/x-empty | application/octet-stream)
+        bat --paging=always -p ${f}
+        ;;
+    application/x-object | application/x-pie-executable)
+        objdump -D ${f} | bat --paging=always -p --language=asm
+        ;;
+    *)
+        case "${f}" in
+            *.iso)
+                iso-info "${f}" | less
+                ;;
+            *.tar)
+                tar tf "${f}" | less
+                ;;
+            *.tar.gz)
+                tar tzf "${f}" | less
+                ;;
+            *.zip)
+                unzip -l "${f}" | less
+                ;;
+        esac
+    esac
+    
 }}

@@ -1,0 +1,7 @@
+preview media audio/* video/* {{
+    exiftool "${f}"
+}}
+
+preview iso .iso {{
+    iso-info "${f}"
+}}

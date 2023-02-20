@@ -29,7 +29,7 @@ map uu clear
 map uv unselect
 
 map i
-map i $bat --paging=always -p "$f"
+map i pager
 
 map gm cd /mnt/ext/
 map gw cd ~/Work/Sprints/
