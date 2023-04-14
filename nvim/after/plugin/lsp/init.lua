@@ -147,6 +147,19 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(default_config)
 end
 
+require("lspconfig").pylsp.setup({
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = { "W391" },
+          maxLineLength = 88,
+        },
+      },
+    },
+  },
+})
+
 require("lspconfig").gopls.setup({
   vim.tbl_extend("force", default_config, {
     cmd = { "gopls", "serve" },
