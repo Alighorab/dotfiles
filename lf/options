@@ -3,7 +3,9 @@ set shellopts '-e'
 set info size
 set ifs "\n"
 set scrolloff 10
-set dircounts
+set mouse
+set ratios 1:2:2
+set drawbox
 set icons "~/.config/lf/icons"
 set previewer ctpv
 set cleaner ctpvclear
