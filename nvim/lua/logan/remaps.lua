@@ -25,9 +25,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
 vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { noremap = true })
 vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { noremap = true })
 
--- Line text object
+-- Text objects
 vim.keymap.set("x", "il", "g_o^", { noremap = true })
 vim.keymap.set("o", "il", ":normal vil<cr>", { noremap = true })
+vim.keymap.set("o", "ie", ":<C-u>normal! ggVG<CR>", { noremap = true })
+vim.keymap.set("x", "ie", ":<C-u>normal! ggVG<CR>", { noremap = true })
 
 -- Copying and pasting from clipboard
 vim.keymap.set("n", "<leader>p", '"+p', { noremap = true })
