@@ -34,6 +34,8 @@ alias time='/usr/bin/time -p'
 alias mkdir='mkdir -p'
 alias sudo='sudo '
 alias sd='spotdl'
+alias cpdir='cp -r'
+alias rmdir='rm -r'
 
 # Git
 alias gts='git status -s'
