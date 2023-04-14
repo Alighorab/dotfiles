@@ -45,6 +45,12 @@ alias gtl='git log --oneline'
 alias gtd='git diff'
 alias lg='lazygit'
 
+# tmux
+alias ta='tmux attach'
+alias td='tmux detach'
+alias tk='tmux kill-server'
+alias tn='tmux new-session'
+
 # kitty
 alias icat="kitty +kitten icat"
 
