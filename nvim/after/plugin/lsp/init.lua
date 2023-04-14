@@ -219,3 +219,39 @@ require("lspconfig").lua_ls.setup(vim.tbl_extend("force", default_config, {
     },
   },
 }))
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+  sources = {
+    -- Formatters
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.shfmt.with({
+      extra_args = { "-ci" },
+    }),
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.formatting.black.with({
+      extra_args = {
+        "--line-length",
+        "88",
+      },
+    }),
+
+    -- Linters
+    null_ls.builtins.diagnostics.proselint.with({
+      filetypes = { "markdown", "text", "rst" },
+    }),
+
+    -- Code Actions
+    null_ls.builtins.code_actions.proselint.with({
+      filetypes = { "markdown", "text", "rst" },
+    }),
+
+    -- Completion
+    null_ls.builtins.completion.spell.with({
+      filetypes = { "markdown", "text", "rst" },
+    }),
+  },
+  on_attach = on_attach,
+})
