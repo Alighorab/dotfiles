@@ -196,7 +196,7 @@ require("lspconfig").rust_analyzer.setup({
   }),
 })
 
-require("lspconfig").sumneko_lua.setup(vim.tbl_extend("force", default_config, {
+require("lspconfig").lua_ls.setup(vim.tbl_extend("force", default_config, {
   settings = {
     Lua = {
       runtime = {
