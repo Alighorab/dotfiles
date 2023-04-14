@@ -33,14 +33,6 @@ dapui.setup({
   },
 })
 
--- Mason
-require("mason-nvim-dap").setup({
-  ensure_installed = {
-    "lldb",
-    "python",
-  },
-})
-
 local function after_session()
   dapui.close()
   dap.repl.close()

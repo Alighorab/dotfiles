@@ -131,21 +131,7 @@ local servers = {
   "bashls",
   "tsserver",
 }
-
--- Mason
-local ensure_installed = vim.tbl_flatten(servers)
-local additional_servers = {
-  "gopls",
-  "rust_analyzer",
-  "sumneko_lua",
 }
-for _, server in ipairs(additional_servers) do
-  table.insert(ensure_installed, server)
-end
-
-require("mason-lspconfig").setup({
-  ensure_installed = ensure_installed,
-})
 
 local default_config = {
   on_attach = on_attach,
