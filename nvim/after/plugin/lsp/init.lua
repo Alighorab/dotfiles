@@ -115,7 +115,6 @@ local on_attach = function(_, bufnr)
     vim.tbl_extend("force", bufopts, { desc = "Format current buffer" })
   )
   vim.keymap.set("v", "<leader>f", range_formatting, vim.tbl_extend("force", bufopts, { desc = "Range formatting" }))
-
 end
 
 local lsp_flags = {
@@ -174,7 +173,7 @@ require("lspconfig").gopls.setup({
   }),
 })
 
-require("rust-tools").setup({
+require("lspconfig").rust_analyzer.setup({
   server = vim.tbl_extend("force", default_config, {
     settings = {
       ["rust-analyzer"] = {
