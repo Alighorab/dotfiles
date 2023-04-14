@@ -10,7 +10,7 @@ require("code_runner").setup({
   },
   mode = "toggle",
   focus = true,
-  smartinsert = true,
+  startinsert = true,
   float = {
     -- Window border (see ':h nvim_open_win')
     border = "solid",
