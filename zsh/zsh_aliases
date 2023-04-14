@@ -51,9 +51,6 @@ alias td='tmux detach'
 alias tk='tmux kill-server'
 alias tn='tmux new-session'
 
-# kitty
-alias icat="kitty +kitten icat"
-
 # pacman
 alias i='sudo pacman -S'
 alias rr='sudo pacman -Rs'
@@ -64,6 +61,7 @@ alias y='sudo pacman -Sy'
 alias s='sudo pacman -Ss'
 alias qa='pacman -Qq | less'
 alias q='pacman -Qi'
+
 # yay
 alias iy='yay -S'
 alias rry='yay -Rns'
