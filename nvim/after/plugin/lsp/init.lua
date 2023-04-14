@@ -2,7 +2,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 
 -- Diagnostics Configurations
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
 })
 
 local open_float_opts = {
@@ -98,16 +98,6 @@ local on_attach = function(_, bufnr)
   )
   vim.keymap.set("v", "<leader>f", range_formatting, vim.tbl_extend("force", bufopts, { desc = "Range formatting" }))
 
-  -- Diagnostics
-  local group = vim.api.nvim_create_augroup("LspDiagnostics", { clear = true })
-  vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged" }, {
-    group = group,
-    callback = function()
-      if vim.api.nvim_get_mode().mode == "n" then
-        vim.diagnostic.open_float(open_float_opts)
-      end
-    end,
-  })
 end
 
 local lsp_flags = {
