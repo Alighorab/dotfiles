@@ -31,6 +31,9 @@ cmd open ${{
     video/*)
         run "${VIDEO_PLAYER:-"${MPV:-mpv}"}" $selected
         ;;
+    application/vnd.openxmlformats-officedocument.*)
+        run "${OFFICE:-"libreoffice"}" $selected
+        ;;
     *)
         for f in $selected; do
             "${OPENER:-mimeopen}" $f
