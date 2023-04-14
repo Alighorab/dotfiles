@@ -134,11 +134,7 @@ local lspconfig = require("lspconfig")
 
 local servers = {
   "clangd",
-  "vimls",
-  "pylsp",
   "bashls",
-  "tsserver",
-}
 }
 
 local default_config = {
