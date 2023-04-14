@@ -55,3 +55,5 @@ export FZF_DEFAULT_OPTS=" \
 # Personal
 source $HOME/Personal/zsh/env.zsh
 
+# Python __pycache__
+export PYTHONDONTWRITEBYTECODE=1
