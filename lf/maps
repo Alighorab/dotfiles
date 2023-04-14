@@ -22,7 +22,8 @@ map pp paste
 
 map c
 map cd push $mkdir<space>-p<space>
-map cf push $touch<spcae>
+map cf push $touch<space>
+map cc calcdirsize
 
 map u
 map uu clear
