@@ -24,9 +24,6 @@ super + v
 super + shift + v
     i3-msg 'layout splith'
 
-super + b
-    $HOME/.scripts/toggle-i3bar.sh
-
 super + shift + f
 	i3-msg 'floating toggle'
 
@@ -67,7 +64,7 @@ super + Tab
     i3-msg 'workspace back_and_forth'
 
 super + u
-    i3-msg workspace $(i3-msg -t get_workspaces | jq '.[] | select(.urgent==true).name' | tr -d '"')
+    $HOME/.scripts/i3launcher.sh Office
 
 super + Return
 	alacritty
@@ -96,6 +93,12 @@ super + shift + t
 super + grave
 	$HOME/.scripts/i3workspaces.sh
 
+super + shift + b
+    polybar-msg cmd toggle 
+
+super + ctrl + g
+    i3toggle_gaps
+
 # control
 super + x
     $HOME/.scripts/lock.sh
@@ -115,10 +118,10 @@ super + ctrl + {equal, minus}
 # print screen
 # print screen and save to clipboard
 Print
-	maim -u | xclip -selection clipboard -t image/png
+	maim -g $(getgeometry) -u | xclip -selection clipboard -t image/png
 # print screen and save to disk and clipboard
 ctrl + Print
-	maim -u | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+	maim -g $(getgeometry) -u | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
 # select portion and save to clipboard
 super + Print
