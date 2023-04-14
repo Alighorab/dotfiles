@@ -6,6 +6,7 @@ font pango:Inconsolata Nerd Font Mono 0
 new_window pixel 1
 popup_during_fullscreen smart
 
+exec            pulse-autoconf
 exec            sxhkd
 exec_always     pkill picom; picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
@@ -22,14 +23,15 @@ set $firefox    ""
 set $discord    ""
 set $telegram   ""
 set $spotify    ""
-set $fm     ""
+set $fm         ""
 set $trello     ""
 set $syncplay   ""
 set $gimp       ""
 set $code       ""
 set $anghami    ""
-set $neovide    ""
-set $okular     ""
+set $libreoffice ""
+set $work ""
+set $bitwarden  ""
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
@@ -38,7 +40,7 @@ bindsym $super+4 workspace $ws4
 bindsym $super+5 workspace $fm
 bindsym $super+6 workspace $spotify
 bindsym $super+7 workspace $telegram
-bindsym $super+8 workspace $neovide
+bindsym $super+8 workspace $bitwarden
 bindsym $super+9 workspace $discord
 bindsym $super+0 workspace $firefox
 
@@ -49,7 +51,6 @@ bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $super+Shift+5 move container to workspace $fm; workspace $fm
 bindsym $super+Shift+6 move container to workspace $spotify; workspace $spotify
 bindsym $super+Shift+7 move container to workspace $telegram; workspace $telegram
-bindsym $super+Shift+8 move container to workspace $neovide; workspace $neovide
 bindsym $super+Shift+9 move container to workspace $discord; workspace $discord
 bindsym $super+Shift+0 move container to workspace $firefox; workspace $firefox
 
@@ -63,8 +64,15 @@ assign [class="processing-app-Base"] $arduino
 assign [class="Gimp"] $gimp
 assign [class="Code"] $code
 assign [class="anghami"] $anghami
-assign [class="neovide"] $neovide
-assign [class="okular"] $okular
+
+assign [class="(?i)libreoffice-writer$"]$ libreoffice
+assign [class="(?i)soffice"] $libreoffice
+assign [class="(?i)libreoffice-calc"] $libreoffice
+assign [class="(?i)libreoffice.*"] $libreoffice
+
+assign [class="work"] $work
+assign [class="Bitwarden"] $bitwarden
+
 for_window [title="Spotify"] move to workspace $spotify
 # do not focus preview window on open
 no_focus [title="^Peek preview$"]
@@ -77,6 +85,7 @@ for_window [class="Galculator"]     floating enable
 for_window [class="kcalc"]          floating enable
 for_window [title="video0 - mpv"]   floating enable, sticky enable, resize set 480 px 360 px, move position 1440 px 720 px
 for_window [class="weather"] floating enable, resize set 1265 px 940 px, move absolute position center
+for_window [class="kronometer"] floating enable, resize set 400 px 100 px
 
 hide_edge_borders both
 
