@@ -1,20 +1,18 @@
-local dap = require("dap")
+require("dap-python").setup("~/.virtualenvs/debugpy/bin/python", {
+  cwd = vim.fn.getcwd(),
+})
 
-dap.adapters.python = {
-    type = "executable",
-    command = "debugpy-adapter",
-}
-
-dap.configurations.python = {
-    {
-        -- The first three options are required by nvim-dap
-        type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
-        request = "launch",
-        name = "Launch file",
-
-        -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
-        program = "${file}", -- This configuration will launch the current file if used.
-        pythonPath = "/usr/bin/python",
-    },
-}
+table.insert(require("dap").configurations.python, {
+  type = "python",
+  request = "launch",
+  name = "My custom launch configuration",
+  program = "${file}",
+  args = function()
+    local argv = {}
+    local arg = vim.fn.input(string.format("Arguments: "))
+    for a in string.gmatch(arg, "%S+") do
+      table.insert(argv, a)
+    end
+    return argv
+  end,
+})
