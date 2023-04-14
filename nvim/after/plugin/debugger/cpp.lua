@@ -118,6 +118,29 @@ dap.configurations.cpp = {
     },
   },
   {
+    name = "Payment Application (with args)",
+    type = "codelldb",
+    request = "launch",
+    program = "build/PaymentApp",
+    args = function()
+      local argv = {}
+      local arg = vim.fn.input(string.format("Arguments: "))
+      for a in string.gmatch(arg, "%S+") do
+        table.insert(argv, a)
+      end
+      return argv
+    end,
+    MIMode = "gdb",
+    miDebuggerPath = "/usr/bin/gdb",
+    setupCommands = {
+      {
+        text = "-enable-pretty-printing",
+        description = "enable pretty printing",
+        ignoreFailures = false,
+      },
+    },
+  },
+  {
     name = "Payment Application Test",
     type = "codelldb",
     request = "launch",
