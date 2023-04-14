@@ -77,6 +77,24 @@ local on_attach = function(_, bufnr)
   vim.keymap.set("n", "<leader>tr", function()
     require("trouble"):open()
   end, vim.tbl_extend("force", bufopts, { desc = "Lsp Diagnostics" }))
+  vim.keymap.set(
+    "n",
+    "<leader>dn",
+    vim.diagnostic.goto_next,
+    vim.tbl_extend("force", bufopts, { desc = "Goto next diagnostic" })
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dp",
+    vim.diagnostic.goto_prev,
+    vim.tbl_extend("force", bufopts, { desc = "Goto previous diagnostic" })
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>dq",
+    vim.diagnostic.setqflist,
+    vim.tbl_extend("force", bufopts, { desc = "Add all diagnostics to the quickfix list" })
+  )
 
   local range_formatting = function()
     local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
