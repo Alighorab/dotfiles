@@ -38,4 +38,4 @@ local opts = {
 -- Map leader key to <space>
 vim.g.mapleader = " "
 
-require("lazy").setup("logan.specs", opts)
+require("lazy").setup("logan.plugins.specs", opts)
