@@ -1,5 +1,5 @@
 -- Make the cursor shape as block
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 -- line and relativeline number
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -50,5 +50,6 @@ vim.cmd("cabbrev h vert h")
 if vim.g.neovide then
   vim.opt.guifont = "Inconsolata for Powerline:h11"
 end
+vim.opt.laststatus = 3
 -- Map leader key to <space>
 vim.g.mapleader = " "

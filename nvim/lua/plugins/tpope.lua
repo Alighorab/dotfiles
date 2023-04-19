@@ -8,5 +8,4 @@ return {
     },
   },
   "tpope/vim-eunuch",
-  "tpope/vim-obsession",
 }
