@@ -75,5 +75,7 @@ alias youtube-dl="youtube-dl --external-downloader aria2c --external-downloader-
 # python
 alias py='python3'
 
+alias figlet='figlet -f "ANSI Shadow" -d ~/.figlet-fonts -w 100'
+
 # Personal
 source $HOME/Personal/zsh/aliases.zsh
