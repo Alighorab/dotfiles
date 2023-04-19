@@ -32,15 +32,14 @@ font:
     family: Fira Code Nerd Font Mono
     style: Bold Italic
 
-  size: 10
+  size: 11.5
 
 import:
-  - ~/.config/alacritty/themes/catppuccin/catppuccin-mocha.yml
+  - ~/.config/alacritty/themes/tokyonight/tokyo-night.yml
 
 cursor:
   style:
     shape: Block
-    blinking: Always
 
 mouse:
     hide_when_typing: true
