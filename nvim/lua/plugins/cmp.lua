@@ -5,6 +5,27 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = {
+          {
+            "zbirenbaum/copilot.lua",
+            config = function()
+              require("copilot").setup({
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+              })
+            end,
+          },
+        },
+        config = function()
+          require("copilot_cmp").setup({
+            formatters = {
+              insert_text = require("copilot_cmp.format").remove_existing,
+            },
+          })
+        end,
+      },
     },
     opts = function()
       local cmp = require("cmp")
@@ -12,9 +33,19 @@ return {
       local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
       require("logan.utils.kinds").setup()
 
+      lspkind.init({
+        symbol_map = {
+          Copilot = "",
+        },
+      })
+      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
       local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+          return false
+        end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
       end
       return {
         formatting = {
@@ -25,6 +56,7 @@ return {
               nvim_lsp = "[LSP]",
               ultisnips = "[Snip]",
               path = "[Path]",
+              Copilot = "[Copilot]",
             },
           }),
         },
@@ -49,7 +81,7 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item()
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             elseif has_words_before() then
               cmp.complete()
             else
@@ -66,7 +98,7 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-2),
           ["<C-d>"] = cmp.mapping.scroll_docs(2),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
           ["<C-j>"] = cmp.mapping(function(fallback)
             cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
           end, { "i", "s" }),
@@ -77,6 +109,7 @@ return {
         sources = cmp.config.sources({
           { name = "ultisnips" },
           { name = "nvim_lsp" },
+          { name = "copilot",  group_index = 2 },
           { name = "buffer",   keyword_length = 5 },
           { name = "path" },
           { name = "neorg" },
