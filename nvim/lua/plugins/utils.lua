@@ -45,4 +45,7 @@ return {
     end,
     cmd = "Oil",
   },
+  {
+    "Alighorab/stackmap.nvim",
+  },
 }
