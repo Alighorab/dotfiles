@@ -1,5 +1,38 @@
 return {
-  { "neovim/nvim-lspconfig", config = require("plugins.lspconfig.core") },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      -- diagnostics
+      vim.diagnostic.config({
+        virtual_text = true,
+      })
+      -- signs
+      local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+      -- servers
+      require("plugins.language-servers.clangd").setup()
+      require("plugins.language-servers.bashls").setup()
+      require("plugins.language-servers.pylsp").setup()
+      require("plugins.language-servers.gopls").setup()
+      require("plugins.language-servers.rust-analyzer").setup()
+      require("plugins.language-servers.lua_ls").setup()
+    end,
+    dependencies = {
+      {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+        },
+        opts = { lsp = { auto_attach = true } },
+      },
+      "onsails/lspkind-nvim",
+      { "j-hui/fidget.nvim", config = true },
+    },
+  },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function()
@@ -21,54 +54,17 @@ return {
             },
           }),
 
-          -- Linters
-          null_ls.builtins.diagnostics.proselint.with({
-            filetypes = { "markdown", "text", "rst" },
-          }),
-
-          -- Code Actions
-          null_ls.builtins.code_actions.proselint.with({
-            filetypes = { "markdown", "text", "rst" },
-          }),
-
           -- Completion
           null_ls.builtins.completion.spell.with({
-            filetypes = { "markdown", "text", "rst" },
+            filetypes = { "markdown", "text", "rst", "norg" },
           }),
         },
         on_attach = on_attach,
       }
     end,
-    config = function(_, opts)
-      require("null-ls").setup(opts)
-    end,
-  },
-  "onsails/lspkind-nvim",
-  { "j-hui/fidget.nvim", config = true },
-  {
-    "SmiteshP/nvim-navbuddy",
     dependencies = {
-      "SmiteshP/nvim-navic",
-      "MunifTanjim/nui.nvim",
+      "onsails/lspkind-nvim",
+      { "j-hui/fidget.nvim", config = true },
     },
-    opts = { lsp = { auto_attach = true } },
-  },
-  {
-    "Exafunction/codeium.vim",
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-l>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true })
-      vim.keymap.set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-,>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true })
-      vim.keymap.set("i", "<c-x>", function()
-        return vim.fn["codeium#Clear"]()
-      end, { expr = true })
-    end,
   },
 }
