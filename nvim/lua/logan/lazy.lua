@@ -39,3 +39,5 @@ local opts = {
 vim.g.mapleader = " "
 
 require("lazy").setup("plugins", opts)
+
+vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", { silent = true })

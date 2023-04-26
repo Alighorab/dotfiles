@@ -11,6 +11,7 @@ return {
   {
     "danymat/neogen",
     config = true,
+    cmd = "Neogen",
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -24,7 +25,7 @@ return {
         "cpp",
         "go",
         "rust",
-        "help",
+        "vimdoc",
         "vim",
         "lua",
         "python",
@@ -70,7 +71,7 @@ return {
           },
           selection_modes = {
             ["@parameter.outer"] = "v", -- charwise
-            ["@function.outer"] = "V", -- linewise
+            ["@function.outer"] = "V",  -- linewise
             ["@class.outer"] = "<c-v>", -- blockwise
           },
           include_surrounding_whitespace = false,
@@ -87,7 +88,7 @@ return {
       },
       matchup = {
         enable = false, -- mandatory, false will disable the whole extension
-        disable = {}, -- optional, list of language that will be disabled
+        disable = {},   -- optional, list of language that will be disabled
       },
       rainbow = {
         enable = false,

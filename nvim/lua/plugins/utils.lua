@@ -8,18 +8,15 @@ return {
     end,
   },
   { "ethanholz/nvim-lastplace", config = true },
-  { "numToStr/Comment.nvim", config = true },
+  { "numToStr/Comment.nvim",    config = true },
   {
     "max397574/better-escape.nvim",
     opts = {
-      mapping = { "jk" }, -- a table with mappings to use
+      mapping = { "jk" },         -- a table with mappings to use
       timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-      clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-      keys = "<Esc>", -- keys used for escaping, if it is a function will use the result everytime
+      clear_empty_lines = false,  -- clear line after escaping if there is only whitespace
+      keys = "<Esc>",             -- keys used for escaping, if it is a function will use the result everytime
     },
-    config = function(_, opts)
-      require("better_escape").setup(opts)
-    end,
   },
   {
     "stevearc/oil.nvim",
@@ -40,9 +37,6 @@ return {
         ["zh"] = "actions.toggle_hidden",
       },
     },
-    config = function(_, opts)
-      require("oil").setup(opts)
-    end,
     cmd = "Oil",
   },
   {
