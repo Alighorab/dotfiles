@@ -108,7 +108,7 @@ return {
         mapping = cmp.mapping.preset.insert({
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
             elseif has_words_before() then
               cmp.complete()
             else
@@ -125,7 +125,7 @@ return {
           ["<C-u>"] = cmp.mapping.scroll_docs(-2),
           ["<C-d>"] = cmp.mapping.scroll_docs(2),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+          ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
           ["<C-j>"] = cmp.mapping(function(fallback)
             cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
           end, { "i", "s" }),
@@ -142,37 +142,6 @@ return {
           { name = "neorg" },
         }),
       }
-    end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-      vim.api.nvim_set_hl(0, "CmpItemMenu", { bg = "None", fg = "#808080" })
-    end,
-  },
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-      -- If you want insert `(` after select function or method item
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-    end,
-  },
-  {
-    "quangnguyen30192/cmp-nvim-ultisnips",
-    config = function()
-      require("cmp_nvim_ultisnips").setup({
-        filetype_source = "treesitter",
-        show_snippets = "all",
-        documentation = function(snippet)
-          return snippet.description
-        end,
-      })
-    end,
-  },
-  {
-    "SirVer/ultisnips",
-    config = function()
-      vim.g.UltiSnipsSnippetDirectories = { vim.fn.stdpath("config") .. "/ultisnips" }
     end,
   },
 }
