@@ -26,6 +26,33 @@ return {
           })
         end,
       },
+      {
+        "windwp/nvim-autopairs",
+        config = function()
+          require("nvim-autopairs").setup()
+          -- If you want insert `(` after select function or method item
+          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
+      },
+      {
+        "quangnguyen30192/cmp-nvim-ultisnips",
+        config = function()
+          require("cmp_nvim_ultisnips").setup({
+            filetype_source = "treesitter",
+            show_snippets = "all",
+            documentation = function(snippet)
+              return snippet.description
+            end,
+          })
+        end,
+      },
+      {
+        "SirVer/ultisnips",
+        config = function()
+          vim.g.UltiSnipsSnippetDirectories = { vim.fn.stdpath("config") .. "/ultisnips" }
+        end,
+      },
     },
     opts = function()
       local cmp = require("cmp")
