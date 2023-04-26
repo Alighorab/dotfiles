@@ -64,4 +64,7 @@ M.on_attach = function(_, bufnr)
   )
 end
 
+M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+M.lsp_flags = { debounce_text_changes = 150 }
+
 return M
