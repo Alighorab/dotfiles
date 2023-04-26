@@ -1,7 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    { "nvim-lua/plenary.nvim", cmd = { "PlenaryBustedDirectory", "PlenaryBustedFile" } },
   },
   opts = function()
     local previewers = require("telescope.previewers")
@@ -32,20 +32,83 @@ return {
       },
     }
   end,
-  config = function(_, opts)
-    local builtin = require("telescope.builtin")
-    require("telescope").setup(opts)
-
-    vim.keymap.set("n", "gff", builtin.find_files, { desc = "Find files" })
-    vim.keymap.set("n", "gfo", builtin.oldfiles, { desc = "Find history" })
-    vim.keymap.set("n", "gfo", builtin.buffers, { desc = "Find buffers" })
-    vim.keymap.set("n", "gfg", builtin.live_grep, { desc = "Live grep" })
-    vim.keymap.set("n", "gfh", builtin.help_tags, { desc = "Help tags" })
-    vim.keymap.set("n", "gft", builtin.treesitter, { desc = "Telescope treesitter" })
-    vim.keymap.set("n", "gfk", builtin.keymaps, { desc = "Telescope keymaps" })
-    vim.keymap.set("n", "<leader>qf", builtin.quickfix, { desc = "Telescope quickfix" })
-
-    vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Git branches" })
-    vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Git commits" })
-  end,
+  keys = {
+    {
+      "gff",
+      function()
+        require("telescope.builtin").find_files()
+      end,
+      desc = "Find Plugin File",
+    },
+    {
+      "gfo",
+      function()
+        require("telescope.builtin").oldfiles()
+      end,
+      desc = "Find history",
+    },
+    {
+      "gfo",
+      function()
+        require("telescope.builtin").buffers()
+      end,
+      desc = "Find buffers",
+    },
+    {
+      "gfg",
+      function()
+        require("telescope.builtin").live_grep()
+      end,
+      desc = "Live grep",
+    },
+    {
+      "gfh",
+      function()
+        require("telescope.builtin").help_tags()
+      end,
+      desc = "Help tags",
+    },
+    {
+      "gft",
+      function()
+        require("telescope.builtin").treesitter()
+      end,
+      desc = "Telescope treesitter",
+    },
+    {
+      "gfk",
+      function()
+        require("telescope.builtin").keymaps()
+      end,
+      desc = "Telescope keymaps",
+    },
+    {
+      "<leader>qf",
+      function()
+        require("telescope.builtin").quickfix()
+      end,
+      desc = "Telescope quickfix",
+    },
+    {
+      "<leader>gb",
+      function()
+        require("telescope.builtin").git_branches()
+      end,
+      desc = "Git branches",
+    },
+    {
+      "<leader>gc",
+      function()
+        require("telescope.builtin").git_commits()
+      end,
+      desc = "Git commits",
+    },
+    {
+      "gfp",
+      function()
+        require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
+      end,
+      desc = "Find Plugin File",
+    },
+  },
 }

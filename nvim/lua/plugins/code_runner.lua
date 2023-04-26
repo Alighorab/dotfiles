@@ -32,8 +32,8 @@ return {
       project_path = "",
     }
   end,
-  config = true,
   keys = {
     { "<F5>", ":RunCode<CR>", desc = "Run Code" },
   },
+  cmd = "RunCode",
 }

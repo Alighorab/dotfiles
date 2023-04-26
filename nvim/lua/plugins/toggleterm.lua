@@ -24,5 +24,7 @@ return {
       },
     }
   end,
-  config = true,
+  keys = {
+    { "<C-\\>", "<cmd>ToggleTerm<CR>", desc = "Toggleterm" },
+  },
 }

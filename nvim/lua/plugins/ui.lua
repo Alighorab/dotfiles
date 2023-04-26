@@ -141,5 +141,9 @@ return {
         -- refer to the configuration section below
       })
     end,
+    cmd = {
+      "TodoQuickFix",
+      "TodoTelescope",
+    },
   },
 }

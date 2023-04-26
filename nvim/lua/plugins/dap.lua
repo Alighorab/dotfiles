@@ -108,5 +108,42 @@ return {
       require("plugins.debug-adapters.codelldb").setup()
       require("plugins.debug-adapters.debugpy").setup()
     end,
+    keys = {
+      {
+        "<F9>",
+        function()
+          require("dap").continue()
+        end,
+        desc = "Dap continue",
+      },
+      {
+        "<F21>",
+        function()
+          require("dap").run_last()
+        end,
+        desc = "Dap run last",
+      },
+      {
+        "<F8>",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Dap toggle breakpoint",
+      },
+      {
+        "<F20>",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Dap clear breakpoints",
+      },
+      {
+        "<leader>B",
+        function()
+          require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+        end,
+        desc = "Dap conditional breakpoint",
+      },
+    },
   },
 }
