@@ -23,40 +23,36 @@ return {
       },
       "onsails/lspkind-nvim",
       { "j-hui/fidget.nvim", config = true },
-    },
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function()
-      local null_ls = require("null-ls")
-      local on_attach = require("logan.utils.lsp").on_attach
-      return {
-        sources = {
-          -- Formatters
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.shfmt.with({
-            extra_args = { "-ci" },
-          }),
-          null_ls.builtins.formatting.rustfmt,
-          null_ls.builtins.formatting.gofumpt,
-          null_ls.builtins.formatting.black.with({
-            extra_args = {
-              "--line-length",
-              "88",
-            },
-          }),
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        opts = function()
+          local null_ls = require("null-ls")
+          local on_attach = require("logan.utils.lsp").on_attach
+          return {
+            sources = {
+              -- Formatters
+              null_ls.builtins.formatting.stylua,
+              null_ls.builtins.formatting.shfmt.with({
+                extra_args = { "-ci" },
+              }),
+              null_ls.builtins.formatting.rustfmt,
+              null_ls.builtins.formatting.gofumpt,
+              null_ls.builtins.formatting.black.with({
+                extra_args = {
+                  "--line-length",
+                  "88",
+                },
+              }),
 
-          -- Completion
-          null_ls.builtins.completion.spell.with({
-            filetypes = { "markdown", "text", "rst", "norg" },
-          }),
-        },
-        on_attach = on_attach,
-      }
-    end,
-    dependencies = {
-      "onsails/lspkind-nvim",
-      { "j-hui/fidget.nvim", config = true },
+              -- Completion
+              null_ls.builtins.completion.spell.with({
+                filetypes = { "markdown", "text", "rst", "norg" },
+              }),
+            },
+            on_attach = on_attach,
+          }
+        end,
+      },
     },
   },
 }
