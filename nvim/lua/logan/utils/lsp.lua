@@ -5,7 +5,12 @@ local M = {}
 M.on_attach = function(_, bufnr)
   -- Mappings.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "gh", vim.lsp.buf.references, vim.tbl_extend("force", bufopts, { desc = "Lsp References" }))
+  vim.keymap.set(
+    "n",
+    "<leader>gr",
+    vim.lsp.buf.references,
+    vim.tbl_extend("force", bufopts, { desc = "Lsp References" })
+  )
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", bufopts, { desc = "Lsp Definition" }))
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", bufopts, { desc = "Lsp Declaration" }))
   vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", bufopts, { desc = "Lsp Hover" }))
@@ -62,6 +67,10 @@ M.on_attach = function(_, bufnr)
     require("nvim-navbuddy").open,
     vim.tbl_extend("force", bufopts, { desc = "NavBuddy" })
   )
+
+  vim.keymap.set("n", "<leader>dl", function()
+    vim.diagnostic.open_float(require("logan.utils.diagnostics").float_opts)
+  end, vim.tbl_extend("force", bufopts, { desc = "Open diagnostics for current line" }))
 end
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
