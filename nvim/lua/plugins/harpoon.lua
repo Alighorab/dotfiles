@@ -1,7 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
   keys = {
-
     {
       "<leader>hm",
       function()
@@ -28,21 +27,21 @@ return {
       function()
         require("harpoon.ui").nav_file(2)
       end,
-      desc = "Harppon File (2)",
+      desc = "Harppon Navigate File (2)",
     },
     {
       "<C-h>",
       function()
         require("harpoon.ui").nav_file(3)
       end,
-      desc = "Harppon File (3)",
+      desc = "Harppon Navigate File (3)",
     },
     {
       "<C-g>",
       function()
         require("harpoon.ui").nav_file(4)
       end,
-      desc = "Harppon File (4)",
+      desc = "Harppon Navigate File (4)",
     },
   },
 }
