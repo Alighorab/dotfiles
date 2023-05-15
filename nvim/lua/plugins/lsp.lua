@@ -2,17 +2,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- diagnostics
-      vim.diagnostic.config({
-        virtual_text = true,
-      })
-      -- signs
-      local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
-      -- servers
+      -- setup diagnostics
+      require("logan.utils.diagnostics").setup()
+      -- setup language servers
       require("plugins.language-servers.clangd").setup()
       require("plugins.language-servers.bashls").setup()
       require("plugins.language-servers.pylsp").setup()
