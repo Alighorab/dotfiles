@@ -13,6 +13,7 @@ M.setup = function()
     end,
     capabilities = capabilities,
     flags = lsp_flags,
+    cmd = { "rustup", "run", "stable", "rust-analyzer" },
     settings = {
       ["rust-analyzer"] = {
         imports = {
