@@ -8,6 +8,7 @@ M.setup = function()
     request = "launch",
     name = "My custom launch configuration",
     program = "${file}",
+    cwd = vim.fn.getcwd(),
     args = function()
       local argv = {}
       local arg = vim.fn.input(string.format("Arguments: "))
