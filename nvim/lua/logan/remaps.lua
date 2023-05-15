@@ -2,6 +2,19 @@ vim.keymap.set("n", "<Tab>", vim.cmd.bnext, { noremap = true, silent = true })
 vim.keymap.set("n", "<S-Tab>", vim.cmd.bprevious, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { noremap = true, silent = true })
 
+--[[
+Change a the word under the cursor and then hit `dot`
+to apply the change to the next/previous line
+]]
+vim.keymap.set("n", "<leader>cn", "*``cgn")
+vim.keymap.set("n", "<leader>cN", "#``cgN")
+
+-- more intutive maps (from Helix)
+vim.keymap.set("n", "gl", "$")
+vim.keymap.set("n", "gh", "^")
+vim.keymap.set("n", "gH", "0")
+vim.keymap.set("n", "U", "<C-r>")
+
 vim.keymap.set("n", "Y", "yg$", { noremap = true })
 vim.keymap.set("n", "n", "nzzzv", { noremap = true })
 vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
@@ -13,12 +26,12 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
 -- Reselct pasted text
 vim.keymap.set("n", "gp", "`[v`]", { noremap = true })
 
---[[ 
+--[[
 The best remaps ever!
   Move lines very quickly
   :[range]move {address}
     Move the lines given by [range] to below the line
-    given by {address}. 
+    given by {address}.
 ]]
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
@@ -35,7 +48,7 @@ vim.keymap.set("x", "ie", ":<C-u>normal! ggVG<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>p", '"+p', { noremap = true })
 vim.keymap.set("n", "<leader>y", '"+y', { noremap = true })
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true })
-vim.keymap.set("n", "<leader>Y", '"+Y')
+vim.keymap.set("n", "<leader>Y", '"+yg$')
 
 -- Resize split horizontally
 vim.keymap.set("n", "+", function()
@@ -62,3 +75,10 @@ end, { noremap = true })
 vim.keymap.set("n", "<leader>qn", vim.cmd.cnext, { noremap = true })
 vim.keymap.set("n", "<leader>qp", vim.cmd.cprevious, { noremap = true })
 vim.keymap.set("n", "<leader>qo", vim.cmd.copen, { noremap = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("QuickFix", {}),
+  pattern = "qf",
+  callback = function()
+    vim.keymap.set("n", "zf", ":Telescope quickfix<CR>", { buffer = true })
+  end,
+})
