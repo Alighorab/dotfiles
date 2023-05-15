@@ -75,10 +75,26 @@ return {
           { "<leader>dp", dap.pause,                       { desc = "Dap pause" } },
           { "K",          require("dap.ui.widgets").hover, { desc = "Dap hover" } },
         })
+        push("debug_mode", "i", {
+          {
+            "<F7>",
+            function(_)
+              dap.terminate(_, _, function()
+                dap.repl.close()
+                dapui.close()
+              end)
+            end,
+            { desc = "Dap terminate" },
+          },
+          { "<F10>",      dap.step_over,                   { desc = "Dap step over" } },
+          { "<F11>",      dap.step_into,                   { desc = "Dap step into" } },
+          { "<F12>",      dap.step_out,                    { desc = "Dap step out" } },
+        })
       end
 
       dap.listeners.after["event_terminated"]["me"] = function()
         pop("debug_mode", "n")
+        pop("debug_mode", "i")
       end
 
       -- Adapters
@@ -110,7 +126,7 @@ return {
       {
         "<F20>",
         function()
-          require("dap").toggle_breakpoint()
+          require("dap").clear_breakpoints()
         end,
         desc = "Dap clear breakpoints",
       },
