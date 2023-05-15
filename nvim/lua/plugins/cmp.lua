@@ -7,27 +7,6 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       {
-        "zbirenbaum/copilot-cmp",
-        dependencies = {
-          {
-            "zbirenbaum/copilot.lua",
-            config = function()
-              require("copilot").setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-              })
-            end,
-          },
-        },
-        config = function()
-          require("copilot_cmp").setup({
-            formatters = {
-              insert_text = require("copilot_cmp.format").remove_existing,
-            },
-          })
-        end,
-      },
-      {
         "windwp/nvim-autopairs",
         config = function()
           require("nvim-autopairs").setup()
@@ -61,13 +40,6 @@ return {
       local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
       require("logan.utils.kinds").setup()
 
-      lspkind.init({
-        symbol_map = {
-          Copilot = "",
-        },
-      })
-      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
-
       local has_words_before = function()
         if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
           return false
@@ -84,7 +56,6 @@ return {
               nvim_lsp = "[LSP]",
               ultisnips = "[Snip]",
               path = "[Path]",
-              Copilot = "[Copilot]",
             },
           }),
         },
@@ -137,8 +108,7 @@ return {
         sources = cmp.config.sources({
           { name = "ultisnips" },
           { name = "nvim_lsp" },
-          { name = "copilot",  group_index = 2 },
-          { name = "buffer",   keyword_length = 5 },
+          { name = "buffer" },
           { name = "path" },
           { name = "neorg" },
         }),
