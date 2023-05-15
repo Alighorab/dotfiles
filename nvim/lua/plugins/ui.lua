@@ -1,17 +1,20 @@
 return {
   {
     "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup({
-        override = {
-          snippets = {
-            icon = "",
-            color = "#94e2d5",
-            name = "Snippet",
-          },
+    opts = {
+      override = {
+        snippets = {
+          icon = "",
+          color = "#94e2d5",
+          name = "Snippet",
         },
-      })
-    end,
+        gdb = {
+          icon = "",
+          color = "#800020",
+          name = "GDB",
+        },
+      },
+    },
   },
   {
     "folke/tokyonight.nvim",
