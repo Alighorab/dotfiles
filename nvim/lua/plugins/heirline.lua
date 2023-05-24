@@ -121,7 +121,7 @@ return {
         local filename = self.filename
         local extension = vim.fn.fnamemodify(filename, ":e")
         self.icon, self.icon_color =
-          require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+            require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
       end,
       provider = function(self)
         return self.icon and (self.icon .. " ")
@@ -187,7 +187,7 @@ return {
       FileIcon,
       utils.insert(FileNameModifer, FileName), -- a new table where FileName is a child of FileNameModifier
       FileFlags,
-      { provider = "%<" } -- this means that the statusline is cut here when there's not enough space
+      { provider = "%<" }                      -- this means that the statusline is cut here when there's not enough space
     )
 
     local FileType = {
@@ -446,6 +446,19 @@ return {
       }),
     }
 
+    local HelpFileName = {
+      condition = function()
+        return vim.bo.filetype == "help"
+      end,
+      utils.surround({ "", "" }, "bright_bg", {
+        provider = function()
+          local filename = vim.api.nvim_buf_get_name(0)
+          return vim.fn.fnamemodify(filename, ":t")
+        end,
+      }),
+      hl = { fg = "blue", bold = true },
+    }
+
     local Align = {
       provider = "%=",
     }
@@ -470,8 +483,82 @@ return {
       Ruler,
     }
 
+    local AlphaStatusline = {
+      condition = function()
+        return conditions.buffer_matches({
+          filetype = { "alpha" },
+        })
+      end,
+
+      Reset,
+    }
+
+    local FileTreeStatusline = {
+      condition = function()
+        if vim.bo.filetype == "neo-tree" then
+          return true
+        end
+        return false
+      end,
+
+      ViMode,
+      Git,
+      {
+        utils.surround({ "", "" }, "bright_bg", {
+          provider = function()
+            local icon = " "
+            local cwd = vim.fn.getcwd(0)
+            cwd = vim.fn.fnamemodify(cwd, ":t")
+            if not conditions.width_percent_below(#cwd, 0.25) then
+              cwd = vim.fn.pathshorten(cwd)
+            end
+            return icon .. cwd
+          end,
+          hl = { fg = "blue", bold = true },
+        }),
+      },
+
+      Align,
+
+      FileType,
+      Ruler,
+    }
+
+    local PromptStatusline = {
+      condition = function()
+        return conditions.buffer_matches({
+          buftype = { "prompt" },
+        })
+      end,
+
+      Reset,
+    }
+
+    local HelpStatusline = {
+      condition = function()
+        return conditions.buffer_matches({
+          buftype = { "help" },
+        })
+      end,
+
+      HelpFileName,
+
+      Align,
+
+      FileType,
+    }
+
+    local Statuslines = {
+      fallthrough = false,
+      AlphaStatusline,
+      FileTreeStatusline,
+      PromptStatusline,
+      HelpStatusline,
+      Statusline,
+    }
+
     return {
-      statusline = Statusline,
+      statusline = Statuslines,
     }
   end,
   config = function(_, opts)
