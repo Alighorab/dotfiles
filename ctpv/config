@@ -5,3 +5,5 @@ preview media audio/* video/* {{
 preview iso .iso {{
     iso-info "${f}"
 }}
+
+set forcekitty
