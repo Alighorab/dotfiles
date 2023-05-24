@@ -72,8 +72,16 @@ vim.keymap.set("n", "<leader>qq", function()
     vim.cmd.copen()
   end
 end, { noremap = true })
-vim.keymap.set("n", "<leader>qn", vim.cmd.cnext, { noremap = true })
-vim.keymap.set("n", "<leader>qp", vim.cmd.cprevious, { noremap = true })
+vim.keymap.set("n", "<leader>qn", function()
+  if not pcall(vim.cmd.cnext) then
+    print("QuickFix: No Next Element")
+  end
+end, { noremap = true })
+vim.keymap.set("n", "<leader>qp", function()
+  if not pcall(vim.cmd.cprevious) then
+    print("QuickFix: No Previous Element")
+  end
+end, { noremap = true })
 vim.keymap.set("n", "<leader>qo", vim.cmd.copen, { noremap = true })
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("QuickFix", {}),
