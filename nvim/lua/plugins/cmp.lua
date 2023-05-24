@@ -26,12 +26,14 @@ return {
             end,
           })
         end,
-      },
-      {
-        "SirVer/ultisnips",
-        config = function()
-          vim.g.UltiSnipsSnippetDirectories = { vim.fn.stdpath("config") .. "/ultisnips" }
-        end,
+        dependencies = {
+          {
+            "SirVer/ultisnips",
+            config = function()
+              vim.g.UltiSnipsSnippetDirectories = { vim.fn.stdpath("config") .. "/ultisnips" }
+            end,
+          },
+        },
       },
     },
     opts = function()
