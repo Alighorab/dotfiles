@@ -1,15 +1,4 @@
 return {
-  {
-    "toppair/peek.nvim",
-    ft = "markdown",
-    opts = { autoload = true },
-    config = function(_, opts)
-      local peek = require("peek")
-      peek.setup(opts)
-      vim.keymap.set("n", "<leader>pp", peek.open, { buffer = true, desc = "Peek Open Preview" })
-      vim.keymap.set("n", "<leader>pc", peek.close, { buffer = true, desc = "Peek Close Preview" })
-    end,
-  },
   { "segeljakt/vim-silicon", cmd = "Silicon" },
   {
     "nvim-neorg/neorg",
