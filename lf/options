@@ -6,7 +6,7 @@ set scrolloff 10
 set mouse
 set ratios 1:2:2
 set drawbox
-set icons "~/.config/lf/icons"
+set icons true
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
