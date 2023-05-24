@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function()
   local dap = require("dap")
+  local dap_vscode = require("dap.ext.vscode")
 
   dap.adapters.codelldb = {
     type = "server",
@@ -105,59 +106,6 @@ M.setup = function()
         },
       },
     },
-    {
-      name = "Payment Application",
-      type = "codelldb",
-      request = "launch",
-      program = "build/PaymentApp",
-      MIMode = "gdb",
-      miDebuggerPath = "/usr/bin/gdb",
-      setupCommands = {
-        {
-          text = "-enable-pretty-printing",
-          description = "enable pretty printing",
-          ignoreFailures = false,
-        },
-      },
-    },
-    {
-      name = "Payment Application (with args)",
-      type = "codelldb",
-      request = "launch",
-      program = "build/PaymentApp",
-      args = function()
-        local argv = {}
-        local arg = vim.fn.input(string.format("Arguments: "))
-        for a in string.gmatch(arg, "%S+") do
-          table.insert(argv, a)
-        end
-        return argv
-      end,
-      MIMode = "gdb",
-      miDebuggerPath = "/usr/bin/gdb",
-      setupCommands = {
-        {
-          text = "-enable-pretty-printing",
-          description = "enable pretty printing",
-          ignoreFailures = false,
-        },
-      },
-    },
-    {
-      name = "Payment Application Test",
-      type = "codelldb",
-      request = "launch",
-      program = "build/${fileBasenameNoExtension}",
-      MIMode = "gdb",
-      miDebuggerPath = "/usr/bin/gdb",
-      setupCommands = {
-        {
-          text = "-enable-pretty-printing",
-          description = "enable pretty printing",
-          ignoreFailures = false,
-        },
-      },
-    },
   }
 
   dap.configurations.c = dap.configurations.cpp
@@ -192,6 +140,9 @@ M.setup = function()
       },
     },
   }
+
+  dap_vscode.json_decode = require("json5").parse
+  dap_vscode.load_launchjs("./.launch.json", { codelldb = { "c", "cpp", "rust" } })
 end
 
 return M

@@ -1,6 +1,7 @@
 local M = {}
 
 M.setup = function()
+  local dap_vscode = require("dap.ext.vscode")
   require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
 
   table.insert(require("dap").configurations.python, {
@@ -17,7 +18,10 @@ M.setup = function()
       end
       return argv
     end,
+    justMyCode = false,
   })
+  dap_vscode.json_decode = require("json5").parse
+  dap_vscode.load_launchjs("./.launch.json", { "python" })
 end
 
 return M

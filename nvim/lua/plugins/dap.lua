@@ -39,6 +39,10 @@ return {
         end,
       },
       "mfussenegger/nvim-dap-python",
+      {
+        "Joakker/lua-json5",
+        build = "./install.sh",
+      },
     },
     config = function()
       local dap = require("dap")
@@ -86,9 +90,9 @@ return {
             end,
             { desc = "Dap terminate" },
           },
-          { "<F10>",      dap.step_over,                   { desc = "Dap step over" } },
-          { "<F11>",      dap.step_into,                   { desc = "Dap step into" } },
-          { "<F12>",      dap.step_out,                    { desc = "Dap step out" } },
+          { "<F10>", dap.step_over, { desc = "Dap step over" } },
+          { "<F11>", dap.step_into, { desc = "Dap step into" } },
+          { "<F12>", dap.step_out,  { desc = "Dap step out" } },
         })
       end
 
