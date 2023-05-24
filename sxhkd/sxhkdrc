@@ -143,4 +143,4 @@ super + shift + c
 
 # Show time
 super + e
-    notify-send "$(date +%r)" -t 2000
+    rofi -modi emoji -show emoji
