@@ -144,3 +144,6 @@ super + shift + c
 # Show time
 super + e
     rofi -modi emoji -show emoji
+
+super + m
+    mpv $(xclip -selection clipboard -o)
