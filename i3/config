@@ -6,7 +6,6 @@ font pango:Inconsolata Nerd Font Mono 0
 new_window pixel 1
 popup_during_fullscreen smart
 
-exec            pulse-autoconf
 exec            sxhkd
 exec_always     pkill picom; picom
 exec            sh -c $HOME/.scripts/xidlehook.sh
