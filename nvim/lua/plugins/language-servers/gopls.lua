@@ -7,10 +7,7 @@ M.setup = function()
   local on_attach = require("logan.utils.lsp").on_attach
 
   lspconfig.gopls.setup({
-    on_attach = function(client, bufnr)
-      require("nvim-navic").attach(client, bufnr)
-      on_attach(client, bufnr)
-    end,
+    on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
     cmd = { "gopls", "serve" },

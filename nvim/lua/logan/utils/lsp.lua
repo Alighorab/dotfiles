@@ -2,7 +2,8 @@ local M = {}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.on_attach = function(_, bufnr)
+M.on_attach = function(client, bufnr)
+  local navic = require("nvim-navic")
   -- Mappings.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set(
@@ -71,6 +72,10 @@ M.on_attach = function(_, bufnr)
   vim.keymap.set("n", "<leader>dl", function()
     vim.diagnostic.open_float(require("logan.utils.diagnostics").float_opts)
   end, vim.tbl_extend("force", bufopts, { desc = "Open diagnostics for current line" }))
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
