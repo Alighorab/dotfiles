@@ -1,19 +1,10 @@
-vim.keymap.set("n", "<Tab>", vim.cmd.bnext, { noremap = true, silent = true })
-vim.keymap.set("n", "<S-Tab>", vim.cmd.bprevious, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { noremap = true, silent = true })
-
 --[[
 Change a the word under the cursor and then hit `dot`
 to apply the change to the next/previous line
 ]]
 vim.keymap.set("n", "<leader>cn", "*``cgn")
 vim.keymap.set("n", "<leader>cN", "#``cgN")
-
--- more intutive maps (from Helix)
-vim.keymap.set("n", "gl", "$")
-vim.keymap.set("n", "gh", "^")
-vim.keymap.set("n", "gH", "0")
-vim.keymap.set("n", "U", "<C-r>")
 
 vim.keymap.set("n", "Y", "yg$", { noremap = true })
 vim.keymap.set("n", "n", "nzzzv", { noremap = true })
