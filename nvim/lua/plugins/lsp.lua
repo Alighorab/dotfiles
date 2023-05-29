@@ -19,7 +19,21 @@ return {
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim",
         },
-        opts = { lsp = { auto_attach = true } },
+        opts = {
+          lsp = { auto_attach = true },
+          window = {
+            border = "rounded",
+            size = {
+              width = "85%",
+              height = "85%",
+            },
+            sections = {
+              left = { size = "20%" },
+              mid = { size = "25%" },
+              right = { preview = "always" },
+            },
+          },
+        },
       },
       "onsails/lspkind-nvim",
       { "j-hui/fidget.nvim", config = true },
