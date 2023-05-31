@@ -180,6 +180,13 @@ M.setup = function()
 
   dap_vscode.json_decode = require("json5").parse
   dap_vscode.load_launchjs("./.launch.json", { codelldb = { "c", "cpp", "rust" } })
+
+  vim.api.nvim_create_user_command("CodelldbReloadLaunchJson", function()
+    dap_vscode.load_launchjs("./.launch.json", { codelldb = { "c", "cpp", "rust" } })
+  end, {
+    complete = "file",
+    nargs = "*",
+  })
 end
 
 return M
