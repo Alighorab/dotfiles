@@ -68,11 +68,15 @@ end, { noremap = true })
 vim.keymap.set("n", "<leader>qn", function()
   if not pcall(vim.cmd.cnext) then
     print("QuickFix: No Next Element")
+  else
+    vim.cmd.normal("zz")
   end
 end, { noremap = true })
 vim.keymap.set("n", "<leader>qp", function()
   if not pcall(vim.cmd.cprevious) then
     print("QuickFix: No Previous Element")
+  else
+    vim.cmd.normal("zz")
   end
 end, { noremap = true })
 vim.keymap.set("n", "<leader>qo", vim.cmd.copen, { noremap = true })
