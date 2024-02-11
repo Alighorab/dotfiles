@@ -46,6 +46,7 @@ return {
     },
     config = function()
       local dap = require("dap")
+      local dap_vscode = require("dap.ext.vscode")
       local dapui = require("dapui")
       local push = require("stackmap").push
       local pop = require("stackmap").pop
@@ -100,6 +101,12 @@ return {
         pop("debug_mode", "n")
         pop("debug_mode", "i")
       end
+
+      -- add support to vscode launch.json
+      dap_vscode.json_decode = require("json5").parse
+
+      -- add support to preLaunchTask and postDebugTask
+      require("overseer").patch_dap(true)
 
       -- Adapters
       require("plugins.debug-adapters.codelldb").setup()
