@@ -20,11 +20,11 @@ M.setup = function()
     end,
     justMyCode = false,
   })
-  dap_vscode.json_decode = require("json5").parse
-  dap_vscode.load_launchjs("./.launch.json", { "python" })
+
+  dap_vscode.load_launchjs("./.vscode/launch.json", { "python" })
 
   vim.api.nvim_create_user_command("DebugpyReloadLaunchJson", function()
-    dap_vscode.load_launchjs("./.launch.json", { codelldb = { "c", "cpp", "rust" } })
+    dap_vscode.load_launchjs("./.vscode/launch.json", { "python" })
   end, {
     complete = "file",
     nargs = "*",
