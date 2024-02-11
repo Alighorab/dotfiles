@@ -46,10 +46,10 @@ vim.g.loaded_perl_provider = 0
 -- vim.opt.listchars:append("eol:↴")
 -- open help in vertical split
 vim.cmd("cabbrev h vert h")
--- Neovide font
-if vim.g.neovide then
-  vim.opt.guifont = "Inconsolata for Powerline:h11"
-end
+-- general status line
 vim.opt.laststatus = 3
+-- concealing
+vim.opt.conceallevel = 3
+vim.opt.concealcursor = "n"
 -- Map leader key to <space>
 vim.g.mapleader = " "
