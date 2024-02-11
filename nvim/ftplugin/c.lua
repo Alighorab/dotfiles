@@ -43,11 +43,3 @@ local compile = function()
     args = args,
   })
 end
-
-vim.keymap.set("n", "<F6>", function()
-  if vim.fn.filereadable("makefile") == 1 or vim.fn.filereadable("Makefile") == 1 then
-    make()
-  else
-    compile()
-  end
-end)
