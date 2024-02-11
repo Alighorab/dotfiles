@@ -26,10 +26,7 @@ local opts = {
   performance = {
     rtp = {
       disabled_plugins = {
-        "gzip",
-        "tarPlugin",
         "netrwPlugin",
-        "zipPlugin",
       },
     },
   },

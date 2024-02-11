@@ -36,7 +36,7 @@ return {
         },
       },
       "onsails/lspkind-nvim",
-      { "j-hui/fidget.nvim", config = true },
+      { "j-hui/fidget.nvim", config = true, tag = "legacy" },
       {
         "jose-elias-alvarez/null-ls.nvim",
         opts = function()

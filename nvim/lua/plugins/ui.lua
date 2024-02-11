@@ -47,9 +47,9 @@ return {
       dashboard.section.buttons.val = {
         button("g f f", "  Find File  "),
         button("g f g", "  Live Grep  "),
+        button("LDR n", "  New File   "),
         button("g f o", "  Recents  "),
         button("LDR h u", "  Bookmarks  "),
-        button("LDR LDR", "  File Explorer  "),
       }
 
       dashboard.config.layout[1].val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) })
@@ -68,9 +68,13 @@ return {
   { "lewis6991/gitsigns.nvim", config = true },
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = {
-      char = "┊",
-      show_trailing_blankline_indent = false,
+      indent = { char = "┊" },
+      whitespace = {
+        remove_blankline_trail = false,
+      },
+      scope = { enabled = false },
     },
   },
   {
@@ -82,6 +86,12 @@ return {
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
       })
+    end,
+  },
+  {
+    "HampusHauffman/block.nvim",
+    config = function()
+      require("block").setup({})
     end,
   },
 }

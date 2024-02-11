@@ -94,11 +94,11 @@ return {
             desc = "Telescope keymaps",
           },
           {
-            "<leader>qf",
+            "gfq",
             function()
-              require("telescope.builtin").quickfix()
+              require("telescope.builtin").quickfixhistory()
             end,
-            desc = "Telescope quickfix",
+            desc = "Telescope quickfixhistory",
           },
           {
             "<leader>gb",
