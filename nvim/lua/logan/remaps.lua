@@ -10,9 +10,11 @@ vim.keymap.set("n", "Y", "yg$", { noremap = true })
 vim.keymap.set("n", "n", "nzzzv", { noremap = true })
 vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
 vim.keymap.set("n", "J", "mzJ`z", { noremap = true })
--- Jump and center
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
+-- Junp only five lines
+vim.keymap.set("n", "<C-d>", "5<C-d>", { noremap = true })
+vim.keymap.set("n", "<C-u>", "5<C-u>", { noremap = true })
+
+vim.keymap.set("n", "<leader>n", vim.cmd.enew, { noremap = true })
 
 -- Reselct pasted text
 vim.keymap.set("n", "gp", "`[v`]", { noremap = true })
