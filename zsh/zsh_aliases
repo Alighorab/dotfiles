@@ -1,6 +1,6 @@
 # General aliases
-alias exa='exa --group-directories-first --git'
-alias ls='exa'
+alias exa='eza --group-directories-first --git'
+alias ls='eza'
 alias l='ls'
 alias la='l -a'
 alias ll='l -lg'
@@ -41,7 +41,7 @@ alias rmdir='rm -r'
 alias gts='git status -s'
 alias gta='git add'
 alias gtc='git commit'
-alias gtl='git log --oneline'
+alias gtl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --decorate --date=short --color | devmoji --log --color'
 alias gtd='git diff'
 alias lg='lazygit'
 

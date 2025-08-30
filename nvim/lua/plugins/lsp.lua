@@ -11,6 +11,7 @@ return {
       require("plugins.language-servers.gopls").setup()
       require("plugins.language-servers.rust-analyzer").setup()
       require("plugins.language-servers.lua_ls").setup()
+      require("plugins.language-servers.marksman").setup()
     end,
     dependencies = {
       {
@@ -38,7 +39,7 @@ return {
       "onsails/lspkind-nvim",
       { "j-hui/fidget.nvim", config = true, tag = "legacy" },
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         opts = function()
           local null_ls = require("null-ls")
           local on_attach = require("logan.utils.lsp").on_attach
@@ -49,7 +50,7 @@ return {
               null_ls.builtins.formatting.shfmt.with({
                 extra_args = { "-ci" },
               }),
-              null_ls.builtins.formatting.rustfmt,
+              -- null_ls.builtins.formatting.rustfmt,
               null_ls.builtins.formatting.gofumpt,
               null_ls.builtins.formatting.black.with({
                 extra_args = {
@@ -58,6 +59,17 @@ return {
                 },
               }),
 
+              -- Linting
+              null_ls.builtins.diagnostics.markdownlint.with({
+                extra_args = {
+                  "--disable",
+                  "MD013", -- Line length
+                  "MD033", -- Inline HTML
+                  "MD041", -- First line in file should be a top level heading
+                  "MD025", -- Multiple top level headings
+                  "MD024", -- Multiple headings with the same content
+                },
+              }),
               -- Completion
               null_ls.builtins.completion.spell.with({
                 filetypes = { "markdown", "text", "rst", "norg" },

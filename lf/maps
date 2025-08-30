@@ -31,7 +31,7 @@ map i
 map i pager
 
 map gm cd /mnt/ext/
-map gw cd ~/Work/Sprints/
+map gw cd ~/Work/
 map gc cd ~/.config/
 map gd cd ~/.dotfiles/
 map go cd ~/opt/

@@ -18,11 +18,14 @@ super + shift + {s, g}
 super + f
 	i3-msg 'fullscreen toggle'
 
-super + v
-    i3-msg 'layout splitv'
+# super + v
+#     i3-msg 'layout splitv'
+#
+# super + shift + v
+#     i3-msg 'layout splith'
 
-super + shift + v
-    i3-msg 'layout splith'
+super + v
+    clipcat-menu insert && (xprop -id $(xdotool getactivewindow) | grep -q $TERMINAL && xdotool key shift+Insert || xdotool key ctrl+v)
 
 super + shift + f
 	i3-msg 'floating toggle'
@@ -75,6 +78,9 @@ super + d
 super + w
     $HOME/.scripts/i3launcher.sh Firefox
 
+super + e
+    $HOME/.scripts/i3launcher.sh Chrome
+
 super + r
 	$HOME/.scripts/i3launcher.sh Lf
 
@@ -86,6 +92,9 @@ super + i
 
 super + y
     $HOME/.scripts/i3launcher.sh Spotify
+
+super + b
+    $HOME/.scripts/i3launcher.sh Brave
 
 super + shift + t
 	$HOME/.scripts/touchpad_toggle.sh
@@ -100,9 +109,6 @@ super + ctrl + g
     i3toggle_gaps
 
 # control
-super + x
-    $HOME/.scripts/lock.sh
-
 super + shift + x
 	$HOME/.scripts/exit.sh
 
@@ -118,10 +124,10 @@ super + ctrl + {equal, minus}
 # print screen
 # print screen and save to clipboard
 Print
-	maim -g $(getgeometry) -u | xclip -selection clipboard -t image/png
+	maim -u | xclip -selection clipboard -t image/png
 # print screen and save to disk and clipboard
 ctrl + Print
-	maim -g $(getgeometry) -u | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+	maim -u | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
 # select portion and save to clipboard
 super + Print
@@ -130,9 +136,16 @@ super + Print
 super + ctrl + Print
 	maim -su | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 
+# # LEGENDARY, fuck Whatsapp
+# super + v
+#     paste-clipboard
+#
 # Reload sxhkd
 super + ctrl + r
 	kill -USR1 $(pgrep sxhkd)
+
+# super + e
+#     notify-send "$(date +%r)" -t 2000
 
 # Record screen
 super + c
@@ -140,10 +153,6 @@ super + c
 
 super + shift + c
 	kill -SIGTERM $(pgrep ffmpeg)
-
-# Show time
-super + e
-    rofi -modi emoji -show emoji
 
 super + m
     mpv $(xclip -selection clipboard -o)

@@ -213,7 +213,7 @@ return {
       utils.surround({ "", "" }, "bright_bg", {
         provider = function()
           local names = {}
-          for _, server in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+          for _, server in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
             table.insert(names, server.name)
           end
           return " " .. table.concat(names, " ")
@@ -513,6 +513,69 @@ return {
       rpad(OverseerTasksForStatus("FAILURE")),
     }
 
+    local Dropbar = {
+      condition = function(self)
+        self.data = vim.tbl_get(dropbar.bars or {}, vim.api.nvim_get_current_buf(), vim.api.nvim_get_current_win())
+        return self.data
+      end,
+      static = { dropbar_on_click_string = "v:lua.dropbar.callbacks.buf%s.win%s.fn%s" },
+      init = function(self)
+        local components = self.data.components
+        local children = {}
+        for i, c in ipairs(components) do
+          local child = {
+            {
+              hl = c.icon_hl,
+              provider = c.icon:gsub("%%", "%%%%"),
+            },
+            {
+              hl = function()
+                local name_hl = vim.api.nvim_get_hl(0, { name = c.name_hl })
+                name_hl.bold = false
+                name_hl.fg = "gray"
+                return name_hl
+              end,
+              provider = c.name:gsub("%%", "%%%%"),
+            },
+            on_click = {
+              callback = self.dropbar_on_click_string:format(self.data.buf, self.data.win, i),
+              name = "heirline_dropbar",
+            },
+          }
+          if i < #components then
+            local sep = self.data.separator
+            table.insert(child, {
+              provider = sep.icon,
+              hl = sep.icon_hl,
+              on_click = {
+                callback = self.dropbar_on_click_string:format(self.data.buf, self.data.win, i + 1),
+              },
+            })
+          end
+          table.insert(children, child)
+        end
+        self.child = self:new(children, 1)
+      end,
+      provider = function(self)
+        return self.child:eval()
+      end,
+    }
+
+    local Lazy = {
+      condition = require("lazy.status").has_updates,
+      update = { "User", pattern = "LazyUpdate" },
+      provider = function()
+        return "  " .. require("lazy.status").updates() .. " "
+      end,
+      on_click = {
+        callback = function()
+          require("lazy").update()
+        end,
+        name = "update_plugins",
+      },
+      hl = { fg = "gray" },
+    }
+
     local Statusline = {
       ViMode,
       Git,
@@ -523,8 +586,8 @@ return {
       Reset,
       Align,
 
-      Navic,
       Overseer,
+      Lazy,
       LSPActive,
       FileType,
       Ruler,
@@ -595,17 +658,40 @@ return {
       FileType,
     }
 
+    local TerminalStatusLine = {
+      condition = function()
+        return conditions.buffer_matches({
+          buftype = { "toggleterm" },
+        })
+      end,
+
+      ViMode,
+      WorkDir,
+
+      Reset,
+      Align,
+
+      FileType,
+    }
+
     local Statuslines = {
       fallthrough = false,
       AlphaStatusline,
       FileTreeStatusline,
       PromptStatusline,
       HelpStatusline,
+      TerminalStatusLine,
       Statusline,
+    }
+
+    local Winbar = {
+      Navic,
+      Reset,
     }
 
     return {
       statusline = Statuslines,
+      winbar = Winbar,
     }
   end,
   config = function(_, opts)

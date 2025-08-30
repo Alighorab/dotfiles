@@ -12,13 +12,20 @@ exec            sh -c $HOME/.scripts/xidlehook.sh
 exec_always     pkill polybar; $HOME/.scripts/polybar.sh
 exec_always     feh --bg-scale /home/logan/Pictures/wallpapers/wallpapers/waves/cat-waves.png
 exec_always     i3-msg gaps inner all set 30
+exec_always --no-startup-id clipcatd
+# VPN
+# exec            expressvpn preferences set block_trackers true
+# exec            expressvpn preferences set send_diagnostics false
+# exec            expressvpn preferences set desktop_notifications false
+# exec            expressvpn connect && expressvpn-gui
+
+# exec            blueman-applet
 
 set $ws1        "1"
 set $ws2        "2"
 set $ws3        "3"
-set $ws4        "4"
-set $ws5        "5"
 set $firefox    ""
+set $chrome     ""
 set $discord    ""
 set $telegram   ""
 set $spotify    ""
@@ -35,7 +42,7 @@ set $bitwarden  ""
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
 bindsym $super+3 workspace $ws3
-bindsym $super+4 workspace $ws4
+bindsym $super+4 workspace $chrome
 bindsym $super+5 workspace $fm
 bindsym $super+6 workspace $spotify
 bindsym $super+7 workspace $telegram
@@ -46,7 +53,7 @@ bindsym $super+0 workspace $firefox
 bindsym $super+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
 bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $super+Shift+4 move container to workspace $chrome; workspace $chrome
 bindsym $super+Shift+5 move container to workspace $fm; workspace $fm
 bindsym $super+Shift+6 move container to workspace $spotify; workspace $spotify
 bindsym $super+Shift+7 move container to workspace $telegram; workspace $telegram
@@ -54,6 +61,9 @@ bindsym $super+Shift+9 move container to workspace $discord; workspace $discord
 bindsym $super+Shift+0 move container to workspace $firefox; workspace $firefox
 
 assign [class="firefox"] $firefox
+assign [class="Brave-browser"] $firefox
+assign [class="Chromium"] $chrome
+assign [class="Google-chrome"] $chrome
 assign [class="discord"] $discord
 assign [class="TelegramDesktop"] $telegram
 assign [class="filemanager"] $fm
@@ -85,6 +95,13 @@ for_window [class="kcalc"]          floating enable
 for_window [title="video0 - mpv"]   floating enable, sticky enable, resize set 480 px 360 px, move position 1440 px 720 px
 for_window [class="weather"] floating enable, resize set 1265 px 940 px, move absolute position center
 for_window [class="kronometer"] floating enable, resize set 400 px 100 px
+
+# Fucking Zoom
+for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
+for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
+
+for_window [class="Windscribe2"] floating enable
 
 hide_edge_borders both
 

@@ -41,4 +41,7 @@ return {
       "SudoEdit",
     },
   },
+  {
+    "tpope/vim-obsession"
+  }
 }

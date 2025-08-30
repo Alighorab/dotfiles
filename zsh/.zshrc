@@ -7,6 +7,8 @@ precmd() { vcs_info }
 # Format the vcs_info_msg_0_ variable
 zstyle ':vcs_info:git:*' formats 'on branch %b'
 
+setopt interactivecomments
+
 # History
 HISTFILE=~/.cache/zsh/.histfile
 HISTSIZE=10000000
@@ -23,9 +25,11 @@ export KEYTIMEOUT=1
 export PLUGINS_DIR="$XDG_CONFIG_HOME/zsh/plugins"
 # Theme
 setopt PROMPT_SUBST
-source $PLUGINS_DIR/ohmyzsh/lib/git.zsh
 source $PLUGINS_DIR/ohmyzsh/themes/robbyrussell.zsh-theme
 # Plugins
+source $PLUGINS_DIR/ohmyzsh/lib/functions.zsh
+source $PLUGINS_DIR/ohmyzsh/plugins/urltools/urltools.plugin.zsh
+source $PLUGINS_DIR/ohmyzsh/plugins/web-search/web-search.plugin.zsh
 source $PLUGINS_DIR/fzf-tab/fzf-tab.plugin.zsh
 source $PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh # Not maintained anymore
 source $PLUGINS_DIR/zsh-256color/zsh-256color.plugin.zsh
